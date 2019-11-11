@@ -19,6 +19,11 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/include/openglesbase)
 link_directories(${PROJECT_SOURCE_DIR}/lib)
 
+include_directories(${PROJECT_SOURCE_DIR}/third_party/gli)
+include_directories(${PROJECT_SOURCE_DIR}/third_party/glm)
+include_directories(${PROJECT_SOURCE_DIR}/third_party/imgui)
+include_directories(${PROJECT_SOURCE_DIR}/third_party/stb_image/include)
+
 if(UNIX)
     include_directories(/usr/local/include)
     link_directories(/usr/local/lib)
