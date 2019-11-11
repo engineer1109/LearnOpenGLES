@@ -10,6 +10,7 @@
 #include <xcb/xcb.h>
 #endif
 
+#include "camera.h"
 #include "openglesbase_def.h"
 class OPENGLESBASE_EXPORT OpenGLESBase{
 public:
@@ -21,15 +22,25 @@ public:
     virtual void renderLoop();
     virtual void render();
 
+    //Custom Event Function
+    virtual void windowResize(){}
+    virtual void viewChanged() {}
+    virtual void keyPressed(uint32_t) {}
+    virtual void mouseMoved(double x, double y, bool & handled) {}
+
+    void handleMouseMove(int32_t x, int32_t y);
+
     std::string getWindowTitle(){return title;}
 
 #ifdef OPENGLES_USE_XCB
-    xcb_window_t getWindowPtr(){return window;}
+    xcb_window_t getWindowHandle(){return window;}
+    void setWindowHandle(xcb_window_t winID){window=winID;}
 #endif
 private:
     void setupWindow();
 #ifdef OPENGLES_USE_XCB
     void initxcbConnection();
+    void handleEvent(const xcb_generic_event_t *event);
 #endif
 public:
     struct Settings {
@@ -40,6 +51,21 @@ public:
             /** @brief Enable UI overlay */
             bool overlay = false;
         } settings;
+    struct {
+        bool left = false;
+        bool right = false;
+        bool middle = false;
+    } mouseButtons;
+    struct {
+        bool up=false;
+        bool down=false;
+    } mouseWheel;
+
+    Camera camera;
+    glm::vec3 rotation = glm::vec3();
+    glm::vec3 cameraPos = glm::vec3();
+    glm::vec2 mousePos;
+
     std::string title = "OpenGLES Example";
     std::string name = "OpenGLES Example";
     uint32_t width = 1280;
@@ -47,6 +73,17 @@ public:
     uint32_t destWidth=0;
     uint32_t destHeight=0;
     bool prepared=false;
+    bool paused = false;
+    bool viewUpdated=false;
+
+    // Use to adjust mouse rotation speed
+    float rotationSpeed = 1.0f;
+    // Use to adjust mouse zoom speed
+    float zoomSpeed = 1.0f;
+    float zoom = 0;
+
+    uint32_t frameCounter=0;
+    float frameTimer = 1.0f;
 private:
     bool m_quit=false;
     EGLDisplay display;
