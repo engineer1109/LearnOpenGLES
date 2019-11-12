@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 project(LearnOpenGLES)
 
+include(${PROJECT_SOURCE_DIR}/cmake/Config.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/GCC.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/FindOpenGLES.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/FindOpenMP.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/Platform.cmake)
-include(${PROJECT_SOURCE_DIR}/cmake/Config.cmake)
 
 if(WIN32)
     SET(EXECUTABLE_OUTPUT_PATH  ${PROJECT_SOURCE_DIR}/)
