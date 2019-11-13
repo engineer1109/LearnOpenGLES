@@ -4,7 +4,7 @@
 class Shader;
 class Triangle:public OpenGLESBasicEngine{
 public:
-    Triangle()=default;
+    Triangle();
     ~Triangle()=default;
 
     void prepare();
@@ -13,7 +13,16 @@ public:
     //void keyPressed(uint32_t);
     //void mouseMoved(double x, double y, bool & handled);
 private:
+    void generateVertexs();
+    void prepareShaders();
+    void prepareUniforms();
+    void updateUniforms();
+private:
     uint m_vertexArray=NULL;
     Shader* m_shader=nullptr;
+    struct UBO{
+        glm::mat4 projection;
+        glm::mat4 model;
+    }m_uboVS;
 };
 #endif
