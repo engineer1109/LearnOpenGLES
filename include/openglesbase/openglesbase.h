@@ -12,6 +12,9 @@
 
 #include "camera.h"
 #include "openglesbase_def.h"
+
+class ImguiOverlay;
+
 class OPENGLESBASE_EXPORT OpenGLESBase{
 public:
     OpenGLESBase();
@@ -101,5 +104,7 @@ private:
 #ifdef WIN32UI
     HWND window;
 #endif
+
+    ImguiOverlay* imgui;
 };
 #endif
