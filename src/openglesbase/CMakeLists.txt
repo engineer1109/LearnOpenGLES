@@ -4,6 +4,8 @@ SET(LIB_NAME opengles_basicengine)
 add_definitions(-DOPENGLESBASE_EXPORT_API)
 add_definitions(-DSTBI_NO_DDS)
 add_definitions(-DSTB_IMAGE_EXPORT_API)
+add_definitions(-DIMGUI_IMPL_OPENGL_ES3)
+add_definitions(-DIMGUI_IMPL_OPENGL_LOADER_CUSTOM)
 
 FILE(GLOB_RECURSE SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*)
 FILE(GLOB HEAD_FILES ${PROJECT_SOURCE_DIR}/include/openglesbase/*)

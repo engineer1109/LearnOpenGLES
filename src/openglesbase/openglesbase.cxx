@@ -3,15 +3,20 @@
 #include <cstring>
 #include <chrono>
 #include "keycodes.h"
+#include "opengles_imgui.h"
 #include "openglesbase.h"
 OpenGLESBase::OpenGLESBase(){
+    imgui=new ImguiOverlay();
 #ifdef OPENGLES_USE_XCB
     initxcbConnection();
 #endif
 }
 
 OpenGLESBase::~OpenGLESBase(){
-
+    if(imgui){
+        delete imgui;
+        imgui=nullptr;
+    }
 }
 
 void OpenGLESBase::initWindow(){
@@ -40,6 +45,8 @@ void OpenGLESBase::prepare(){
     surface = eglCreateWindowSurface(display, config, native_window, NULL);
     /* connect the context to the surface */
     eglMakeCurrent(display, surface, surface, context);
+
+    imgui->init();
 }
 
 void OpenGLESBase::renderLoop(){
@@ -70,6 +77,7 @@ void OpenGLESBase::renderLoop(){
         {
             viewUpdated = true;
         }
+        imgui->render();
 
         eglSwapBuffers(display, surface);
     }
