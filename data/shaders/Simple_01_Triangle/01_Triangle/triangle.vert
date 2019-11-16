@@ -1,8 +1,8 @@
 #version 300 es
-#extension GL_ARB_separate_shader_objects : enable
+//#extension GL_ARB_separate_shader_objects : enable
 layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec3 aColor;
-layout (location = 0) out vec3 ourColor;
+out vec3 ourColor;
 uniform struct UBO{
     mat4 projection;
     mat4 model;
