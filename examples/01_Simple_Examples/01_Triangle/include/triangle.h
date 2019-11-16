@@ -18,7 +18,7 @@ private:
     void prepareUniforms();
     void updateUniforms();
 private:
-    uint m_vertexArray=NULL;
+    uint32_t m_vertexArray=NULL;
     Shader* m_shader=nullptr;
     struct UBO{
         glm::mat4 projection;

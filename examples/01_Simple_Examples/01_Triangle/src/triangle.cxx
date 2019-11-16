@@ -8,7 +8,7 @@ Triangle::Triangle(){
 
 void Triangle::prepare(){
     glEnable(GL_DEPTH_TEST);
-    OpenGLESBase::prepare();
+    prepareBase();
     prepareShaders();
     generateVertexs();
     prepareUniforms();
@@ -18,11 +18,13 @@ void Triangle::render(){
     glViewport(0,0,uint32_t(width),uint32_t(height));
     glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-    //glFlush();
+    
     m_shader->use();
     glBindVertexArray(m_vertexArray);
     updateUniforms();
     glDrawArrays(GL_TRIANGLES, 0, 3);
+
+	glFlush();
 }
 
 void Triangle::generateVertexs(){
