@@ -3,11 +3,19 @@
 
 #include <string.h>
 #include <iostream>
+#include <chrono>
 #include <GLES3/gl3.h>
 #include <EGL/egl.h>
 
 #ifdef OPENGLES_USE_XCB
 #include <xcb/xcb.h>
+#endif
+#ifdef OPENGLES_USE_WIN32
+#pragma comment(linker, "/subsystem:console")
+#include <windows.h>
+#include <fcntl.h>
+#include <io.h>
+#include <ShellScalingAPI.h>
 #endif
 
 #include "camera.h"
@@ -21,7 +29,7 @@ public:
     ~OpenGLESBase();
 
     virtual void initWindow();
-    virtual void prepare();
+    virtual void prepareBase();
     virtual void renderLoop();
     virtual void render();
 
@@ -39,8 +47,13 @@ public:
     xcb_window_t getWindowHandle(){return window;}
     void setWindowHandle(xcb_window_t winID){window=winID;}
 #endif
+#ifdef OPENGLES_USE_WIN32
+	void handleMessages(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+#endif
+
 private:
     void setupWindow();
+
 #ifdef OPENGLES_USE_XCB
     void initxcbConnection();
     void handleEvent(const xcb_generic_event_t *event);
@@ -52,7 +65,7 @@ public:
             /** @brief Set to true if v-sync will be forced for the swapchain */
             bool vsync = false;
             /** @brief Enable UI overlay */
-            bool overlay = false;
+            bool overlay = true;
         } settings;
     struct {
         bool left = false;
@@ -87,6 +100,13 @@ public:
 
     uint32_t frameCounter=0;
     float frameTimer = 1.0f;
+	bool enableWindow = true;
+	bool resizing = false;
+
+	std::chrono::time_point<std::chrono::high_resolution_clock> lastTimestamp;
+	uint32_t lastFPS = 0;
+	float timer = 0.0f;
+	float timerSpeed = 0.25f;
 private:
     bool m_quit=false;
     EGLDisplay display;
@@ -101,8 +121,9 @@ private:
     xcb_window_t window;
     xcb_intern_atom_reply_t *atom_wm_delete_window;
 #endif
-#ifdef WIN32UI
+#ifdef OPENGLES_USE_WIN32
     HWND window;
+	HINSTANCE windowInstance;
 #endif
 
     ImguiOverlay* imgui;
