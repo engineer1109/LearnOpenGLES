@@ -1,5 +1,7 @@
 if(UNIX)
     option(USE_XCB "X11 xcb" ON)
+elseif(WIN32)
+    option(USE_WIN32 "Win32UI" ON)
 endif()
 option(GIT_ThirdParty "git submodule the thirdparty" ON)
 option(USE_OpenMP "Use CPU Multithread OpenMP" ON)
