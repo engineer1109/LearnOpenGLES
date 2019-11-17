@@ -94,6 +94,7 @@ void OpenGLESBase::renderLoop(){
             viewUpdated = true;
         }
         imgui->render();
+        updateOverlay();
 
         eglSwapBuffers(display, surface);
     }
@@ -162,6 +163,17 @@ void OpenGLESBase::renderLoop(){
 
 void OpenGLESBase::render(){
 
+}
+
+void OpenGLESBase::updateOverlay(){
+    ImGuiIO& io = ImGui::GetIO();
+
+    io.DisplaySize = ImVec2((float)width, (float)height);
+    io.DeltaTime = frameTimer;
+
+    io.MousePos = ImVec2(mousePos.x, mousePos.y);
+    io.MouseDown[0] = mouseButtons.left;
+    io.MouseDown[1] = mouseButtons.right;
 }
 
 void OpenGLESBase::handleMouseMove(int32_t x, int32_t y)
