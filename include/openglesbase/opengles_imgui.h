@@ -9,5 +9,7 @@ public:
 
     void init();
     void render();
+private:
+    float scale=1.f;
 };
 #endif // OPENGLES_IMGUI_H

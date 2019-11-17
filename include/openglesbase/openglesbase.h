@@ -32,6 +32,7 @@ public:
     virtual void prepareBase();
     virtual void renderLoop();
     virtual void render();
+    virtual void updateOverlay();
 
     //Custom Event Function
     virtual void windowResize(){}
