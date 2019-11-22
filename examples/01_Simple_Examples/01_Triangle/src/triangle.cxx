@@ -21,10 +21,19 @@ void Triangle::render(){
     
     m_shader->use();
     glBindVertexArray(m_vertexArray);
-    updateUniforms();
+    updateUniforms(true);
+    startAutoRotation();
     glDrawArrays(GL_TRIANGLES, 0, 3);
 
 	glFlush();
+}
+
+void Triangle::OnUpdateUIOverlay(ImguiOverlay* overlay){
+    if (overlay->header("Settings")) {
+        if (overlay->button("Auto Rotation")) {
+            m_autoRotation=!m_autoRotation;
+        }
+     }
 }
 
 void Triangle::generateVertexs(){
@@ -67,14 +76,23 @@ void Triangle::prepareShaders(){
 void Triangle::prepareUniforms(){
     m_uboVS.projection = glm::perspective(glm::radians(60.f), float(width)/float(height), 0.001f, 256.0f);
     m_uboVS.model=glm::mat4(1.0);
+    updateUniforms(true);
 }
 
-void Triangle::updateUniforms(){
-    m_shader->setMat4("ubo.projection", m_uboVS.projection);
-    glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -0.0f, zoom));
-    m_uboVS.model = viewMatrix * glm::translate(glm::mat4(1.0f), cameraPos);
-    m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-    m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-    m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+void Triangle::updateUniforms(bool update){
+    if(update){
+        m_shader->setMat4("ubo.projection", m_uboVS.projection);
+        glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -0.0f, zoom));
+        m_uboVS.model = viewMatrix * glm::translate(glm::mat4(1.0f), cameraPos);
+        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+    }
     m_shader->setMat4("ubo.model", m_uboVS.model);
+}
+
+void Triangle::startAutoRotation(){
+    if(m_autoRotation){
+        rotation.y++;
+    }
 }
