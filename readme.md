@@ -4,7 +4,7 @@ All rendering code is front-end and back-end separated. The gui or window is run
 # Requirements
 ## Supported System:
    **Now:** Linux(Mainly)  Windows(Partly)
-   **Planned supported:** Mac Android IOS
+   **Planned supported:** Mac(I have successfully installed black Apple.) Android IOS
 ## Libraries and Tools
    **CMake:** 3.14+ is recommended 
    **OpenGLES:** 3.0+
@@ -34,10 +34,10 @@ The programs will be installed in the {PROJECT_DIR}/bin .
 ## For Windows
    Compile
 ```
-    cmake -G "Visual Studio 14 2015 Win64" -T host=x64 ..
+    cmake -G "Visual Studio 15 2017 Win64" -T host=x64 ..
     cmake --build . --config Release
     cmake --build . --config Release --target INSTALL
 ```
 The programs will be installed in the {PROJECT_DIR}/Release .
 # PLANS
-1. Simple Examples (0%) (Only need OpenGLES)
+1. Simple Examples (10%) (Only need OpenGLES)
