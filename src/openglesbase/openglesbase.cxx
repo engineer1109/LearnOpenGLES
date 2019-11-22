@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <cstring>
 #include <chrono>
+#include <imgui.h>
+#include <imgui_impl_opengl3.h>
 #include "keycodes.h"
 #include "opengles_imgui.h"
 #include "openglesbase.h"
@@ -93,8 +95,9 @@ void OpenGLESBase::renderLoop(){
         {
             viewUpdated = true;
         }
-        imgui->render();
-        updateOverlay();
+        if (settings.overlay) {
+            updateOverlay();
+        }
 
         eglSwapBuffers(display, surface);
     }
@@ -130,7 +133,7 @@ void OpenGLESBase::renderLoop(){
 				viewUpdated = true;
 			}
 			if (settings.overlay) {
-				imgui->render();
+                updateOverlay();
 			}
 
 			eglSwapBuffers(display, surface);
@@ -174,6 +177,31 @@ void OpenGLESBase::updateOverlay(){
     io.MousePos = ImVec2(mousePos.x, mousePos.y);
     io.MouseDown[0] = mouseButtons.left;
     io.MouseDown[1] = mouseButtons.right;
+
+    bool ImGui = true;
+    bool show_demo_window=true;
+
+    ImGui::NewFrame();
+    ImGui_ImplOpenGL3_NewFrame();                          // Create a window called "Hello, world!" and append into it.
+
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0);
+    ImGui::SetNextWindowPos(ImVec2(10, 10));
+    ImGui::SetNextWindowSize(ImVec2(30, 30), ImGuiCond_FirstUseEver);
+    ImGui::Begin("LearnOpenGLES", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
+    ImGui::Text("LearnOpenGLES      ");
+
+    //ImGui::Text("%.2f ms/frame (%.1d fps)", (1000.0f / lastFPS), lastFPS);
+    OnUpdateUIOverlay(imgui);
+
+    ImGui::End();
+
+    ImGui::PopStyleVar();
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}
+
+void OpenGLESBase::OnUpdateUIOverlay(ImguiOverlay* overlay){
+
 }
 
 void OpenGLESBase::handleMouseMove(int32_t x, int32_t y)
