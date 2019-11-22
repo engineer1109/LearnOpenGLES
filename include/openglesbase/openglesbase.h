@@ -19,9 +19,8 @@
 #endif
 
 #include "camera.h"
+#include "opengles_imgui.h"
 #include "openglesbase_def.h"
-
-class ImguiOverlay;
 
 class OPENGLESBASE_EXPORT OpenGLESBase{
 public:
@@ -33,6 +32,7 @@ public:
     virtual void renderLoop();
     virtual void render();
     virtual void updateOverlay();
+    virtual void OnUpdateUIOverlay(ImguiOverlay* overlay);
 
     //Custom Event Function
     virtual void windowResize(){}
