@@ -8,7 +8,9 @@
 #include "opengles_imgui.h"
 #include "openglesbase.h"
 OpenGLESBase::OpenGLESBase(){
-	imgui = new ImguiOverlay();
+    if (settings.overlay) {
+        imgui = new ImguiOverlay();
+    }
 #ifdef OPENGLES_USE_XCB
     initxcbConnection();
 #endif
@@ -19,6 +21,9 @@ OpenGLESBase::~OpenGLESBase(){
         delete imgui;
         imgui=nullptr;
     }
+    eglDestroyContext(display,context);
+    eglDestroySurface(display,surface);
+    eglTerminate(display);
 }
 
 void OpenGLESBase::initWindow(){
@@ -30,6 +35,7 @@ void OpenGLESBase::prepareBase(){
             EGL_RED_SIZE, 1,
             EGL_GREEN_SIZE, 1,
             EGL_BLUE_SIZE, 1,
+            EGL_DEPTH_SIZE,1,   //depth must need this!!!!
             EGL_NONE
     };
 	EGLint contextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 3, EGL_NONE, EGL_NONE };
@@ -62,7 +68,9 @@ void OpenGLESBase::prepareBase(){
 	printf("GL_VERSION: %s\n", glGetString(GL_VERSION));
 	printf("GL_SHADING_LANGUAGE_VERSION: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
-    imgui->init();
+    if (settings.overlay) {
+        imgui->init();
+    }
 }
 
 void OpenGLESBase::renderLoop(){
@@ -86,10 +94,6 @@ void OpenGLESBase::renderLoop(){
         }
         render();
 
-        frameCounter++;
-        auto tEnd = std::chrono::high_resolution_clock::now();
-        auto tDiff = std::chrono::duration<double, std::milli>(tEnd - tStart).count();
-        frameTimer = tDiff / 1000.0f;
         camera.update(frameTimer);
         if (camera.moving())
         {
@@ -97,6 +101,38 @@ void OpenGLESBase::renderLoop(){
         }
         if (settings.overlay) {
             updateOverlay();
+        } frameCounter++;
+        auto tEnd = std::chrono::high_resolution_clock::now();
+        auto tDiff = std::chrono::duration<double, std::milli>(tEnd - tStart).count();
+        frameTimer = tDiff / 1000.0f;
+
+        camera.update(frameTimer);
+        if (camera.moving())
+        {
+            viewUpdated = true;
+        }
+        // Convert to clamped timer value
+        if (!paused)
+        {
+            timer += timerSpeed * frameTimer;
+            if (timer > 1.0)
+            {
+                timer -= 1.0f;
+            }
+        }
+        float fpsTimer = std::chrono::duration<double, std::milli>(tEnd - lastTimestamp).count();
+        if (fpsTimer > 1000.0f)
+        {
+            if (!settings.overlay)
+            {
+                std::string windowTitle = getWindowTitle();
+                xcb_change_property(connection, XCB_PROP_MODE_REPLACE,
+                    window, XCB_ATOM_WM_NAME, XCB_ATOM_STRING, 8,
+                    windowTitle.size(), windowTitle.c_str());
+            }
+            lastFPS = (float)frameCounter * (1000.0f / fpsTimer);
+            frameCounter = 0;
+            lastTimestamp = tEnd;
         }
 
         eglSwapBuffers(display, surface);
@@ -188,7 +224,10 @@ void OpenGLESBase::updateOverlay(){
     ImGui::SetNextWindowPos(ImVec2(10, 10));
     ImGui::SetNextWindowSize(ImVec2(30, 30), ImGuiCond_FirstUseEver);
     ImGui::Begin("LearnOpenGLES", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
-    ImGui::Text("LearnOpenGLES      ");
+    //ImGui::Text("LearnOpenGLES      ");
+    ImGui::TextUnformatted(title.c_str());
+    ImGui::TextUnformatted(reinterpret_cast<const char*>(glGetString(GL_RENDERER)));
+    ImGui::Text("%.2f ms/frame (%.1d fps)", (1000.0f / lastFPS), lastFPS);
 
     //ImGui::Text("%.2f ms/frame (%.1d fps)", (1000.0f / lastFPS), lastFPS);
     OnUpdateUIOverlay(imgui);
