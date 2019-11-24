@@ -5,7 +5,7 @@ class Shader;
 class Triangle:public OpenGLESBasicEngine{
 public:
     Triangle();
-    ~Triangle()=default;
+    ~Triangle();
 
     void prepare();
     void render();
@@ -20,8 +20,14 @@ private:
     void updateUniforms(bool update=false);
     void startAutoRotation();
 private:
-    uint32_t m_vertexArray=NULL;
+    uint32_t m_vertexArray=0;
+    uint32_t m_vertexBuffer=0;
     Shader* m_shader=nullptr;
+    struct Vertex {
+        float pos[3];
+        float uv[2];
+        float normal[3];
+    };
     struct UBO{
         glm::mat4 projection;
         glm::mat4 model;
