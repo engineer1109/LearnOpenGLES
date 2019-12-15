@@ -5,6 +5,7 @@ include(${PROJECT_SOURCE_DIR}/cmake/Config.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/GCC.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/FindOpenGLES.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/FindOpenMP.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/FindQt.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/Platform.cmake)
 
 if(WIN32)
