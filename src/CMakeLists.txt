@@ -1,4 +1,7 @@
 if(BUILD_BASE MATCHES ON)
     message("Build OpenGLES Base ShareLib")
     add_subdirectory(openglesbase)
+    if(BUILD_QtExamples MATCHES ON)
+        add_subdirectory(qtopengleswindow)
+    endif()
 endif()
