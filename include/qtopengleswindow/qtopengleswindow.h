@@ -1,6 +1,7 @@
 #ifndef QTOPENGLESWINDOW_H
 #define QTOPENGLESWINDOW_H
 #include <QMainWindow>
+#include "openglesbase.h"
 #include "qtopengleswindow_export.h"
 class QTOPENGLESWINDOW_EXPORT QtOpenGLESWindow : public QMainWindow{
     Q_OBJECT
