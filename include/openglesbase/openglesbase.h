@@ -20,7 +20,7 @@
 
 #include "camera.h"
 #include "opengles_imgui.h"
-#include "openglesbase_def.h"
+#include "openglesbase_export.h"
 
 class OPENGLESBASE_EXPORT OpenGLESBase{
 public:

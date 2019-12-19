@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 #include <stdint.h>
-#include "openglesbase_def.h"
+#include "openglesbase_export.h"
 class OPENGLESBASE_EXPORT ImguiOverlay{
 public:
     ImguiOverlay()=default;
