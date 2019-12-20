@@ -1,7 +1,7 @@
 #ifndef QTOPENGLESWINDOW_H
 #define QTOPENGLESWINDOW_H
 #include <QMainWindow>
-#include "openglesbase.h"
+#include "opengles_basicengine.h"
 #include "qtopengleswindow_export.h"
 class QTOPENGLESWINDOW_EXPORT QtOpenGLESWindow : public QMainWindow{
     Q_OBJECT
@@ -11,6 +11,12 @@ public:
 
     void setFlag(Qt::WindowFlags flags);
     uint32_t getWindowHandle();
-    void setOpenGLESPtr(OpenGLESBase* opengles);
+    void setOpenGLESPtr(OpenGLESBasicEngine* opengles);
+public slots:
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+private:
+    OpenGLESBasicEngine* m_opengles=nullptr;
 };
 #endif
