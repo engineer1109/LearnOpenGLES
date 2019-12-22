@@ -3,6 +3,7 @@
 
 #include <string.h>
 #include <iostream>
+#include <thread>
 #include <chrono>
 #include <GLES3/gl3.h>
 #include <EGL/egl.h>
@@ -28,11 +29,15 @@ public:
     ~OpenGLESBase();
 
     virtual void initWindow();
+    virtual void prepare();
     virtual void prepareBase();
     virtual void renderLoop();
     virtual void render();
     virtual void updateOverlay();
     virtual void OnUpdateUIOverlay(ImguiOverlay* overlay);
+
+    virtual void renderAsyncThread();
+    virtual void renderJoin();
 
     //Custom Event Function
     virtual void windowResize(){}
@@ -108,7 +113,7 @@ public:
 	uint32_t lastFPS = 0;
 	float timer = 0.0f;
 	float timerSpeed = 0.25f;
-private:
+protected:
     bool m_quit=false;
     EGLDisplay display;
     EGLConfig config;
@@ -128,5 +133,6 @@ private:
 #endif
 
     ImguiOverlay* imgui;
+    std::thread* m_thread=nullptr;
 };
 #endif

@@ -16,6 +16,9 @@ public slots:
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
+
+    void showEvent(QShowEvent *event);
+    void closeEvent(QCloseEvent *event);
 private:
     OpenGLESBasicEngine* m_opengles=nullptr;
 };

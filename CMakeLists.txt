@@ -18,6 +18,7 @@ endif()
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/include/openglesbase)
+include_directories(${PROJECT_SOURCE_DIR}/include/qtopengleswindow)
 link_directories(${PROJECT_SOURCE_DIR}/lib)
 
 include_directories(${PROJECT_SOURCE_DIR}/third_party/gli)

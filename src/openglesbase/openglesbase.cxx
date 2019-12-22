@@ -30,6 +30,10 @@ void OpenGLESBase::initWindow(){
     setupWindow();
 }
 
+void OpenGLESBase::prepare(){
+    prepareBase();
+}
+
 void OpenGLESBase::prepareBase(){
     static EGLint const attribute_list[] = {
             EGL_RED_SIZE, 1,
@@ -54,6 +58,10 @@ void OpenGLESBase::prepareBase(){
     native_window = (EGLNativeWindowType)this->window;
     /* create an EGL window surface */
     surface = eglCreateWindowSurface(display, config, native_window, NULL);
+
+    if(surface==EGL_NO_SURFACE){
+        std::cout<<"No surface error."<<std::endl;
+    }
 
 	context = eglCreateContext(display, config, EGL_NO_CONTEXT, contextAttribs);
 	if (context == EGL_NO_CONTEXT)
@@ -241,6 +249,14 @@ void OpenGLESBase::updateOverlay(){
 
 void OpenGLESBase::OnUpdateUIOverlay(ImguiOverlay* overlay){
 
+}
+
+void OpenGLESBase::renderAsyncThread(){
+    m_thread=new std::thread(&OpenGLESBase::renderLoop,this);
+}
+
+void OpenGLESBase::renderJoin(){
+    m_thread->join();
 }
 
 void OpenGLESBase::handleMouseMove(int32_t x, int32_t y)

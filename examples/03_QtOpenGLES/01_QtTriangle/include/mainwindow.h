@@ -5,6 +5,7 @@
 namespace Ui {
 class MainWindow;
 }
+class Triangle;
 
 class MainWindow : public QMainWindow
 {
@@ -16,8 +17,12 @@ public:
 protected:
     void showEvent(QShowEvent *event);
     void closeEvent(QCloseEvent *event);
-
+private:
+    void glRender();
+private slots:
+    void render();
 private:
     Ui::MainWindow *ui=nullptr;
+    Triangle* m_triangle=nullptr;
 };
 #endif

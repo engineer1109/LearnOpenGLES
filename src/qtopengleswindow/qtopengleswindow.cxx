@@ -49,3 +49,15 @@ void QtOpenGLESWindow::mouseReleaseEvent(QMouseEvent *event){
 void QtOpenGLESWindow::mouseMoveEvent(QMouseEvent *event){
     m_opengles->handleMouseMove(event->pos().x(),event->pos().y());
 }
+
+void QtOpenGLESWindow::showEvent(QShowEvent *event){
+    m_opengles->setWindow(uint32_t(winId()));
+    m_opengles->prepare();
+    //m_opengles->renderAsyncThread();
+    //m_opengles->renderLoop();
+    std::cout<<"11"<<std::endl;
+}
+
+void QtOpenGLESWindow::closeEvent(QCloseEvent *event){
+
+}
