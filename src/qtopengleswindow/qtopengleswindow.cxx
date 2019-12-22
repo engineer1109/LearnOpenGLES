@@ -55,7 +55,6 @@ void QtOpenGLESWindow::showEvent(QShowEvent *event){
     m_opengles->prepare();
     //m_opengles->renderAsyncThread();
     //m_opengles->renderLoop();
-    std::cout<<"11"<<std::endl;
 }
 
 void QtOpenGLESWindow::closeEvent(QCloseEvent *event){

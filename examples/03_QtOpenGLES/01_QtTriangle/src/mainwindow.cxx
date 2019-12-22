@@ -1,3 +1,4 @@
+#include <QTimer>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "triangle.h"
@@ -41,5 +42,12 @@ void MainWindow::glRender(){
 }
 
 void MainWindow::render(){
+    QCoreApplication::processEvents();
+    m_triangle->renderLoop();
+    QCoreApplication::processEvents();
+}
+
+void MainWindow::render2(){
+
     m_triangle->renderLoop();
 }
