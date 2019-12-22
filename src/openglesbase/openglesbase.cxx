@@ -61,6 +61,7 @@ void OpenGLESBase::prepareBase(){
 
     if(surface==EGL_NO_SURFACE){
         std::cout<<"No surface error."<<std::endl;
+		std::cout<<"Window Ptr:"<<this->window<<std::endl;
     }
 
 	context = eglCreateContext(display, config, EGL_NO_CONTEXT, contextAttribs);

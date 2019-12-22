@@ -20,7 +20,7 @@ void* OpenGLESBasicEngine::getWindowPtr(){
 
 #ifdef OPENGLES_USE_WIN32
 void OpenGLESBasicEngine::setWindow(uint32_t winId){
-    this->window=(HWND)window;
+    this->window=(HWND)winId;
     this->windowInstance = ::GetModuleHandle(NULL);
 }
 
