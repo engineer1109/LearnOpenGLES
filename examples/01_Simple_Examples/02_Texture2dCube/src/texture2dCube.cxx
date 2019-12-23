@@ -18,6 +18,7 @@ void Texture2dCube::prepare(){
     prepareTextures();
     prepareShaders();
     prepareUniforms();
+    prepared=true;
 }
 
 void Texture2dCube::render(){

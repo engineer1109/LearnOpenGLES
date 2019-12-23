@@ -19,9 +19,8 @@ protected:
     void closeEvent(QCloseEvent *event);
 private:
     void glRender();
-    void render2();
 private slots:
-    void render();
+
 private:
     Ui::MainWindow *ui=nullptr;
     Triangle* m_triangle=nullptr;

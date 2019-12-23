@@ -1,8 +1,8 @@
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
-#include "opengles_basicengine.h"
+#include "qtopenglesengine.h"
 class Shader;
-class Triangle:public OpenGLESBasicEngine{
+class Triangle:public QtOpenGLESEngine{
 public:
     Triangle();
     ~Triangle();
@@ -10,6 +10,8 @@ public:
     void prepare();
     void render();
     void OnUpdateUIOverlay(ImguiOverlay* overlay);
+
+    void windowResize();
 
     //void keyPressed(uint32_t);
     //void mouseMoved(double x, double y, bool & handled);

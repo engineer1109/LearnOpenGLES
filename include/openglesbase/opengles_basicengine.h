@@ -6,6 +6,8 @@ public:
     OpenGLESBasicEngine();
     ~OpenGLESBasicEngine();
 
+    void quitRender();
+
     void setWindow(uint32_t winId);
     void* getWindowPtr();
 };

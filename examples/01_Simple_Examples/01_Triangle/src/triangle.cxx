@@ -18,6 +18,7 @@ void Triangle::prepare(){
     prepareShaders();
     generateVertexs();
     prepareUniforms();
+    prepared=true;
 }
 
 void Triangle::render(){

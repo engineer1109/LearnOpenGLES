@@ -38,9 +38,11 @@ public:
 
     virtual void renderAsyncThread();
     virtual void renderJoin();
+    virtual void renderPlugin(){}
 
     //Custom Event Function
-    virtual void windowResize(){}
+    virtual void windowResize();
+    virtual void windowResized(){}
     virtual void viewChanged() {}
     virtual void keyPressed(uint32_t) {}
     virtual void mouseMoved(double x, double y, bool & handled) {}

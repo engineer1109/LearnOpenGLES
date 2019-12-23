@@ -7,6 +7,10 @@ OpenGLESBasicEngine::~OpenGLESBasicEngine(){
 
 }
 
+void OpenGLESBasicEngine::quitRender(){
+    this->m_quit=true;
+}
+
 #ifdef OPENGLES_USE_XCB
 void OpenGLESBasicEngine::setWindow(uint32_t winId){
     this->window=winId;

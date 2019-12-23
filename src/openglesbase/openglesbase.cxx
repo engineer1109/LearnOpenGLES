@@ -89,6 +89,8 @@ void OpenGLESBase::renderLoop(){
 #ifdef OPENGLES_USE_XCB
     xcb_flush(connection);
     while(!m_quit){
+        renderPlugin();
+        windowResize();
         auto tStart = std::chrono::high_resolution_clock::now();
         if (viewUpdated)
         {
@@ -150,7 +152,9 @@ void OpenGLESBase::renderLoop(){
 #ifdef OPENGLES_USE_WIN32
 	MSG msg;
 	bool quitMessageReceived = false;
-	while (!quitMessageReceived) {
+    while (!quitMessageReceived or m_quit) {
+        renderPlugin();
+        windowResize();
 		while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
@@ -258,6 +262,12 @@ void OpenGLESBase::renderAsyncThread(){
 
 void OpenGLESBase::renderJoin(){
     m_thread->join();
+}
+
+void OpenGLESBase::windowResize(){
+    this->width=destWidth;
+    this->height=destHeight;
+    windowResized();
 }
 
 void OpenGLESBase::handleMouseMove(int32_t x, int32_t y)

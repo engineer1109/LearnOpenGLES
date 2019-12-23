@@ -1,4 +1,5 @@
 #include <QMouseEvent>
+#include <QTimer>
 #include "qtopengleswindow.h"
 QtOpenGLESWindow::QtOpenGLESWindow(QWidget *parent):QMainWindow (parent){
     this->setMouseTracking(true);
@@ -16,7 +17,7 @@ uint32_t QtOpenGLESWindow::getWindowHandle(){
     return uint32_t(winId());
 }
 
-void QtOpenGLESWindow::setOpenGLESPtr(OpenGLESBasicEngine* opengles){
+void QtOpenGLESWindow::setOpenGLESPtr(QtOpenGLESEngine* opengles){
     m_opengles=opengles;
 }
 
@@ -53,10 +54,20 @@ void QtOpenGLESWindow::mouseMoveEvent(QMouseEvent *event){
 void QtOpenGLESWindow::showEvent(QShowEvent *event){
     m_opengles->setWindow(uint32_t(winId()));
     m_opengles->prepare();
-    //m_opengles->renderAsyncThread();
+    QTimer::singleShot(10,this,SLOT(renderLoop()));
     //m_opengles->renderLoop();
 }
 
 void QtOpenGLESWindow::closeEvent(QCloseEvent *event){
+    m_opengles->quitRender();
+}
 
+void QtOpenGLESWindow::resizeEvent(QResizeEvent *event){
+    m_opengles->width=event->size().width();
+    m_opengles->height=event->size().height();
+    //std::cout<<m_opengles->width<<","<<m_opengles->height<<std::endl;
+}
+
+void QtOpenGLESWindow::renderLoop(){
+    m_opengles->renderLoop();
 }

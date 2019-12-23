@@ -18,6 +18,7 @@ void Triangle::prepare(){
     prepareShaders();
     generateVertexs();
     prepareUniforms();
+    prepared=true;
 }
 
 void Triangle::render(){
@@ -40,6 +41,10 @@ void Triangle::OnUpdateUIOverlay(ImguiOverlay* overlay){
             m_autoRotation=!m_autoRotation;
         }
      }
+}
+
+void Triangle::windowResize(){
+    //Cancel X11 Auto Resize. Use Qt Resize
 }
 
 void Triangle::generateVertexs(){
