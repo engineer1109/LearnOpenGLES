@@ -31,5 +31,7 @@ if(UNIX)
     link_directories(/usr/local/lib)
 endif()
 
+add_definitions(-DPROJECT_ABSOLUTE_PATH="${PROJECT_SOURCE_DIR}")
+
 add_subdirectory(src)
 add_subdirectory(examples)

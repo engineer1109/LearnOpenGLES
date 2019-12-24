@@ -216,8 +216,8 @@ void Texture2dCube::prepareTextures(){
 }
 
 void Texture2dCube::prepareShaders(){
-    m_shader= new Shader("../data/shaders/Simple_01_Examples/02_Texture2dCube/cube.vert",
-                     "../data/shaders/Simple_01_Examples/02_Texture2dCube/cube.frag");
+    m_shader= new Shader(FS::getAssetPath("shaders/Simple_01_Examples/02_Texture2dCube/cube.vert").c_str(),
+                     FS::getAssetPath("shaders/Simple_01_Examples/02_Texture2dCube/cube.frag").c_str());
     m_shader->use();
     m_shader->setInt("texture1", 0);
     m_shader->setInt("texture2", 1);

@@ -17,6 +17,6 @@ FILE(GLOB STB_IMAGE ${PROJECT_SOURCE_DIR}/third_party/stb_image/src/*
 FILE(GLOB_RECURSE IMGUI ${CMAKE_SOURCE_DIR}/third_party/imgui/*)
 
 add_library(${LIB_NAME} SHARED ${SRC_FILES} ${HEAD_FILES} ${STB_IMAGE} ${IMGUI})
-target_link_libraries(${LIB_NAME} ${OPENGLES3_LIBRARY} ${EGL_LIBRARY} ${NativeWindow})
+target_link_libraries(${LIB_NAME} ${OPENGLES3_LIBRARY} ${EGL_LIBRARY} ${NativeWindow} ${SYS_LIB})
 
 INSTALL(TARGETS ${LIB_NAME} DESTINATION "${PROJECT_SOURCE_DIR}/bin")

@@ -15,3 +15,7 @@ elseif(WIN32)
 	    add_definitions(-DOPENGLES_USE_WIN32)
 	endif()
 endif()
+
+if(UNIX)
+    set(SYS_LIB stdc++fs)
+endif()

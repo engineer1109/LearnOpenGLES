@@ -89,8 +89,8 @@ void Triangle::generateVertexs(){
 }
 
 void Triangle::prepareShaders(){
-    m_shader= new Shader("../data/shaders/Simple_01_Examples/01_Triangle/triangle.vert",
-                     "../data/shaders/Simple_01_Examples/01_Triangle/triangle.frag");
+    m_shader= new Shader(FS::getAssetPath("shaders/Simple_01_Examples/01_Triangle/triangle.vert").c_str(),
+                     FS::getAssetPath("shaders/Simple_01_Examples/01_Triangle/triangle.frag").c_str());
 }
 
 void Triangle::prepareUniforms(){
