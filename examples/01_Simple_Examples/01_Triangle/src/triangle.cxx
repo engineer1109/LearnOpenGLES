@@ -10,6 +10,10 @@ Triangle::Triangle(){
 Triangle::~Triangle(){
     glDeleteVertexArrays(1, &m_vertexArray);
     glDeleteBuffers(1, &m_vertexBuffer);
+    if(m_shader){
+        delete m_shader;
+        m_shader=nullptr;
+    }
 }
 
 void Triangle::prepare(){

@@ -32,4 +32,8 @@
 //OpenGLES
 #include <GLES3/gl3.h>
 
+#define BEGIN_NAMESPACE(n) namespace n {
+
+#define END_NAMESPACE(n) }
+
 #endif // OPENGLES_BASICENGINE_HELP_H

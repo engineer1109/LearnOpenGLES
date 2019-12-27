@@ -4,4 +4,5 @@ int main(int argc,char** argv){
     openglesPtr->initWindow();
     openglesPtr->prepare();
     openglesPtr->renderLoop();
+    return 1;
 }
