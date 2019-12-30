@@ -9,6 +9,8 @@ Texture2dCube::Texture2dCube(){
 Texture2dCube::~Texture2dCube(){
     glDeleteVertexArrays(1, &m_vertexArray);
     glDeleteBuffers(1, &m_vertexBuffer);
+    glDeleteTextures(1,&m_texture1);
+    glDeleteTextures(1,&m_texture2);
     if(m_shader){
         delete m_shader;
         m_shader=nullptr;
