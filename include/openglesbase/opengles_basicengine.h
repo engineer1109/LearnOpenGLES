@@ -5,7 +5,7 @@
 class OPENGLESBASE_EXPORT OpenGLESBasicEngine: public OpenGLESBase{
 public:
     OpenGLESBasicEngine();
-    ~OpenGLESBasicEngine();
+    virtual ~OpenGLESBasicEngine();
 
     void quitRender();
 

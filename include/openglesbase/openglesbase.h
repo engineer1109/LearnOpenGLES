@@ -26,7 +26,7 @@
 class OPENGLESBASE_EXPORT OpenGLESBase{
 public:
     OpenGLESBase();
-    ~OpenGLESBase();
+    virtual ~OpenGLESBase();
 
     virtual void initWindow();
     virtual void prepare();

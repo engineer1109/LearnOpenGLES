@@ -6,15 +6,14 @@ BEGIN_NAMESPACE(OpenGLESTemplate)
 class Object{
 public:
     Object();
-    ~Object();
+    virtual ~Object();
 
     virtual void prepare();
     virtual void update();
+
+    void setScreenPtr(uint32_t* pScreenWidth,uint32_t* pScreenHeight);
 public:
-    struct ObjectInfo{
-        uint32_t* pScreenWidth=nullptr;
-        uint32_t* pScreenHeight=nullptr;
-    }m_objectInfo;
+
 protected:
     virtual void generateVertexs();
     virtual void prepareShaders();
@@ -29,6 +28,8 @@ protected:
     struct UBO{
         glm::mat4 projection;
         glm::mat4 model;
+        glm::vec4 viewPos;
+        float lodBias=0.f;
     }m_uboVS;
     struct Vertex {
         float pos[3];

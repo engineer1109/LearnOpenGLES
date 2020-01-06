@@ -1,5 +1,9 @@
 #include "opengles_basicengine_cube.h"
 BEGIN_NAMESPACE(OpenGLESTemplate)
+OpenGLCube::~OpenGLCube(){
+
+}
+
 void OpenGLCube::prepare(){
     generateVertexs();
     prepareTextures();

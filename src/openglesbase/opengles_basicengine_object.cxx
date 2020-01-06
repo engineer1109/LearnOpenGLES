@@ -23,6 +23,11 @@ void Object::update(){
     updateUniforms();
 }
 
+void Object::setScreenPtr(uint32_t *pScreenWidth, uint32_t *pScreenHeight){
+    m_pScreenWidth=pScreenWidth;
+    m_pScreenHeight=pScreenHeight;
+}
+
 void Object::generateVertexs(){
 
 }

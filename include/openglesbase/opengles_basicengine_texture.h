@@ -29,7 +29,7 @@ public:
     ~Texture2D()=default;
 
     //If you turn off autoFree, you can use getImgPtr Later.But you need free manually.
-    void loadFromFile(std::string file,uint32_t width,uint32_t height,uint32_t channels,
+    void loadFromFile(std::string file,
                       GLint format=GL_RGBA,
                       GLint addressMode=GL_REPEAT,
                       GLint filter=GL_LINEAR,

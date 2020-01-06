@@ -5,7 +5,7 @@ BEGIN_NAMESPACE(OpenGLESTemplate)
 class OpenGLCube:public Texture2DObject{
 public:
     OpenGLCube()=default;
-    ~OpenGLCube()=default;
+    virtual ~OpenGLCube();
 
     virtual void prepare();
 protected:
