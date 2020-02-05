@@ -104,7 +104,7 @@ void main()
     mat4 modelView=transpose(VolumeModel);
 
     ray.originPos = vec3(getRayOriginPos(modelView, vec4(0.0f, 0.0f, 0.0f, 1.0f)));
-    ray.direction = normalize(vec3(u, v, -sqrt(3)));
+    ray.direction = normalize(vec3(u, v, -sqrt(3.f)));
     ray.direction = getRayDirection(modelView, ray.direction);
 
     RayHitStatus hit=volumeHitRayCalc(ray, textureBoxMin, textureBoxMax);
