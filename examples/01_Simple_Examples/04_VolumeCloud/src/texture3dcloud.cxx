@@ -61,7 +61,7 @@ void Texture3DCloud::prepareTextures() {
             }
         }
     }
-    m_texture.loadFromArray(m_imgData, m_width, m_height, m_depth, 1, GL_R8, GL_CLAMP_TO_EDGE, GL_LINEAR);
+    m_texture.loadFromArray(m_imgData, m_width, m_height, m_depth, 1, GL_RED, GL_CLAMP_TO_EDGE, GL_LINEAR);
 
     std::vector<glm::vec4> sampleColorList = {
         {
