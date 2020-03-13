@@ -61,7 +61,7 @@ void Texture3DCloud::prepareTextures() {
             }
         }
     }
-    m_texture.loadFromArray(m_imgData, m_width, m_height, m_depth, 1, GL_RED, GL_CLAMP_TO_EDGE, GL_LINEAR);
+    m_texture.loadFromArray(m_imgData, m_width, m_height, m_depth, 1, GL_R8, GL_CLAMP_TO_EDGE, GL_LINEAR);
 
     std::vector<glm::vec4> sampleColorList = {
         {
@@ -262,19 +262,6 @@ void Texture3DCloud::prepareUniforms() {
     m_uboVS.model = glm::mat4(1.0);
     m_uboVS.lodBias = 0.f;
 
-    float m_ModelView[16] = {
-        1.0f, 0.0f, 0.0f, 0.0f, //
-        0.0f, 1.0f, 0.0f, 0.0f, //
-        0.0f, 0.0f, 1.0f, 0.0f, //
-        0.0f, 0.0f, 4.0f, 1.0f, //
-    };
-
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            m_viewMat[i][j] = m_ModelView[4 * i + j];
-        }
-    }
-
     updateUniforms();
 }
 
@@ -296,7 +283,7 @@ void Texture3DCloud::updateUniforms() {
         OpenGLESTemplate::VolumeGLM::translate(m_modelVolume.model, glm::vec3(0.0f, 0.0f, *m_camera.zoom));
     m_modelVolume.model = OpenGLESTemplate::VolumeGLM::rotate(m_modelVolume.model, glm::radians(m_camera.rotation->x),
                                                               glm::vec3(1.0f, 0.0f, 0.0f));
-    m_modelVolume.model = OpenGLESTemplate::VolumeGLM::rotate(m_modelVolume.model, glm::radians(m_camera.rotation->y),
+    m_modelVolume.model = OpenGLESTemplate::VolumeGLM::rotate(m_modelVolume.model, glm::radians(-m_camera.rotation->y),
                                                               glm::vec3(0.0f, 1.0f, 0.0f));
     m_modelVolume.model = OpenGLESTemplate::VolumeGLM::rotate(m_modelVolume.model, glm::radians(m_camera.rotation->z),
                                                               glm::vec3(0.0f, 0.0f, 1.0f));
