@@ -1,0 +1,72 @@
+//
+// Created by wjl on 20-9-6.
+//
+
+#include "OpenGLESBase.h"
+
+BEGIN_NAMESPACE(OpenGLESEngine)
+
+OpenGLESBase::OpenGLESBase(){
+
+}
+
+OpenGLESBase::~OpenGLESBase() {
+
+}
+
+void OpenGLESBase::prepare() {
+    prepareBase();
+}
+
+void OpenGLESBase::prepareBase() {
+    static EGLint const attribute_list[] = {EGL_RED_SIZE,     8,  // red
+                                            EGL_GREEN_SIZE,   8,  // green
+                                            EGL_BLUE_SIZE,    8,  // blue
+                                            EGL_ALPHA_SIZE,   8,  // alpha
+                                            EGL_DEPTH_SIZE,   16, // depth must need this!!!!
+                                            EGL_STENCIL_SIZE, 8,  // stencil
+                                            EGL_NONE};
+    EGLint contextAttribs[] = {EGL_CONTEXT_CLIENT_VERSION, 3, EGL_NONE, EGL_NONE};
+    EGLint majorVersion;
+    EGLint minorVersion;
+
+    /* get an EGL display connection */
+    m_display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
+    /* initialize the EGL display connection */
+    eglInitialize(m_display, &majorVersion, &minorVersion);
+    /* get an appropriate EGL frame buffer configuration */
+    eglChooseConfig(m_display, attribute_list, &m_config, 1, &m_numConfig);
+    /* create an EGL rendering context */
+    m_context = eglCreateContext(m_display, m_config, EGL_NO_CONTEXT, NULL);
+    /* create an EGL window surface */
+    m_surface = eglCreateWindowSurface(m_display, m_config, m_window, NULL);
+
+    if (m_surface == EGL_NO_SURFACE) {
+        LOGI("No Surface Error.");
+    }
+
+    m_context = eglCreateContext(m_display, m_config, EGL_NO_CONTEXT, contextAttribs);
+    if (m_context == EGL_NO_CONTEXT) {
+        LOGI("error eglCreateContext.");
+    }
+    eglMakeCurrent(m_display, m_surface, m_surface, m_context);
+
+    LOGI("GL_RENDERER: %s\n", glGetString(GL_RENDERER));
+    LOGI("GL_VERSION: %s\n", glGetString(GL_VERSION));
+    LOGI("GL_SHADING_LANGUAGE_VERSION: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+}
+
+void OpenGLESBase::renderLoop() {
+    while(m_quit){
+        renderFrame();
+    }
+}
+
+void OpenGLESBase::renderFrame() {
+    render();
+    eglSwapBuffers(m_display, m_surface);
+}
+
+void OpenGLESBase::render() {}
+
+END_NAMESPACE(OpenGLESEngine)
