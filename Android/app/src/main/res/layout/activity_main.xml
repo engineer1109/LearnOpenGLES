@@ -14,26 +14,26 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btn_example01"
+        <TextView
+            android:id="@+id/tv_menutitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:onClick="@{mainViewModel::showPage1st}"
-            android:text="01 Simple Examples"
+            android:layout_marginTop="4dp"
+            android:text="Examples"
+            android:textAlignment="center"
+            android:textColor="#0000FF"
+            android:textSize="18sp"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="1dp" />
+            tools:layout_editor_absoluteX="0dp" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_page1st"
-            android:name="com.engineer1109.openglesdemo.fragments.SimpleExampleFragment"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_menu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="-2dp" />
-
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_menutitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

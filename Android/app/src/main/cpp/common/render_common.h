@@ -27,6 +27,7 @@
 #include <android/log.h>
 #include <android/native_window.h>
 #include <android/native_window_jni.h>
+#include <android/asset_manager_jni.h>
 
 //Define
 

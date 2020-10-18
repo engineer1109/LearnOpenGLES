@@ -16,6 +16,7 @@ add_definitions(-DGLM_FORCE_DEPTH_ZERO_TO_ONE)
 include_directories(
         ${PROJECT_SOURCE_DIR}/base
         ${PROJECT_SOURCE_DIR}/common
+        ${PROJECT_SOURCE_DIR}/third_party/glm
 )
 
 

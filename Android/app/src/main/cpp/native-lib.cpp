@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <string>
 
+#include <android/asset_manager_jni.h>
 #include "OpenGLESRender.h"
 
 extern "C"
@@ -41,4 +42,17 @@ Java_com_engineer1109_openglesdemo_render_OpenGLESRender_setSurface(JNIEnv *env,
     engine->setWindow(window);
     engine->setWidth(width);
     engine->setHeight(height);
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_engineer1109_openglesdemo_render_OpenGLESRender_setAssetManager(JNIEnv *env, jobject thiz,
+                                                                         jlong instance,
+                                                                         jobject asset_manager) {
+    // TODO: implement setAssetManager()
+    auto asset = AAssetManager_fromJava(env, asset_manager);
+    OpenGLESEngine::OpenGLESRender* engine= reinterpret_cast<OpenGLESEngine::OpenGLESRender *>(instance);
+    if (engine) {
+        engine->setAssetManager(asset);
+    }
 }

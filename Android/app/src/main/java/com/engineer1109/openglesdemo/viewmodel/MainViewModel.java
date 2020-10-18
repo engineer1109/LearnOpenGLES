@@ -1,32 +1,71 @@
 package com.engineer1109.openglesdemo.viewmodel;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
-import android.view.Surface;
 import android.view.View;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModel;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.engineer1109.openglesdemo.MainActivity;
 import com.engineer1109.openglesdemo.R;
 import com.engineer1109.openglesdemo.activities.BaseRenderActivity;
-import com.engineer1109.openglesdemo.fragments.SimpleExampleFragment;
-import com.engineer1109.openglesdemo.render.OpenGLESRender;
+import com.engineer1109.openglesdemo.adapters.MenuAdapter;
+import com.engineer1109.openglesdemo.databinding.ActivityMainBinding;
+import com.engineer1109.openglesdemo.itemdecoration.VerticalRecyclerItemDecoration;
+import com.engineer1109.openglesdemo.model.MenuData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainViewModel extends ViewModel {
-    private FragmentManager mFragmentManager = null;
 
-    public void setFragmentManager(FragmentManager fragmentManager){mFragmentManager=fragmentManager;}
+    static final String TAG = "MainViewModel";
 
-    public void showPage1st(View view){
-        FragmentTransaction transaction = mFragmentManager.beginTransaction();
-        SimpleExampleFragment simpleExampleFragment = (SimpleExampleFragment) mFragmentManager.findFragmentById(R.id.fragment_page1st);
-        transaction.show(simpleExampleFragment);
-        transaction.commit();
+    private ActivityMainBinding mBinding = null;
+
+    public ActivityMainBinding getBinding() {
+        return mBinding;
     }
 
-    public void showTriangleRender(View view){
-        Intent intent = new Intent(view.getContext(), BaseRenderActivity.class);
-        view.getContext().startActivity(intent);
+    public void setBinding(ActivityMainBinding mBinding) {
+        this.mBinding = mBinding;
+    }
+
+    public Context getContext(){
+        return mBinding.getRoot().getContext();
+    }
+
+    @SuppressLint("ResourceAsColor")
+    public void showMenu(View view) {
+        List<MenuData> datas = this.generateMenus();
+        Context context = view.getContext();
+        mBinding.rcMenu.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        mBinding.rcMenu.addItemDecoration(new VerticalRecyclerItemDecoration(R.color.black, 0));
+        mBinding.rcMenu.setAdapter(new MenuAdapter(datas) {
+            @Override
+            public void convert(VH holder, MenuData data, int position) {
+                holder.setText(R.id.btn_menu, data.getMenuText());
+                holder.getView(R.id.btn_menu).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), BaseRenderActivity.class);
+                        getContext().startActivity(intent);
+                    }
+                });
+            }
+        });
+    }
+
+    private List<MenuData> generateMenus() {
+        List<MenuData> datas = new ArrayList<>();
+        {
+            MenuData data = new MenuData();
+            data.setID(1);
+            data.setMenuText("Triangle");
+            datas.add(data);
+        }
+        return datas;
     }
 }

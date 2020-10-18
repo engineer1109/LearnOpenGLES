@@ -1,5 +1,6 @@
 package com.engineer1109.openglesdemo.render;
 
+import android.content.res.AssetManager;
 import android.view.Surface;
 
 public class OpenGLESRender {
@@ -29,6 +30,10 @@ public class OpenGLESRender {
 
     public void setSurface(Surface surface){setSurface(mInstance,surface);}
 
+    public void setAssetManager(AssetManager assetManager){
+        setAssetManager(mInstance, assetManager);
+    }
+
     public void render(){
         mThread=new RenderThread();
         mThread.start();
@@ -38,4 +43,5 @@ public class OpenGLESRender {
     public native void initGL(long instance);
     public native void renderFrame(long instance);
     public native void setSurface(long instance,Surface surface);
+    public native void setAssetManager(long instance, AssetManager assetManager);
 }

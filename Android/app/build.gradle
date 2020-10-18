@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.engineer1109.opengldemo"
-        minSdkVersion 30
+        minSdkVersion 25
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -43,6 +43,11 @@ android {
     viewBinding {
         enabled = true
     }
+
+    sourceSets {
+        main.assets.srcDirs = ['assets']
+        main.jniLibs.srcDirs = ['lib']
+    }
 }
 
 dependencies {
@@ -51,6 +56,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

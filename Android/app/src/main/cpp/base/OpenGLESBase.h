@@ -18,6 +18,8 @@ public:
     void setWidth(const uint32_t &width){m_width=width;}
     void setHeight(const uint32_t &height){m_height=height;}
 
+    void setAssetManager(AAssetManager* asset){m_asset=asset;}
+
     virtual void prepare();
     virtual void prepareBase();
     virtual void renderLoop();
@@ -25,7 +27,8 @@ public:
     virtual void render();
 
 protected:
-    ANativeWindow* m_window= nullptr;
+    ANativeWindow* m_window = nullptr;
+    AAssetManager* m_asset = nullptr;
     uint32_t m_width = 1280;
     uint32_t m_height = 720;
 

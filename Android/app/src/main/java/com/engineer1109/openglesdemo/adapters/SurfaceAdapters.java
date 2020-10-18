@@ -23,6 +23,7 @@ public class SurfaceAdapters {
             @Override
             public void surfaceChanged(@NonNull SurfaceHolder surfaceHolder, int i, int i1, int i2) {
                 viewModel.setSurface(view.getHolder().getSurface());
+                viewModel.setAssetManager(view.getContext().getAssets());
                 viewModel.render();
             }
 
