@@ -36,17 +36,16 @@
 #	error "GLM_GTX_string_cast is not supported on CUDA compiler"
 #endif
 
-namespace glm
-{
-	/// @addtogroup gtx_string_cast
-	/// @{
+namespace glm {
+/// @addtogroup gtx_string_cast
+/// @{
 
-	/// Create a string from a GLM vector or matrix typed variable.
-	/// @see gtx_string_cast extension.
-	template<typename genType>
-	GLM_FUNC_DECL std::string to_string(genType const& x);
+/// Create a string from a GLM vector or matrix typed variable.
+/// @see gtx_string_cast extension.
+template<typename genType>
+GLM_FUNC_DECL std::string to_string(genType const &x);
 
-	/// @}
+/// @}
 }//namespace glm
 
 #include "string_cast.inl"

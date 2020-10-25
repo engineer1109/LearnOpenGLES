@@ -23,28 +23,27 @@
 #	endif
 #endif
 
-namespace glm
-{
-	/// @addtogroup gtx_handed_coordinate_space
-	/// @{
+namespace glm {
+/// @addtogroup gtx_handed_coordinate_space
+/// @{
 
-	//! Return if a trihedron right handed or not.
-	//! From GLM_GTX_handed_coordinate_space extension.
-	template<typename T, qualifier Q>
-	GLM_FUNC_DECL bool rightHanded(
-		vec<3, T, Q> const& tangent,
-		vec<3, T, Q> const& binormal,
-		vec<3, T, Q> const& normal);
+//! Return if a trihedron right handed or not.
+//! From GLM_GTX_handed_coordinate_space extension.
+template<typename T, qualifier Q>
+GLM_FUNC_DECL bool rightHanded(
+        vec<3, T, Q> const &tangent,
+        vec<3, T, Q> const &binormal,
+        vec<3, T, Q> const &normal);
 
-	//! Return if a trihedron left handed or not.
-	//! From GLM_GTX_handed_coordinate_space extension.
-	template<typename T, qualifier Q>
-	GLM_FUNC_DECL bool leftHanded(
-		vec<3, T, Q> const& tangent,
-		vec<3, T, Q> const& binormal,
-		vec<3, T, Q> const& normal);
+//! Return if a trihedron left handed or not.
+//! From GLM_GTX_handed_coordinate_space extension.
+template<typename T, qualifier Q>
+GLM_FUNC_DECL bool leftHanded(
+        vec<3, T, Q> const &tangent,
+        vec<3, T, Q> const &binormal,
+        vec<3, T, Q> const &normal);
 
-	/// @}
+/// @}
 }// namespace glm
 
 #include "handed_coordinate_space.inl"

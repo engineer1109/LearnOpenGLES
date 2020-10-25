@@ -17,20 +17,19 @@
 #	pragma message("GLM: GLM_EXT_quaternion_float_precision extension included")
 #endif
 
-namespace glm
-{
-	/// @addtogroup ext_quaternion_float_precision
-	/// @{
+namespace glm {
+/// @addtogroup ext_quaternion_float_precision
+/// @{
 
-	/// Quaternion of single-precision floating-point numbers using high precision arithmetic in term of ULPs.
-	typedef qua<float, lowp>		lowp_quat;
+/// Quaternion of single-precision floating-point numbers using high precision arithmetic in term of ULPs.
+typedef qua<float, lowp> lowp_quat;
 
-	/// Quaternion of single-precision floating-point numbers using high precision arithmetic in term of ULPs.
-	typedef qua<float, mediump>		mediump_quat;
+/// Quaternion of single-precision floating-point numbers using high precision arithmetic in term of ULPs.
+typedef qua<float, mediump> mediump_quat;
 
-	/// Quaternion of single-precision floating-point numbers using high precision arithmetic in term of ULPs.
-	typedef qua<float, highp>		highp_quat;
+/// Quaternion of single-precision floating-point numbers using high precision arithmetic in term of ULPs.
+typedef qua<float, highp> highp_quat;
 
-	/// @}
+/// @}
 } //namespace glm
 

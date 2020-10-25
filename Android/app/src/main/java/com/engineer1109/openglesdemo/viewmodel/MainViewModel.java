@@ -33,7 +33,7 @@ public class MainViewModel extends ViewModel {
         this.mBinding = mBinding;
     }
 
-    public Context getContext(){
+    public Context getContext() {
         return mBinding.getRoot().getContext();
     }
 
@@ -45,12 +45,13 @@ public class MainViewModel extends ViewModel {
         mBinding.rcMenu.addItemDecoration(new VerticalRecyclerItemDecoration(R.color.black, 0));
         mBinding.rcMenu.setAdapter(new MenuAdapter(datas) {
             @Override
-            public void convert(VH holder, MenuData data, int position) {
+            public void convert(VH holder, MenuData data, final int position) {
                 holder.setText(R.id.btn_menu, data.getMenuText());
                 holder.getView(R.id.btn_menu).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getContext(), BaseRenderActivity.class);
+                        intent.putExtra("ID", position);
                         getContext().startActivity(intent);
                     }
                 });
@@ -64,6 +65,12 @@ public class MainViewModel extends ViewModel {
             MenuData data = new MenuData();
             data.setID(1);
             data.setMenuText("Triangle");
+            datas.add(data);
+        }
+        {
+            MenuData data = new MenuData();
+            data.setID(2);
+            data.setMenuText("Texture2DCube");
             datas.add(data);
         }
         return datas;

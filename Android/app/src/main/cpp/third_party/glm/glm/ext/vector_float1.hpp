@@ -19,13 +19,12 @@
 #	pragma message("GLM: GLM_EXT_vector_float1 extension included")
 #endif
 
-namespace glm
-{
-	/// @addtogroup ext_vector_float1
-	/// @{
+namespace glm {
+/// @addtogroup ext_vector_float1
+/// @{
 
-	/// 1 components vector of single-precision floating-point numbers.
-	typedef vec<1, float, defaultp>		vec1;
+/// 1 components vector of single-precision floating-point numbers.
+typedef vec<1, float, defaultp> vec1;
 
-	/// @}
+/// @}
 }//namespace glm

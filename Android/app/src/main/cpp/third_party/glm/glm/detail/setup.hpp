@@ -3,20 +3,20 @@
 #include <cassert>
 #include <cstddef>
 
-#define GLM_VERSION_MAJOR			0
-#define GLM_VERSION_MINOR			9
-#define GLM_VERSION_PATCH			9
-#define GLM_VERSION_REVISION		6
-#define GLM_VERSION					996
-#define GLM_VERSION_MESSAGE			"GLM: version 0.9.9.6"
+#define GLM_VERSION_MAJOR            0
+#define GLM_VERSION_MINOR            9
+#define GLM_VERSION_PATCH            9
+#define GLM_VERSION_REVISION        6
+#define GLM_VERSION                    996
+#define GLM_VERSION_MESSAGE            "GLM: version 0.9.9.6"
 
-#define GLM_SETUP_INCLUDED			GLM_VERSION
+#define GLM_SETUP_INCLUDED            GLM_VERSION
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Active states
 
-#define GLM_DISABLE		0
-#define GLM_ENABLE		1
+#define GLM_DISABLE        0
+#define GLM_ENABLE        1
 
 ///////////////////////////////////////////////////////////////////////////////////
 // Messages
@@ -36,7 +36,7 @@
 // Build model
 
 #if defined(_M_ARM64) || defined(__LP64__) || defined(_M_X64) || defined(__ppc64__) || defined(__x86_64__)
-#	define GLM_MODEL	GLM_MODEL_64
+#	define GLM_MODEL    GLM_MODEL_64
 #elif defined(__i386__) || defined(__ppc__) || defined(__ILP32__) || defined(_M_ARM)
 #	define GLM_MODEL	GLM_MODEL_32
 #else
@@ -52,25 +52,25 @@
 
 // User defines: GLM_FORCE_CXX98, GLM_FORCE_CXX03, GLM_FORCE_CXX11, GLM_FORCE_CXX14, GLM_FORCE_CXX17, GLM_FORCE_CXX2A
 
-#define GLM_LANG_CXX98_FLAG			(1 << 1)
-#define GLM_LANG_CXX03_FLAG			(1 << 2)
-#define GLM_LANG_CXX0X_FLAG			(1 << 3)
-#define GLM_LANG_CXX11_FLAG			(1 << 4)
-#define GLM_LANG_CXX14_FLAG			(1 << 5)
-#define GLM_LANG_CXX17_FLAG			(1 << 6)
-#define GLM_LANG_CXX2A_FLAG			(1 << 7)
-#define GLM_LANG_CXXMS_FLAG			(1 << 8)
-#define GLM_LANG_CXXGNU_FLAG		(1 << 9)
+#define GLM_LANG_CXX98_FLAG            (1 << 1)
+#define GLM_LANG_CXX03_FLAG            (1 << 2)
+#define GLM_LANG_CXX0X_FLAG            (1 << 3)
+#define GLM_LANG_CXX11_FLAG            (1 << 4)
+#define GLM_LANG_CXX14_FLAG            (1 << 5)
+#define GLM_LANG_CXX17_FLAG            (1 << 6)
+#define GLM_LANG_CXX2A_FLAG            (1 << 7)
+#define GLM_LANG_CXXMS_FLAG            (1 << 8)
+#define GLM_LANG_CXXGNU_FLAG        (1 << 9)
 
-#define GLM_LANG_CXX98			GLM_LANG_CXX98_FLAG
-#define GLM_LANG_CXX03			(GLM_LANG_CXX98 | GLM_LANG_CXX03_FLAG)
-#define GLM_LANG_CXX0X			(GLM_LANG_CXX03 | GLM_LANG_CXX0X_FLAG)
-#define GLM_LANG_CXX11			(GLM_LANG_CXX0X | GLM_LANG_CXX11_FLAG)
-#define GLM_LANG_CXX14			(GLM_LANG_CXX11 | GLM_LANG_CXX14_FLAG)
-#define GLM_LANG_CXX17			(GLM_LANG_CXX14 | GLM_LANG_CXX17_FLAG)
-#define GLM_LANG_CXX2A			(GLM_LANG_CXX17 | GLM_LANG_CXX2A_FLAG)
-#define GLM_LANG_CXXMS			GLM_LANG_CXXMS_FLAG
-#define GLM_LANG_CXXGNU			GLM_LANG_CXXGNU_FLAG
+#define GLM_LANG_CXX98            GLM_LANG_CXX98_FLAG
+#define GLM_LANG_CXX03            (GLM_LANG_CXX98 | GLM_LANG_CXX03_FLAG)
+#define GLM_LANG_CXX0X            (GLM_LANG_CXX03 | GLM_LANG_CXX0X_FLAG)
+#define GLM_LANG_CXX11            (GLM_LANG_CXX0X | GLM_LANG_CXX11_FLAG)
+#define GLM_LANG_CXX14            (GLM_LANG_CXX11 | GLM_LANG_CXX14_FLAG)
+#define GLM_LANG_CXX17            (GLM_LANG_CXX14 | GLM_LANG_CXX17_FLAG)
+#define GLM_LANG_CXX2A            (GLM_LANG_CXX17 | GLM_LANG_CXX2A_FLAG)
+#define GLM_LANG_CXXMS            GLM_LANG_CXXMS_FLAG
+#define GLM_LANG_CXXGNU            GLM_LANG_CXXGNU_FLAG
 
 #if (defined(_MSC_EXTENSIONS))
 #	define GLM_LANG_EXT GLM_LANG_CXXMS_FLAG
@@ -152,9 +152,9 @@
 #	define GLM_HAS_CXX11_STL 1
 #else
 #	define GLM_HAS_CXX11_STL ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
-		((GLM_COMPILER & GLM_COMPILER_GCC) && (GLM_COMPILER >= GLM_COMPILER_GCC48)) || \
-		((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC12)) || \
-		((GLM_PLATFORM != GLM_PLATFORM_WINDOWS) && (GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_COMPILER >= GLM_COMPILER_INTEL15))))
+        ((GLM_COMPILER & GLM_COMPILER_GCC) && (GLM_COMPILER >= GLM_COMPILER_GCC48)) || \
+        ((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC12)) || \
+        ((GLM_PLATFORM != GLM_PLATFORM_WINDOWS) && (GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_COMPILER >= GLM_COMPILER_INTEL15))))
 #endif
 
 // N1720
@@ -164,8 +164,8 @@
 #	define GLM_HAS_STATIC_ASSERT 1
 #else
 #	define GLM_HAS_STATIC_ASSERT ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
-		((GLM_COMPILER & GLM_COMPILER_CUDA)) || \
-		((GLM_COMPILER & GLM_COMPILER_VC))))
+        ((GLM_COMPILER & GLM_COMPILER_CUDA)) || \
+        ((GLM_COMPILER & GLM_COMPILER_VC))))
 #endif
 
 // N1988
@@ -173,9 +173,9 @@
 #	define GLM_HAS_EXTENDED_INTEGER_TYPE 1
 #else
 #	define GLM_HAS_EXTENDED_INTEGER_TYPE (\
-		((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (GLM_COMPILER & GLM_COMPILER_VC)) || \
-		((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (GLM_COMPILER & GLM_COMPILER_CUDA)) || \
-		((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (GLM_COMPILER & GLM_COMPILER_CLANG)))
+        ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (GLM_COMPILER & GLM_COMPILER_VC)) || \
+        ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (GLM_COMPILER & GLM_COMPILER_CUDA)) || \
+        ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (GLM_COMPILER & GLM_COMPILER_CLANG)))
 #endif
 
 // N2672 Initializer lists http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2672.htm
@@ -185,9 +185,9 @@
 #	define GLM_HAS_INITIALIZER_LISTS 1
 #else
 #	define GLM_HAS_INITIALIZER_LISTS ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
-		((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC15)) || \
-		((GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_COMPILER >= GLM_COMPILER_INTEL14)) || \
-		((GLM_COMPILER & GLM_COMPILER_CUDA))))
+        ((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC15)) || \
+        ((GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_COMPILER >= GLM_COMPILER_INTEL14)) || \
+        ((GLM_COMPILER & GLM_COMPILER_CUDA))))
 #endif
 
 // N2544 Unrestricted unions http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2008/n2544.pdf
@@ -197,8 +197,8 @@
 #	define GLM_HAS_UNRESTRICTED_UNIONS 1
 #else
 #	define GLM_HAS_UNRESTRICTED_UNIONS (GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
-		(GLM_COMPILER & GLM_COMPILER_VC) || \
-		((GLM_COMPILER & GLM_COMPILER_CUDA)))
+        (GLM_COMPILER & GLM_COMPILER_VC) || \
+        ((GLM_COMPILER & GLM_COMPILER_CUDA)))
 #endif
 
 // N2346
@@ -208,9 +208,9 @@
 #	define GLM_HAS_DEFAULTED_FUNCTIONS 1
 #else
 #	define GLM_HAS_DEFAULTED_FUNCTIONS ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
-		((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC12)) || \
-		((GLM_COMPILER & GLM_COMPILER_INTEL)) || \
-		(GLM_COMPILER & GLM_COMPILER_CUDA)))
+        ((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC12)) || \
+        ((GLM_COMPILER & GLM_COMPILER_INTEL)) || \
+        (GLM_COMPILER & GLM_COMPILER_CUDA)))
 #endif
 
 // N2118
@@ -220,8 +220,8 @@
 #	define GLM_HAS_RVALUE_REFERENCES 1
 #else
 #	define GLM_HAS_RVALUE_REFERENCES ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
-		((GLM_COMPILER & GLM_COMPILER_VC)) || \
-		((GLM_COMPILER & GLM_COMPILER_CUDA))))
+        ((GLM_COMPILER & GLM_COMPILER_VC)) || \
+        ((GLM_COMPILER & GLM_COMPILER_CUDA))))
 #endif
 
 // N2437 http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2437.pdf
@@ -231,9 +231,9 @@
 #	define GLM_HAS_EXPLICIT_CONVERSION_OPERATORS 1
 #else
 #	define GLM_HAS_EXPLICIT_CONVERSION_OPERATORS ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
-		((GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_COMPILER >= GLM_COMPILER_INTEL14)) || \
-		((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC12)) || \
-		((GLM_COMPILER & GLM_COMPILER_CUDA))))
+        ((GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_COMPILER >= GLM_COMPILER_INTEL14)) || \
+        ((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC12)) || \
+        ((GLM_COMPILER & GLM_COMPILER_CUDA))))
 #endif
 
 // N2258 http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2258.pdf
@@ -243,9 +243,9 @@
 #	define GLM_HAS_TEMPLATE_ALIASES 1
 #else
 #	define GLM_HAS_TEMPLATE_ALIASES ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
-		((GLM_COMPILER & GLM_COMPILER_INTEL)) || \
-		((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC12)) || \
-		((GLM_COMPILER & GLM_COMPILER_CUDA))))
+        ((GLM_COMPILER & GLM_COMPILER_INTEL)) || \
+        ((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC12)) || \
+        ((GLM_COMPILER & GLM_COMPILER_CUDA))))
 #endif
 
 // N2930 http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2009/n2930.html
@@ -255,9 +255,9 @@
 #	define GLM_HAS_RANGE_FOR 1
 #else
 #	define GLM_HAS_RANGE_FOR ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
-		((GLM_COMPILER & GLM_COMPILER_INTEL)) || \
-		((GLM_COMPILER & GLM_COMPILER_VC)) || \
-		((GLM_COMPILER & GLM_COMPILER_CUDA))))
+        ((GLM_COMPILER & GLM_COMPILER_INTEL)) || \
+        ((GLM_COMPILER & GLM_COMPILER_VC)) || \
+        ((GLM_COMPILER & GLM_COMPILER_CUDA))))
 #endif
 
 // N2341 http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2341.pdf
@@ -267,9 +267,9 @@
 #	define GLM_HAS_ALIGNOF 1
 #else
 #	define GLM_HAS_ALIGNOF ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
-		((GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_COMPILER >= GLM_COMPILER_INTEL15)) || \
-		((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC14)) || \
-		((GLM_COMPILER & GLM_COMPILER_CUDA))))
+        ((GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_COMPILER >= GLM_COMPILER_INTEL15)) || \
+        ((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC14)) || \
+        ((GLM_COMPILER & GLM_COMPILER_CUDA))))
 #endif
 
 // N2235 Generalized Constant Expressions http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2235.pdf
@@ -282,8 +282,8 @@
 #	define GLM_HAS_CONSTEXPR 1
 #else
 #	define GLM_HAS_CONSTEXPR ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && GLM_HAS_INITIALIZER_LISTS && (\
-		((GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_COMPILER >= GLM_COMPILER_INTEL17)) || \
-		((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC15))))
+        ((GLM_COMPILER & GLM_COMPILER_INTEL) && (GLM_COMPILER >= GLM_COMPILER_INTEL17)) || \
+        ((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC15))))
 #endif
 
 #if GLM_HAS_CONSTEXPR
@@ -320,8 +320,8 @@
 #	define GLM_HAS_ASSIGNABLE 1
 #else
 #	define GLM_HAS_ASSIGNABLE ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
-		((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC15)) || \
-		((GLM_COMPILER & GLM_COMPILER_GCC) && (GLM_COMPILER >= GLM_COMPILER_GCC49))))
+        ((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC15)) || \
+        ((GLM_COMPILER & GLM_COMPILER_GCC) && (GLM_COMPILER >= GLM_COMPILER_GCC49))))
 #endif
 
 //
@@ -332,15 +332,15 @@
 #	define GLM_HAS_MAKE_SIGNED 1
 #else
 #	define GLM_HAS_MAKE_SIGNED ((GLM_LANG & GLM_LANG_CXX0X_FLAG) && (\
-		((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC12)) || \
-		((GLM_COMPILER & GLM_COMPILER_CUDA))))
+        ((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC12)) || \
+        ((GLM_COMPILER & GLM_COMPILER_CUDA))))
 #endif
 
 //
 #if defined(GLM_FORCE_INTRINSICS)
 #	define GLM_HAS_BITSCAN_WINDOWS ((GLM_PLATFORM & GLM_PLATFORM_WINDOWS) && (\
-		((GLM_COMPILER & GLM_COMPILER_INTEL)) || \
-		((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC14) && (GLM_ARCH & GLM_ARCH_X86_BIT))))
+        ((GLM_COMPILER & GLM_COMPILER_INTEL)) || \
+        ((GLM_COMPILER & GLM_COMPILER_VC) && (GLM_COMPILER >= GLM_COMPILER_VC14) && (GLM_ARCH & GLM_ARCH_X86_BIT))))
 #else
 #	define GLM_HAS_BITSCAN_WINDOWS 0
 #endif
@@ -443,9 +443,9 @@
 
 // User defines: GLM_FORCE_SWIZZLE
 
-#define GLM_SWIZZLE_DISABLED		0
-#define GLM_SWIZZLE_OPERATOR		1
-#define GLM_SWIZZLE_FUNCTION		2
+#define GLM_SWIZZLE_DISABLED        0
+#define GLM_SWIZZLE_OPERATOR        1
+#define GLM_SWIZZLE_FUNCTION        2
 
 #if defined(GLM_FORCE_XYZW_ONLY)
 #	undef GLM_FORCE_SWIZZLE
@@ -481,10 +481,10 @@
 // Coordinate system, define GLM_FORCE_LEFT_HANDED before including GLM
 // to use left handed coordinate system by default.
 
-#define GLM_CLIP_CONTROL_ZO_BIT		(1 << 0) // ZERO_TO_ONE
-#define GLM_CLIP_CONTROL_NO_BIT		(1 << 1) // NEGATIVE_ONE_TO_ONE
-#define GLM_CLIP_CONTROL_LH_BIT		(1 << 2) // LEFT_HANDED, For DirectX, Metal, Vulkan
-#define GLM_CLIP_CONTROL_RH_BIT		(1 << 3) // RIGHT_HANDED, For OpenGL, default in GLM
+#define GLM_CLIP_CONTROL_ZO_BIT        (1 << 0) // ZERO_TO_ONE
+#define GLM_CLIP_CONTROL_NO_BIT        (1 << 1) // NEGATIVE_ONE_TO_ONE
+#define GLM_CLIP_CONTROL_LH_BIT        (1 << 2) // LEFT_HANDED, For DirectX, Metal, Vulkan
+#define GLM_CLIP_CONTROL_RH_BIT        (1 << 3) // RIGHT_HANDED, For OpenGL, default in GLM
 
 #define GLM_CLIP_CONTROL_LH_ZO (GLM_CLIP_CONTROL_LH_BIT | GLM_CLIP_CONTROL_ZO_BIT)
 #define GLM_CLIP_CONTROL_LH_NO (GLM_CLIP_CONTROL_LH_BIT | GLM_CLIP_CONTROL_NO_BIT)
@@ -533,38 +533,38 @@
 ///////////////////////////////////////////////////////////////////////////////////
 // SYCL
 
-#if GLM_COMPILER==GLM_COMPILER_SYCL
+#if GLM_COMPILER == GLM_COMPILER_SYCL
 
 #include <CL/sycl.hpp>
 #include <limits>
 
 namespace glm {
 namespace std {
-	// Import SYCL's functions into the namespace glm::std to force their usages.
-	// It's important to use the math built-in function (sin, exp, ...)
-	// of SYCL instead the std ones.
-	using namespace cl::sycl;
+    // Import SYCL's functions into the namespace glm::std to force their usages.
+    // It's important to use the math built-in function (sin, exp, ...)
+    // of SYCL instead the std ones.
+    using namespace cl::sycl;
 
-	///////////////////////////////////////////////////////////////////////////////
-	// Import some "harmless" std's stuffs used by glm into
-	// the new glm::std namespace.
-	template<typename T>
-	using numeric_limits = ::std::numeric_limits<T>;
+    ///////////////////////////////////////////////////////////////////////////////
+    // Import some "harmless" std's stuffs used by glm into
+    // the new glm::std namespace.
+    template<typename T>
+    using numeric_limits = ::std::numeric_limits<T>;
 
-	using ::std::size_t;
+    using ::std::size_t;
 
-	using ::std::uint8_t;
-	using ::std::uint16_t;
-	using ::std::uint32_t;
-	using ::std::uint64_t;
+    using ::std::uint8_t;
+    using ::std::uint16_t;
+    using ::std::uint32_t;
+    using ::std::uint64_t;
 
-	using ::std::int8_t;
-	using ::std::int16_t;
-	using ::std::int32_t;
-	using ::std::int64_t;
+    using ::std::int8_t;
+    using ::std::int16_t;
+    using ::std::int32_t;
+    using ::std::int64_t;
 
-	using ::std::make_unsigned;
-	///////////////////////////////////////////////////////////////////////////////
+    using ::std::make_unsigned;
+    ///////////////////////////////////////////////////////////////////////////////
 } //namespace std
 } //namespace glm
 
@@ -577,22 +577,21 @@ namespace std {
 // When GLM_FORCE_SIZE_T_LENGTH is defined, length_t is a typedef of size_t otherwise
 // length_t is a typedef of int like GLSL defines it.
 
-#define GLM_LENGTH_INT		1
-#define GLM_LENGTH_SIZE_T	2
+#define GLM_LENGTH_INT        1
+#define GLM_LENGTH_SIZE_T    2
 
 #ifdef GLM_FORCE_SIZE_T_LENGTH
 #	define GLM_CONFIG_LENGTH_TYPE		GLM_LENGTH_SIZE_T
 #else
-#	define GLM_CONFIG_LENGTH_TYPE		GLM_LENGTH_INT
+#	define GLM_CONFIG_LENGTH_TYPE        GLM_LENGTH_INT
 #endif
 
-namespace glm
-{
-	using std::size_t;
+namespace glm {
+using std::size_t;
 #	if GLM_CONFIG_LENGTH_TYPE == GLM_LENGTH_SIZE_T
-		typedef size_t length_t;
+typedef size_t length_t;
 #	else
-		typedef int length_t;
+typedef int length_t;
 #	endif
 }//namespace glm
 
@@ -602,14 +601,12 @@ namespace glm
 #if GLM_HAS_CONSTEXPR
 #	define GLM_CONFIG_CONSTEXP GLM_ENABLE
 
-	namespace glm
-	{
-		template<typename T, std::size_t N>
-		constexpr std::size_t countof(T const (&)[N])
-		{
-			return N;
-		}
-	}//namespace glm
+namespace glm {
+template<typename T, std::size_t N>
+constexpr std::size_t countof(T const (&)[N]) {
+    return N;
+}
+}//namespace glm
 #	define GLM_COUNTOF(arr) glm::countof(arr)
 #elif defined(_MSC_VER)
 #	define GLM_CONFIG_CONSTEXP GLM_DISABLE
@@ -624,61 +621,64 @@ namespace glm
 ///////////////////////////////////////////////////////////////////////////////////
 // uint
 
-namespace glm{
-namespace detail
-{
-	template<typename T>
-	struct is_int
-	{
-		enum test {value = 0};
-	};
+namespace glm {
+namespace detail {
+template<typename T>
+struct is_int {
+    enum test {
+        value = 0
+    };
+};
 
-	template<>
-	struct is_int<unsigned int>
-	{
-		enum test {value = ~0};
-	};
+template<>
+struct is_int<unsigned int> {
+    enum test {
+        value = ~0
+    };
+};
 
-	template<>
-	struct is_int<signed int>
-	{
-		enum test {value = ~0};
-	};
+template<>
+struct is_int<signed int> {
+    enum test {
+        value = ~0
+    };
+};
 }//namespace detail
 
-	typedef unsigned int	uint;
+typedef unsigned int uint;
 }//namespace glm
 
 ///////////////////////////////////////////////////////////////////////////////////
 // 64-bit int
 
 #if GLM_HAS_EXTENDED_INTEGER_TYPE
+
 #	include <cstdint>
+
 #endif
 
-namespace glm{
-namespace detail
-{
+namespace glm {
+namespace detail {
 #	if GLM_HAS_EXTENDED_INTEGER_TYPE
-		typedef std::uint64_t						uint64;
-		typedef std::int64_t						int64;
+typedef std::uint64_t uint64;
+typedef std::int64_t int64;
 #	elif (defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)) // C99 detected, 64 bit types available
-		typedef uint64_t							uint64;
-		typedef int64_t								int64;
+typedef uint64_t							uint64;
+typedef int64_t								int64;
 #	elif GLM_COMPILER & GLM_COMPILER_VC
-		typedef unsigned __int64					uint64;
-		typedef signed __int64						int64;
+typedef unsigned __int64					uint64;
+typedef signed __int64						int64;
 #	elif GLM_COMPILER & GLM_COMPILER_GCC
 #		pragma GCC diagnostic ignored "-Wlong-long"
-		__extension__ typedef unsigned long long	uint64;
-		__extension__ typedef signed long long		int64;
+__extension__ typedef unsigned long long	uint64;
+__extension__ typedef signed long long		int64;
 #	elif (GLM_COMPILER & GLM_COMPILER_CLANG)
 #		pragma clang diagnostic ignored "-Wc++11-long-long"
-		typedef unsigned long long					uint64;
-		typedef signed long long					int64;
+typedef unsigned long long					uint64;
+typedef signed long long					int64;
 #	else//unknown compiler
-		typedef unsigned long long					uint64;
-		typedef signed long long					int64;
+typedef unsigned long long					uint64;
+typedef signed long long					int64;
 #	endif
 }//namespace detail
 }//namespace glm
@@ -687,12 +687,12 @@ namespace detail
 // make_unsigned
 
 #if GLM_HAS_MAKE_SIGNED
+
 #	include <type_traits>
 
-namespace glm{
-namespace detail
-{
-	using std::make_unsigned;
+namespace glm {
+namespace detail {
+using std::make_unsigned;
 }//namespace detail
 }//namespace glm
 
@@ -701,75 +701,75 @@ namespace detail
 namespace glm{
 namespace detail
 {
-	template<typename genType>
-	struct make_unsigned
-	{};
+    template<typename genType>
+    struct make_unsigned
+    {};
 
-	template<>
-	struct make_unsigned<char>
-	{
-		typedef unsigned char type;
-	};
+    template<>
+    struct make_unsigned<char>
+    {
+        typedef unsigned char type;
+    };
 
-	template<>
-	struct make_unsigned<signed char>
-	{
-		typedef unsigned char type;
-	};
+    template<>
+    struct make_unsigned<signed char>
+    {
+        typedef unsigned char type;
+    };
 
-	template<>
-	struct make_unsigned<short>
-	{
-		typedef unsigned short type;
-	};
+    template<>
+    struct make_unsigned<short>
+    {
+        typedef unsigned short type;
+    };
 
-	template<>
-	struct make_unsigned<int>
-	{
-		typedef unsigned int type;
-	};
+    template<>
+    struct make_unsigned<int>
+    {
+        typedef unsigned int type;
+    };
 
-	template<>
-	struct make_unsigned<long>
-	{
-		typedef unsigned long type;
-	};
+    template<>
+    struct make_unsigned<long>
+    {
+        typedef unsigned long type;
+    };
 
-	template<>
-	struct make_unsigned<int64>
-	{
-		typedef uint64 type;
-	};
+    template<>
+    struct make_unsigned<int64>
+    {
+        typedef uint64 type;
+    };
 
-	template<>
-	struct make_unsigned<unsigned char>
-	{
-		typedef unsigned char type;
-	};
+    template<>
+    struct make_unsigned<unsigned char>
+    {
+        typedef unsigned char type;
+    };
 
-	template<>
-	struct make_unsigned<unsigned short>
-	{
-		typedef unsigned short type;
-	};
+    template<>
+    struct make_unsigned<unsigned short>
+    {
+        typedef unsigned short type;
+    };
 
-	template<>
-	struct make_unsigned<unsigned int>
-	{
-		typedef unsigned int type;
-	};
+    template<>
+    struct make_unsigned<unsigned int>
+    {
+        typedef unsigned int type;
+    };
 
-	template<>
-	struct make_unsigned<unsigned long>
-	{
-		typedef unsigned long type;
-	};
+    template<>
+    struct make_unsigned<unsigned long>
+    {
+        typedef unsigned long type;
+    };
 
-	template<>
-	struct make_unsigned<uint64>
-	{
-		typedef uint64 type;
-	};
+    template<>
+    struct make_unsigned<uint64>
+    {
+        typedef uint64 type;
+    };
 }//namespace detail
 }//namespace glm
 #endif
@@ -786,9 +786,9 @@ namespace detail
 ///////////////////////////////////////////////////////////////////////////////////
 // Configure the use of defaulted initialized types
 
-#define GLM_CTOR_INIT_DISABLE		0
-#define GLM_CTOR_INITIALIZER_LIST	1
-#define GLM_CTOR_INITIALISATION		2
+#define GLM_CTOR_INIT_DISABLE        0
+#define GLM_CTOR_INITIALIZER_LIST    1
+#define GLM_CTOR_INITIALISATION        2
 
 #if defined(GLM_FORCE_CTOR_INIT) && GLM_HAS_INITIALIZER_LISTS
 #	define GLM_CONFIG_CTOR_INIT GLM_CTOR_INITIALIZER_LIST
@@ -856,9 +856,9 @@ namespace detail
 ///////////////////////////////////////////////////////////////////////////////////
 // Precision
 
-#define GLM_HIGHP		1
-#define GLM_MEDIUMP		2
-#define GLM_LOWP		3
+#define GLM_HIGHP        1
+#define GLM_MEDIUMP        2
+#define GLM_LOWP        3
 
 #if defined(GLM_FORCE_PRECISION_HIGHP_BOOL) || defined(GLM_PRECISION_HIGHP_BOOL)
 #	define GLM_CONFIG_PRECISION_BOOL		GLM_HIGHP
@@ -867,7 +867,7 @@ namespace detail
 #elif defined(GLM_FORCE_PRECISION_LOWP_BOOL) || defined(GLM_PRECISION_LOWP_BOOL)
 #	define GLM_CONFIG_PRECISION_BOOL		GLM_LOWP
 #else
-#	define GLM_CONFIG_PRECISION_BOOL		GLM_HIGHP
+#	define GLM_CONFIG_PRECISION_BOOL        GLM_HIGHP
 #endif
 
 #if defined(GLM_FORCE_PRECISION_HIGHP_INT) || defined(GLM_PRECISION_HIGHP_INT)
@@ -877,7 +877,7 @@ namespace detail
 #elif defined(GLM_FORCE_PRECISION_LOWP_INT) || defined(GLM_PRECISION_LOWP_INT)
 #	define GLM_CONFIG_PRECISION_INT			GLM_LOWP
 #else
-#	define GLM_CONFIG_PRECISION_INT			GLM_HIGHP
+#	define GLM_CONFIG_PRECISION_INT            GLM_HIGHP
 #endif
 
 #if defined(GLM_FORCE_PRECISION_HIGHP_UINT) || defined(GLM_PRECISION_HIGHP_UINT)
@@ -887,7 +887,7 @@ namespace detail
 #elif defined(GLM_FORCE_PRECISION_LOWP_UINT) || defined(GLM_PRECISION_LOWP_UINT)
 #	define GLM_CONFIG_PRECISION_UINT		GLM_LOWP
 #else
-#	define GLM_CONFIG_PRECISION_UINT		GLM_HIGHP
+#	define GLM_CONFIG_PRECISION_UINT        GLM_HIGHP
 #endif
 
 #if defined(GLM_FORCE_PRECISION_HIGHP_FLOAT) || defined(GLM_PRECISION_HIGHP_FLOAT)
@@ -897,7 +897,7 @@ namespace detail
 #elif defined(GLM_FORCE_PRECISION_LOWP_FLOAT) || defined(GLM_PRECISION_LOWP_FLOAT)
 #	define GLM_CONFIG_PRECISION_FLOAT		GLM_LOWP
 #else
-#	define GLM_CONFIG_PRECISION_FLOAT		GLM_HIGHP
+#	define GLM_CONFIG_PRECISION_FLOAT        GLM_HIGHP
 #endif
 
 #if defined(GLM_FORCE_PRECISION_HIGHP_DOUBLE) || defined(GLM_PRECISION_HIGHP_DOUBLE)
@@ -907,7 +907,7 @@ namespace detail
 #elif defined(GLM_FORCE_PRECISION_LOWP_DOUBLE) || defined(GLM_PRECISION_LOWP_DOUBLE)
 #	define GLM_CONFIG_PRECISION_DOUBLE		GLM_LOWP
 #else
-#	define GLM_CONFIG_PRECISION_DOUBLE		GLM_HIGHP
+#	define GLM_CONFIG_PRECISION_DOUBLE        GLM_HIGHP
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -925,10 +925,10 @@ namespace detail
 #		define GLM_STR_HELPER(x) #x
 #		define GLM_STR(x) GLM_STR_HELPER(x)
 
-	// Report GLM version
+    // Report GLM version
 #		pragma message (GLM_STR(GLM_VERSION_MESSAGE))
 
-	// Report C++ language
+    // Report C++ language
 #	if (GLM_LANG & GLM_LANG_CXX2A_FLAG) && (GLM_LANG & GLM_LANG_EXT)
 #		pragma message("GLM: C++ 2A with extensions")
 #	elif (GLM_LANG & GLM_LANG_CXX2A_FLAG)
@@ -961,7 +961,7 @@ namespace detail
 #		pragma message("GLM: C++ language undetected")
 #	endif//GLM_LANG
 
-	// Report compiler detection
+    // Report compiler detection
 #	if GLM_COMPILER & GLM_COMPILER_CUDA
 #		pragma message("GLM: CUDA compiler detected")
 #	elif GLM_COMPILER & GLM_COMPILER_VC
@@ -976,7 +976,7 @@ namespace detail
 #		pragma message("GLM: Compiler not detected")
 #	endif
 
-	// Report build target
+    // Report build target
 #	if (GLM_ARCH & GLM_ARCH_AVX2_BIT) && (GLM_MODEL == GLM_MODEL_64)
 #		pragma message("GLM: x86 64 bits with AVX2 instruction set build target")
 #	elif (GLM_ARCH & GLM_ARCH_AVX2_BIT) && (GLM_MODEL == GLM_MODEL_32)
@@ -1040,7 +1040,7 @@ namespace detail
 #		pragma message("GLM: Unknown build target")
 #	endif//GLM_ARCH
 
-	// Report platform name
+    // Report platform name
 #	if(GLM_PLATFORM & GLM_PLATFORM_QNXNTO)
 #		pragma message("GLM: QNX platform detected")
 //#	elif(GLM_PLATFORM & GLM_PLATFORM_IOS)
@@ -1065,12 +1065,12 @@ namespace detail
 #		pragma message("GLM: platform not detected")
 #	endif
 
-	// Report whether only xyzw component are used
+    // Report whether only xyzw component are used
 #	if defined GLM_FORCE_XYZW_ONLY
 #		pragma message("GLM: GLM_FORCE_XYZW_ONLY is defined. Only x, y, z and w component are available in vector type. This define disables swizzle operators and SIMD instruction sets.")
 #	endif
 
-	// Report swizzle operator support
+    // Report swizzle operator support
 #	if GLM_CONFIG_SWIZZLE == GLM_SWIZZLE_OPERATOR
 #		pragma message("GLM: GLM_FORCE_SWIZZLE is defined, swizzling operators enabled.")
 #	elif GLM_CONFIG_SWIZZLE == GLM_SWIZZLE_FUNCTION
@@ -1079,7 +1079,7 @@ namespace detail
 #		pragma message("GLM: GLM_FORCE_SWIZZLE is undefined. swizzling functions or operators are disabled.")
 #	endif
 
-	// Report .length() type
+    // Report .length() type
 #	if GLM_CONFIG_LENGTH_TYPE == GLM_LENGTH_SIZE_T
 #		pragma message("GLM: GLM_FORCE_SIZE_T_LENGTH is defined. .length() returns a glm::length_t, a typedef of std::size_t.")
 #	else

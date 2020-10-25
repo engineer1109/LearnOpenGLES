@@ -3,17 +3,17 @@
 ///////////////////////////////////////////////////////////////////////////////////
 // Platform
 
-#define GLM_PLATFORM_UNKNOWN		0x00000000
-#define GLM_PLATFORM_WINDOWS		0x00010000
-#define GLM_PLATFORM_LINUX			0x00020000
-#define GLM_PLATFORM_APPLE			0x00040000
+#define GLM_PLATFORM_UNKNOWN        0x00000000
+#define GLM_PLATFORM_WINDOWS        0x00010000
+#define GLM_PLATFORM_LINUX            0x00020000
+#define GLM_PLATFORM_APPLE            0x00040000
 //#define GLM_PLATFORM_IOS			0x00080000
-#define GLM_PLATFORM_ANDROID		0x00100000
-#define GLM_PLATFORM_CHROME_NACL	0x00200000
-#define GLM_PLATFORM_UNIX			0x00400000
-#define GLM_PLATFORM_QNXNTO			0x00800000
-#define GLM_PLATFORM_WINCE			0x01000000
-#define GLM_PLATFORM_CYGWIN			0x02000000
+#define GLM_PLATFORM_ANDROID        0x00100000
+#define GLM_PLATFORM_CHROME_NACL    0x00200000
+#define GLM_PLATFORM_UNIX            0x00400000
+#define GLM_PLATFORM_QNXNTO            0x00800000
+#define GLM_PLATFORM_WINCE            0x01000000
+#define GLM_PLATFORM_CYGWIN            0x02000000
 
 #ifdef GLM_FORCE_PLATFORM_UNKNOWN
 #	define GLM_PLATFORM GLM_PLATFORM_UNKNOWN
@@ -42,63 +42,63 @@
 ///////////////////////////////////////////////////////////////////////////////////
 // Compiler
 
-#define GLM_COMPILER_UNKNOWN		0x00000000
+#define GLM_COMPILER_UNKNOWN        0x00000000
 
 // Intel
-#define GLM_COMPILER_INTEL			0x00100000
-#define GLM_COMPILER_INTEL14		0x00100040
-#define GLM_COMPILER_INTEL15		0x00100050
-#define GLM_COMPILER_INTEL16		0x00100060
-#define GLM_COMPILER_INTEL17		0x00100070
+#define GLM_COMPILER_INTEL            0x00100000
+#define GLM_COMPILER_INTEL14        0x00100040
+#define GLM_COMPILER_INTEL15        0x00100050
+#define GLM_COMPILER_INTEL16        0x00100060
+#define GLM_COMPILER_INTEL17        0x00100070
 
 // Visual C++ defines
-#define GLM_COMPILER_VC				0x01000000
-#define GLM_COMPILER_VC12			0x01000001
-#define GLM_COMPILER_VC14			0x01000002
-#define GLM_COMPILER_VC15			0x01000003
-#define GLM_COMPILER_VC15_3			0x01000004
-#define GLM_COMPILER_VC15_5			0x01000005
-#define GLM_COMPILER_VC15_6			0x01000006
-#define GLM_COMPILER_VC15_7			0x01000007
-#define GLM_COMPILER_VC15_8			0x01000008
-#define GLM_COMPILER_VC15_9			0x01000009
-#define GLM_COMPILER_VC16			0x0100000A
+#define GLM_COMPILER_VC                0x01000000
+#define GLM_COMPILER_VC12            0x01000001
+#define GLM_COMPILER_VC14            0x01000002
+#define GLM_COMPILER_VC15            0x01000003
+#define GLM_COMPILER_VC15_3            0x01000004
+#define GLM_COMPILER_VC15_5            0x01000005
+#define GLM_COMPILER_VC15_6            0x01000006
+#define GLM_COMPILER_VC15_7            0x01000007
+#define GLM_COMPILER_VC15_8            0x01000008
+#define GLM_COMPILER_VC15_9            0x01000009
+#define GLM_COMPILER_VC16            0x0100000A
 
 // GCC defines
-#define GLM_COMPILER_GCC			0x02000000
-#define GLM_COMPILER_GCC46			0x020000D0
-#define GLM_COMPILER_GCC47			0x020000E0
-#define GLM_COMPILER_GCC48			0x020000F0
-#define GLM_COMPILER_GCC49			0x02000100
-#define GLM_COMPILER_GCC5			0x02000200
-#define GLM_COMPILER_GCC6			0x02000300
-#define GLM_COMPILER_GCC7			0x02000400
-#define GLM_COMPILER_GCC8			0x02000500
+#define GLM_COMPILER_GCC            0x02000000
+#define GLM_COMPILER_GCC46            0x020000D0
+#define GLM_COMPILER_GCC47            0x020000E0
+#define GLM_COMPILER_GCC48            0x020000F0
+#define GLM_COMPILER_GCC49            0x02000100
+#define GLM_COMPILER_GCC5            0x02000200
+#define GLM_COMPILER_GCC6            0x02000300
+#define GLM_COMPILER_GCC7            0x02000400
+#define GLM_COMPILER_GCC8            0x02000500
 
 // CUDA
-#define GLM_COMPILER_CUDA			0x10000000
-#define GLM_COMPILER_CUDA75			0x10000001
-#define GLM_COMPILER_CUDA80			0x10000002
-#define GLM_COMPILER_CUDA90			0x10000004
+#define GLM_COMPILER_CUDA            0x10000000
+#define GLM_COMPILER_CUDA75            0x10000001
+#define GLM_COMPILER_CUDA80            0x10000002
+#define GLM_COMPILER_CUDA90            0x10000004
 
 // SYCL
-#define GLM_COMPILER_SYCL			0x00300000
+#define GLM_COMPILER_SYCL            0x00300000
 
 // Clang
-#define GLM_COMPILER_CLANG			0x20000000
-#define GLM_COMPILER_CLANG34		0x20000050
-#define GLM_COMPILER_CLANG35		0x20000060
-#define GLM_COMPILER_CLANG36		0x20000070
-#define GLM_COMPILER_CLANG37		0x20000080
-#define GLM_COMPILER_CLANG38		0x20000090
-#define GLM_COMPILER_CLANG39		0x200000A0
-#define GLM_COMPILER_CLANG40		0x200000B0
-#define GLM_COMPILER_CLANG41		0x200000C0
-#define GLM_COMPILER_CLANG42		0x200000D0
+#define GLM_COMPILER_CLANG            0x20000000
+#define GLM_COMPILER_CLANG34        0x20000050
+#define GLM_COMPILER_CLANG35        0x20000060
+#define GLM_COMPILER_CLANG36        0x20000070
+#define GLM_COMPILER_CLANG37        0x20000080
+#define GLM_COMPILER_CLANG38        0x20000090
+#define GLM_COMPILER_CLANG39        0x200000A0
+#define GLM_COMPILER_CLANG40        0x200000B0
+#define GLM_COMPILER_CLANG41        0x200000C0
+#define GLM_COMPILER_CLANG42        0x200000D0
 
 // Build model
-#define GLM_MODEL_32				0x00000010
-#define GLM_MODEL_64				0x00000020
+#define GLM_MODEL_32                0x00000010
+#define GLM_MODEL_64                0x00000020
 
 // Force generic C++ compiler
 #ifdef GLM_FORCE_COMPILER_UNKNOWN
@@ -235,39 +235,39 @@
 
 // User defines: GLM_FORCE_PURE GLM_FORCE_INTRINSICS GLM_FORCE_SSE2 GLM_FORCE_SSE3 GLM_FORCE_AVX GLM_FORCE_AVX2 GLM_FORCE_AVX2
 
-#define GLM_ARCH_MIPS_BIT	  (0x10000000)
-#define GLM_ARCH_PPC_BIT	  (0x20000000)
-#define GLM_ARCH_ARM_BIT	  (0x40000000)
+#define GLM_ARCH_MIPS_BIT      (0x10000000)
+#define GLM_ARCH_PPC_BIT      (0x20000000)
+#define GLM_ARCH_ARM_BIT      (0x40000000)
 #define GLM_ARCH_ARMV8_BIT  (0x01000000)
-#define GLM_ARCH_X86_BIT	  (0x80000000)
+#define GLM_ARCH_X86_BIT      (0x80000000)
 
-#define GLM_ARCH_SIMD_BIT	(0x00001000)
+#define GLM_ARCH_SIMD_BIT    (0x00001000)
 
-#define GLM_ARCH_NEON_BIT	(0x00000001)
-#define GLM_ARCH_SSE_BIT	(0x00000002)
-#define GLM_ARCH_SSE2_BIT	(0x00000004)
-#define GLM_ARCH_SSE3_BIT	(0x00000008)
-#define GLM_ARCH_SSSE3_BIT	(0x00000010)
-#define GLM_ARCH_SSE41_BIT	(0x00000020)
-#define GLM_ARCH_SSE42_BIT	(0x00000040)
-#define GLM_ARCH_AVX_BIT	(0x00000080)
-#define GLM_ARCH_AVX2_BIT	(0x00000100)
+#define GLM_ARCH_NEON_BIT    (0x00000001)
+#define GLM_ARCH_SSE_BIT    (0x00000002)
+#define GLM_ARCH_SSE2_BIT    (0x00000004)
+#define GLM_ARCH_SSE3_BIT    (0x00000008)
+#define GLM_ARCH_SSSE3_BIT    (0x00000010)
+#define GLM_ARCH_SSE41_BIT    (0x00000020)
+#define GLM_ARCH_SSE42_BIT    (0x00000040)
+#define GLM_ARCH_AVX_BIT    (0x00000080)
+#define GLM_ARCH_AVX2_BIT    (0x00000100)
 
-#define GLM_ARCH_UNKNOWN	(0)
-#define GLM_ARCH_X86		(GLM_ARCH_X86_BIT)
-#define GLM_ARCH_SSE		(GLM_ARCH_SSE_BIT | GLM_ARCH_SIMD_BIT | GLM_ARCH_X86)
-#define GLM_ARCH_SSE2		(GLM_ARCH_SSE2_BIT | GLM_ARCH_SSE)
-#define GLM_ARCH_SSE3		(GLM_ARCH_SSE3_BIT | GLM_ARCH_SSE2)
-#define GLM_ARCH_SSSE3		(GLM_ARCH_SSSE3_BIT | GLM_ARCH_SSE3)
-#define GLM_ARCH_SSE41		(GLM_ARCH_SSE41_BIT | GLM_ARCH_SSSE3)
-#define GLM_ARCH_SSE42		(GLM_ARCH_SSE42_BIT | GLM_ARCH_SSE41)
-#define GLM_ARCH_AVX		(GLM_ARCH_AVX_BIT | GLM_ARCH_SSE42)
-#define GLM_ARCH_AVX2		(GLM_ARCH_AVX2_BIT | GLM_ARCH_AVX)
-#define GLM_ARCH_ARM		(GLM_ARCH_ARM_BIT)
-#define GLM_ARCH_ARMV8		(GLM_ARCH_NEON_BIT | GLM_ARCH_SIMD_BIT | GLM_ARCH_ARM | GLM_ARCH_ARMV8_BIT)
-#define GLM_ARCH_NEON		(GLM_ARCH_NEON_BIT | GLM_ARCH_SIMD_BIT | GLM_ARCH_ARM)
-#define GLM_ARCH_MIPS		(GLM_ARCH_MIPS_BIT)
-#define GLM_ARCH_PPC		(GLM_ARCH_PPC_BIT)
+#define GLM_ARCH_UNKNOWN    (0)
+#define GLM_ARCH_X86        (GLM_ARCH_X86_BIT)
+#define GLM_ARCH_SSE        (GLM_ARCH_SSE_BIT | GLM_ARCH_SIMD_BIT | GLM_ARCH_X86)
+#define GLM_ARCH_SSE2        (GLM_ARCH_SSE2_BIT | GLM_ARCH_SSE)
+#define GLM_ARCH_SSE3        (GLM_ARCH_SSE3_BIT | GLM_ARCH_SSE2)
+#define GLM_ARCH_SSSE3        (GLM_ARCH_SSSE3_BIT | GLM_ARCH_SSE3)
+#define GLM_ARCH_SSE41        (GLM_ARCH_SSE41_BIT | GLM_ARCH_SSSE3)
+#define GLM_ARCH_SSE42        (GLM_ARCH_SSE42_BIT | GLM_ARCH_SSE41)
+#define GLM_ARCH_AVX        (GLM_ARCH_AVX_BIT | GLM_ARCH_SSE42)
+#define GLM_ARCH_AVX2        (GLM_ARCH_AVX2_BIT | GLM_ARCH_AVX)
+#define GLM_ARCH_ARM        (GLM_ARCH_ARM_BIT)
+#define GLM_ARCH_ARMV8        (GLM_ARCH_NEON_BIT | GLM_ARCH_SIMD_BIT | GLM_ARCH_ARM | GLM_ARCH_ARMV8_BIT)
+#define GLM_ARCH_NEON        (GLM_ARCH_NEON_BIT | GLM_ARCH_SIMD_BIT | GLM_ARCH_ARM)
+#define GLM_ARCH_MIPS        (GLM_ARCH_MIPS_BIT)
+#define GLM_ARCH_PPC        (GLM_ARCH_PPC_BIT)
 
 #if defined(GLM_FORCE_ARCH_UNKNOWN) || defined(GLM_FORCE_PURE)
 #	define GLM_ARCH GLM_ARCH_UNKNOWN
@@ -368,31 +368,31 @@
 #endif//GLM_ARCH
 
 #if GLM_ARCH & GLM_ARCH_SSE2_BIT
-	typedef __m128			glm_f32vec4;
-	typedef __m128i			glm_i32vec4;
-	typedef __m128i			glm_u32vec4;
-	typedef __m128d			glm_f64vec2;
-	typedef __m128i			glm_i64vec2;
-	typedef __m128i			glm_u64vec2;
+typedef __m128			glm_f32vec4;
+typedef __m128i			glm_i32vec4;
+typedef __m128i			glm_u32vec4;
+typedef __m128d			glm_f64vec2;
+typedef __m128i			glm_i64vec2;
+typedef __m128i			glm_u64vec2;
 
-	typedef glm_f32vec4		glm_vec4;
-	typedef glm_i32vec4		glm_ivec4;
-	typedef glm_u32vec4		glm_uvec4;
-	typedef glm_f64vec2		glm_dvec2;
+typedef glm_f32vec4		glm_vec4;
+typedef glm_i32vec4		glm_ivec4;
+typedef glm_u32vec4		glm_uvec4;
+typedef glm_f64vec2		glm_dvec2;
 #endif
 
 #if GLM_ARCH & GLM_ARCH_AVX_BIT
-	typedef __m256d			glm_f64vec4;
-	typedef glm_f64vec4		glm_dvec4;
+typedef __m256d			glm_f64vec4;
+typedef glm_f64vec4		glm_dvec4;
 #endif
 
 #if GLM_ARCH & GLM_ARCH_AVX2_BIT
-	typedef __m256i			glm_i64vec4;
-	typedef __m256i			glm_u64vec4;
+typedef __m256i			glm_i64vec4;
+typedef __m256i			glm_u64vec4;
 #endif
 
 #if GLM_ARCH & GLM_ARCH_NEON_BIT
-	typedef float32x4_t			glm_f32vec4;
-	typedef int32x4_t			glm_i32vec4;
-	typedef uint32x4_t			glm_u32vec4;
+typedef float32x4_t			glm_f32vec4;
+typedef int32x4_t			glm_i32vec4;
+typedef uint32x4_t			glm_u32vec4;
 #endif

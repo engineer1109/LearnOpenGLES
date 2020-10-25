@@ -25,21 +25,20 @@
 #	endif
 #endif
 
-namespace glm
-{
-	/// @addtogroup gtx_exterior_product
-	/// @{
+namespace glm {
+/// @addtogroup gtx_exterior_product
+/// @{
 
-	/// Returns the cross product of x and y.
-	///
-	/// @tparam T Floating-point scalar types
-	/// @tparam Q Value from qualifier enum
-	///
-	/// @see <a href="https://en.wikipedia.org/wiki/Exterior_algebra#Cross_and_triple_products">Exterior product</a>
-	template<typename T, qualifier Q>
-	GLM_FUNC_DECL T cross(vec<2, T, Q> const& v, vec<2, T, Q> const& u);
+/// Returns the cross product of x and y.
+///
+/// @tparam T Floating-point scalar types
+/// @tparam Q Value from qualifier enum
+///
+/// @see <a href="https://en.wikipedia.org/wiki/Exterior_algebra#Cross_and_triple_products">Exterior product</a>
+template<typename T, qualifier Q>
+GLM_FUNC_DECL T cross(vec<2, T, Q> const &v, vec<2, T, Q> const &u);
 
-	/// @}
+/// @}
 } //namespace glm
 
 #include "exterior_product.inl"

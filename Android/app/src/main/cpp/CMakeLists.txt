@@ -12,26 +12,31 @@ cmake_minimum_required(VERSION 3.4.1)
 
 add_definitions(-DGLM_FORCE_RADIANS)
 add_definitions(-DGLM_FORCE_DEPTH_ZERO_TO_ONE)
+add_definitions(-DSTBI_NO_DDS)
 
 include_directories(
         ${PROJECT_SOURCE_DIR}/base
         ${PROJECT_SOURCE_DIR}/common
+        ${PROJECT_SOURCE_DIR}/utils
         ${PROJECT_SOURCE_DIR}/third_party/glm
+        ${PROJECT_SOURCE_DIR}/third_party/stb_image/include
 )
 
 
 add_library( # Sets the name of the library.
-             native-lib
+        OpenGLESBase
 
-             # Sets the library as a shared library.
-             SHARED
-
-             # Provides a relative path to your source file(s).
-             native-lib.cpp
-             OpenGLESRender.cpp
-
-             base/OpenGLESBase.cpp
+        # Sets the library as a shared library.
+        SHARED
+        # Provides a relative path to your source file(s).
+        base/OpenGLESBase.cpp
         )
+
+add_library(
+        stb_image
+        SHARED
+        ${PROJECT_SOURCE_DIR}/third_party/stb_image/src/stb_image_aug.c
+)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -40,24 +45,47 @@ add_library( # Sets the name of the library.
 # completing its build.
 
 find_library( # Sets the name of the path variable.
-              log-lib
+        log-lib
 
-              # Specifies the name of the NDK library that
-              # you want CMake to locate.
-              log )
+        # Specifies the name of the NDK library that
+        # you want CMake to locate.
+        log)
 
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-                       native-lib
+        OpenGLESBase
 
-                       # Links the target library to the log library
-                       # included in the NDK.
-                       ${log-lib}
-                       EGL
-                       GLESv3
-                       android
-
+        # Links the target library to the log library
+        # included in the NDK.
+        stb_image
+        ${log-lib}
+        EGL
+        GLESv3
+        android
         )
+
+# Examples
+
+include_directories(
+        engines/Triangle
+        engines/Texture2DCube
+)
+
+add_library(
+        BaseRender
+
+        SHARED
+
+        native-lib.cpp
+        engines/Triangle/Triangle.cpp
+        engines/Texture2DCube/Texture2DCube.cpp
+
+)
+
+target_link_libraries(
+        BaseRender
+        OpenGLESBase
+)

@@ -18,13 +18,12 @@
 #	pragma message("GLM: GLM_EXT_vector_bool1 extension included")
 #endif
 
-namespace glm
-{
-	/// @addtogroup ext_vector_bool1
-	/// @{
+namespace glm {
+/// @addtogroup ext_vector_bool1
+/// @{
 
-	/// 1 components vector of boolean.
-	typedef vec<1, bool, defaultp>		bvec1;
+/// 1 components vector of boolean.
+typedef vec<1, bool, defaultp> bvec1;
 
-	/// @}
+/// @}
 }//namespace glm

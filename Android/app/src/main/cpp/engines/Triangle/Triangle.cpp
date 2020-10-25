@@ -2,29 +2,29 @@
 // Created by wjl on 20-9-6.
 //
 
-#include "OpenGLESRender.h"
+#include "Triangle.h"
 #include "shader_m.h"
 
 BEGIN_NAMESPACE(OpenGLESEngine)
-OpenGLESRender::OpenGLESRender() {
-    zoom=-2;
+Triangle::Triangle() {
+    zoom = -2;
 }
 
-OpenGLESRender::~OpenGLESRender() {}
+Triangle::~Triangle() {}
 
-void OpenGLESRender::prepare() {
+void Triangle::prepare() {
     prepareBase();
     prepareShaders();
     generateVertexs();
     prepareUniforms();
 }
 
-void OpenGLESRender::prepareShaders() {
+void Triangle::prepareShaders() {
     m_shader = new Shader("shaders/Simple_01_Examples/01_Triangle/triangle.vert",
                           "shaders/Simple_01_Examples/01_Triangle/triangle.frag", m_asset);
 }
 
-void OpenGLESRender::generateVertexs() {
+void Triangle::generateVertexs() {
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
     std::vector<Vertex> vertices =
@@ -68,14 +68,14 @@ void OpenGLESRender::generateVertexs() {
     glBindVertexArray(0);  //unbind
 }
 
-void OpenGLESRender::prepareUniforms() {
+void Triangle::prepareUniforms() {
     m_uboVS.projection = glm::perspective(glm::radians(60.f), float(m_width) / float(m_height),
                                           0.001f, 256.0f);
     m_uboVS.model = glm::mat4(1.0);
     updateUniforms(true);
 }
 
-void OpenGLESRender::updateUniforms(bool update) {
+void Triangle::updateUniforms(bool update) {
     if (update) {
         m_shader->setMat4("ubo.projection", m_uboVS.projection);
         glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -0.0f, zoom));
@@ -90,7 +90,7 @@ void OpenGLESRender::updateUniforms(bool update) {
     m_shader->setMat4("ubo.model", m_uboVS.model);
 }
 
-void OpenGLESRender::render() {
+void Triangle::render() {
     glEnable(GL_DEPTH_TEST);
     glViewport(0, 0, uint32_t(m_width), uint32_t(m_height));
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

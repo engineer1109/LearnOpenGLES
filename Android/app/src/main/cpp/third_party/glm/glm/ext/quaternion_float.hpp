@@ -26,14 +26,13 @@
 #	pragma message("GLM: GLM_EXT_quaternion_float extension included")
 #endif
 
-namespace glm
-{
-	/// @addtogroup ext_quaternion_float
-	/// @{
+namespace glm {
+/// @addtogroup ext_quaternion_float
+/// @{
 
-	/// Quaternion of single-precision floating-point numbers.
-	typedef qua<float, defaultp>		quat;
+/// Quaternion of single-precision floating-point numbers.
+typedef qua<float, defaultp> quat;
 
-	/// @}
+/// @}
 } //namespace glm
 

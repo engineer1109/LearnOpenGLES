@@ -6,7 +6,7 @@
 
 BEGIN_NAMESPACE(OpenGLESEngine)
 
-OpenGLESBase::OpenGLESBase(){
+OpenGLESBase::OpenGLESBase() {
 
 }
 
@@ -19,11 +19,11 @@ void OpenGLESBase::prepare() {
 }
 
 void OpenGLESBase::prepareBase() {
-    static EGLint const attribute_list[] = {EGL_RED_SIZE,     8,  // red
-                                            EGL_GREEN_SIZE,   8,  // green
-                                            EGL_BLUE_SIZE,    8,  // blue
-                                            EGL_ALPHA_SIZE,   8,  // alpha
-                                            EGL_DEPTH_SIZE,   16, // depth must need this!!!!
+    static EGLint const attribute_list[] = {EGL_RED_SIZE, 8,  // red
+                                            EGL_GREEN_SIZE, 8,  // green
+                                            EGL_BLUE_SIZE, 8,  // blue
+                                            EGL_ALPHA_SIZE, 8,  // alpha
+                                            EGL_DEPTH_SIZE, 16, // depth must need this!!!!
                                             EGL_STENCIL_SIZE, 8,  // stencil
                                             EGL_NONE};
     EGLint contextAttribs[] = {EGL_CONTEXT_CLIENT_VERSION, 3, EGL_NONE, EGL_NONE};
@@ -57,7 +57,7 @@ void OpenGLESBase::prepareBase() {
 }
 
 void OpenGLESBase::renderLoop() {
-    while(m_quit){
+    while (m_quit) {
         renderFrame();
     }
 }

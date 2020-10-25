@@ -13,7 +13,7 @@ import com.engineer1109.openglesdemo.viewmodel.MainViewModel;
 
 public class SurfaceAdapters {
     @BindingAdapter("android:surfaceViewCallback")
-    public static void setSurfaceViewCallback(final SurfaceView view, final BaseRenderViewModel viewModel){
+    public static void setSurfaceViewCallback(final SurfaceView view, final BaseRenderViewModel viewModel) {
         view.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {

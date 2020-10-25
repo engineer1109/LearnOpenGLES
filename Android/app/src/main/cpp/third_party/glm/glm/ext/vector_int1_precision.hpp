@@ -16,19 +16,18 @@
 #	pragma message("GLM: GLM_EXT_vector_int1_precision extension included")
 #endif
 
-namespace glm
-{
-	/// @addtogroup ext_vector_int1_precision
-	/// @{
+namespace glm {
+/// @addtogroup ext_vector_int1_precision
+/// @{
 
-	/// 1 component vector of signed integer values.
-	typedef vec<1, int, highp>			highp_ivec1;
+/// 1 component vector of signed integer values.
+typedef vec<1, int, highp> highp_ivec1;
 
-	/// 1 component vector of signed integer values.
-	typedef vec<1, int, mediump>		mediump_ivec1;
+/// 1 component vector of signed integer values.
+typedef vec<1, int, mediump> mediump_ivec1;
 
-	/// 1 component vector of signed integer values.
-	typedef vec<1, int, lowp>			lowp_ivec1;
+/// 1 component vector of signed integer values.
+typedef vec<1, int, lowp> lowp_ivec1;
 
-	/// @}
+/// @}
 }//namespace glm

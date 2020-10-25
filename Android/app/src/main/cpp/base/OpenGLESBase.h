@@ -12,23 +12,30 @@ BEGIN_NAMESPACE(OpenGLESEngine)
 class OpenGLESBase {
 public:
     OpenGLESBase();
+
     ~OpenGLESBase();
 
-    void setWindow(ANativeWindow* window){m_window=window;}
-    void setWidth(const uint32_t &width){m_width=width;}
-    void setHeight(const uint32_t &height){m_height=height;}
+    void setWindow(ANativeWindow *window) { m_window = window; }
 
-    void setAssetManager(AAssetManager* asset){m_asset=asset;}
+    void setWidth(const uint32_t &width) { m_width = width; }
+
+    void setHeight(const uint32_t &height) { m_height = height; }
+
+    void setAssetManager(AAssetManager *asset) { m_asset = asset; }
 
     virtual void prepare();
+
     virtual void prepareBase();
+
     virtual void renderLoop();
+
     virtual void renderFrame();
+
     virtual void render();
 
 protected:
-    ANativeWindow* m_window = nullptr;
-    AAssetManager* m_asset = nullptr;
+    ANativeWindow *m_window = nullptr;
+    AAssetManager *m_asset = nullptr;
     uint32_t m_width = 1280;
     uint32_t m_height = 720;
 
@@ -38,7 +45,7 @@ protected:
     EGLSurface m_surface;
     EGLint m_numConfig;
 
-    bool m_quit=false;
+    bool m_quit = false;
 };
 
 END_NAMESPACE(OpenGLESEngine)

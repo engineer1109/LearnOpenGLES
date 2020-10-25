@@ -8,36 +8,42 @@
 #include "OpenGLESBase.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+
 class Shader;
 
 BEGIN_NAMESPACE(OpenGLESEngine)
 
-class OpenGLESRender : public OpenGLESBase {
+class Triangle : public OpenGLESBase {
 public:
-    OpenGLESRender();
-    ~OpenGLESRender();
+    Triangle();
+
+    ~Triangle();
 
     void prepare();
+
     void prepareShaders();
+
     void generateVertexs();
+
     void prepareUniforms();
+
     void updateUniforms(bool update);
 
     void render();
 
 private:
-    uint32_t m_vertexArray=0;
-    uint32_t m_vertexBuffer=0;
-    Shader* m_shader=nullptr;
+    uint32_t m_vertexArray = 0;
+    uint32_t m_vertexBuffer = 0;
+    Shader *m_shader = nullptr;
     struct Vertex {
         float pos[3];
         float uv[2];
         float normal[3];
     };
-    struct UBO{
+    struct UBO {
         glm::mat4 projection;
         glm::mat4 model;
-    }m_uboVS;
+    } m_uboVS;
 
     glm::vec3 rotation = glm::vec3();
     glm::vec3 cameraPos = glm::vec3();

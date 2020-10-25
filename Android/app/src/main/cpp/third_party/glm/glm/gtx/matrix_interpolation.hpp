@@ -24,37 +24,36 @@
 #	endif
 #endif
 
-namespace glm
-{
-	/// @addtogroup gtx_matrix_interpolation
-	/// @{
+namespace glm {
+/// @addtogroup gtx_matrix_interpolation
+/// @{
 
-	/// Get the axis and angle of the rotation from a matrix.
-	/// From GLM_GTX_matrix_interpolation extension.
-	template<typename T, qualifier Q>
-	GLM_FUNC_DECL void axisAngle(
-		mat<4, 4, T, Q> const& Mat, vec<3, T, Q> & Axis, T & Angle);
+/// Get the axis and angle of the rotation from a matrix.
+/// From GLM_GTX_matrix_interpolation extension.
+template<typename T, qualifier Q>
+GLM_FUNC_DECL void axisAngle(
+        mat<4, 4, T, Q> const &Mat, vec<3, T, Q> &Axis, T &Angle);
 
-	/// Build a matrix from axis and angle.
-	/// From GLM_GTX_matrix_interpolation extension.
-	template<typename T, qualifier Q>
-	GLM_FUNC_DECL mat<4, 4, T, Q> axisAngleMatrix(
-		vec<3, T, Q> const& Axis, T const Angle);
+/// Build a matrix from axis and angle.
+/// From GLM_GTX_matrix_interpolation extension.
+template<typename T, qualifier Q>
+GLM_FUNC_DECL mat<4, 4, T, Q> axisAngleMatrix(
+        vec<3, T, Q> const &Axis, T const Angle);
 
-	/// Extracts the rotation part of a matrix.
-	/// From GLM_GTX_matrix_interpolation extension.
-	template<typename T, qualifier Q>
-	GLM_FUNC_DECL mat<4, 4, T, Q> extractMatrixRotation(
-		mat<4, 4, T, Q> const& Mat);
+/// Extracts the rotation part of a matrix.
+/// From GLM_GTX_matrix_interpolation extension.
+template<typename T, qualifier Q>
+GLM_FUNC_DECL mat<4, 4, T, Q> extractMatrixRotation(
+        mat<4, 4, T, Q> const &Mat);
 
-	/// Build a interpolation of 4 * 4 matrixes.
-	/// From GLM_GTX_matrix_interpolation extension.
-	/// Warning! works only with rotation and/or translation matrixes, scale will generate unexpected results.
-	template<typename T, qualifier Q>
-	GLM_FUNC_DECL mat<4, 4, T, Q> interpolate(
-		mat<4, 4, T, Q> const& m1, mat<4, 4, T, Q> const& m2, T const Delta);
+/// Build a interpolation of 4 * 4 matrixes.
+/// From GLM_GTX_matrix_interpolation extension.
+/// Warning! works only with rotation and/or translation matrixes, scale will generate unexpected results.
+template<typename T, qualifier Q>
+GLM_FUNC_DECL mat<4, 4, T, Q> interpolate(
+        mat<4, 4, T, Q> const &m1, mat<4, 4, T, Q> const &m2, T const Delta);
 
-	/// @}
+/// @}
 }//namespace glm
 
 #include "matrix_interpolation.inl"

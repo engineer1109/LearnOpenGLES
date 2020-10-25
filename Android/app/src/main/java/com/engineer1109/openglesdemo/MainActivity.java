@@ -9,7 +9,7 @@ import com.engineer1109.openglesdemo.viewmodel.MainViewModel;
 import com.engineer1109.openglesdemo.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    static final String TAG="MainActivity";
+    static final String TAG = "MainActivity";
 
     private ActivityMainBinding mBinding = null;
 
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding=ActivityMainBinding.inflate(getLayoutInflater());
+        mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
         mMainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
