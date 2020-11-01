@@ -19,6 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:surfaceViewCallback="@{baseRenderViewModel}"
+            android:surfaceTouchEvent="@{baseRenderViewModel}"
+            android:clickable="true"
             tools:layout_editor_absoluteX="111dp"
             tools:layout_editor_absoluteY="290dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
