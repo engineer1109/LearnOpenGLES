@@ -6,10 +6,17 @@
 #define OPENGLESTEST_OPENGLESBASE_H
 
 #include "render_common.h"
+#include <glm/glm.hpp>
 
 BEGIN_NAMESPACE(OpenGLESEngine)
 
 class OpenGLESBase {
+public:
+    enum class TouchMode{
+        NONE = 0,
+        SINGLE = 1,
+        DOUBLE = 2,
+    };
 public:
     OpenGLESBase();
 
@@ -33,6 +40,26 @@ public:
 
     virtual void render();
 
+    void setTouchPos(const float &x, const float &y){
+        m_mousePos[0] = {x, y};
+    }
+
+    void setTouchPosSecond(const float &x, const float &y){
+        m_mousePos[1] = {x, y};
+    }
+
+    void setTouchMode(TouchMode mode){
+        m_touchMode = mode;
+    }
+
+    void resetTouch(){
+        m_mousePos[0] = {0.f,0.f};
+        m_mousePos[1] = {0.f,0.f};
+        m_mousePosOld[0] = {0.f,0.f};
+        m_mousePosOld[1] = {0.f,0.f};
+        m_touchMode = TouchMode::NONE;
+    }
+
 protected:
     ANativeWindow *m_window = nullptr;
     AAssetManager *m_asset = nullptr;
@@ -46,6 +73,10 @@ protected:
     EGLint m_numConfig;
 
     bool m_quit = false;
+
+    glm::vec2 m_mousePos[2];
+    glm::vec2 m_mousePosOld[2];
+    TouchMode m_touchMode = TouchMode::NONE;
 };
 
 END_NAMESPACE(OpenGLESEngine)

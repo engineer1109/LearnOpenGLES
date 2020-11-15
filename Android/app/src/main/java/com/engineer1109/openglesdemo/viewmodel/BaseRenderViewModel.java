@@ -28,15 +28,15 @@ public class BaseRenderViewModel extends ViewModel {
         mRender.render();
     }
 
-    public void setTouchPos(float x, float y){}
+    public void setTouchPos(float x, float y){ mRender.setTouchPos(x, y);}
 
-    public void setTouchPosSecond(float x, float y){}
+    public void setTouchPosSecond(float x, float y){ mRender.setTouchPosSecond(x, y);}
 
-    public void setTouchMode(int mode){ mTouchMode = mode;}
+    public void setTouchMode(int mode){ mTouchMode = mode; mRender.setTouchMode(mode);}
 
     public int getTouchMode() {return mTouchMode;}
 
-    public void resetTouch(){}
+    public void resetTouch(){ mRender.resetTouch();}
 
     public int getRenderStatus() {return 1;}
 }

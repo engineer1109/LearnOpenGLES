@@ -42,7 +42,7 @@ public class SurfaceAdapters {
 
     @SuppressLint("ClickableViewAccessibility")
     @BindingAdapter("android:surfaceTouchEvent")
-    public static void setSurfaceTouchEvent(final SurfaceView view , final BaseRenderViewModel viewModel){
+    public static void setSurfaceTouchEvent(final SurfaceView view, final BaseRenderViewModel viewModel) {
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -64,12 +64,12 @@ public class SurfaceAdapters {
                         viewModel.setTouchMode(2);
                         viewModel.setTouchPos(x1, y1);
                         viewModel.setTouchPosSecond(x2, y2);
-                        Log.i(TAG,"getTouchMode"+viewModel.getTouchMode());
+                        Log.i(TAG, "getTouchMode" + viewModel.getTouchMode());
                         break;
                     case MotionEvent.ACTION_POINTER_UP:
-                        viewModel.setTouchMode(viewModel.getTouchMode()-1);
+                        viewModel.setTouchMode(viewModel.getTouchMode() - 1);
                         viewModel.setTouchPosSecond(0, 0);
-                        Log.i(TAG,"getTouchMode"+viewModel.getTouchMode());
+                        Log.i(TAG, "getTouchMode" + viewModel.getTouchMode());
                         break;
                     case MotionEvent.ACTION_MOVE:
                         //System.out.println("test0");
@@ -83,7 +83,7 @@ public class SurfaceAdapters {
                             y2 = event.getY(1);
                             viewModel.setTouchPosSecond(x2, y2);
                         }
-                        Log.i(TAG,"getTouchMode"+viewModel.getTouchMode());
+                        Log.i(TAG, "getTouchMode" + viewModel.getTouchMode());
                         break;
                     case MotionEvent.ACTION_CANCEL:
                         viewModel.setTouchMode(0);

@@ -26,7 +26,7 @@ JNIEXPORT void JNICALL
 Java_com_engineer1109_openglesdemo_render_BaseRender_initGL(JNIEnv *env, jobject thiz,
                                                             jlong instance) {
     // TODO: implement initGL()
-    OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::Triangle *>(instance);
+    OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
     engine->prepare();
 }
 
@@ -35,7 +35,7 @@ JNIEXPORT void JNICALL
 Java_com_engineer1109_openglesdemo_render_BaseRender_renderFrame(JNIEnv *env, jobject thiz,
                                                                  jlong instance) {
     // TODO: implement renderFrame()
-    OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::Triangle *>(instance);
+    OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
     engine->renderFrame();
 }
 
@@ -44,7 +44,7 @@ JNIEXPORT void JNICALL
 Java_com_engineer1109_openglesdemo_render_BaseRender_setSurface(JNIEnv *env, jobject thiz,
                                                                 jlong instance, jobject surface) {
     // TODO: implement setSurface()
-    OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::Triangle *>(instance);
+    OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
     ANativeWindow *window = ANativeWindow_fromSurface(env, surface);
     uint32_t width = static_cast<uint32_t >(ANativeWindow_getWidth(window));
     uint32_t height = static_cast<uint32_t >(ANativeWindow_getHeight(window));
@@ -60,8 +60,54 @@ Java_com_engineer1109_openglesdemo_render_BaseRender_setAssetManager(JNIEnv *env
                                                                      jobject asset_manager) {
     // TODO: implement setAssetManager()
     auto asset = AAssetManager_fromJava(env, asset_manager);
-    OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::Triangle *>(instance);
+    OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
     if (engine) {
         engine->setAssetManager(asset);
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_engineer1109_openglesdemo_render_BaseRender_setTouchPos(JNIEnv *env, jobject thiz,
+                                                                 jlong instance, jfloat x,
+                                                                 jfloat y) {
+    // TODO: implement setTouchPos()
+    OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
+    if(engine){
+        engine->setTouchPos(x,y);
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_engineer1109_openglesdemo_render_BaseRender_setTouchPosSecond(JNIEnv *env, jobject thiz,
+                                                                       jlong instance, jfloat x,
+                                                                       jfloat y) {
+    // TODO: implement setTouchPosSecond()
+    OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
+    if(engine){
+        engine->setTouchPosSecond(x,y);
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_engineer1109_openglesdemo_render_BaseRender_setTouchMode(JNIEnv *env, jobject thiz,
+                                                                  jlong instance, jint mode) {
+    // TODO: implement setTouchMode()
+    OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
+    if(engine){
+        engine->setTouchMode(OpenGLESEngine::OpenGLESBase::TouchMode(mode));
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_engineer1109_openglesdemo_render_BaseRender_resetTouch(JNIEnv *env, jobject thiz,
+                                                                jlong instance) {
+    // TODO: implement resetTouch()
+    OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
+    if(engine){
+        engine->resetTouch();
     }
 }
