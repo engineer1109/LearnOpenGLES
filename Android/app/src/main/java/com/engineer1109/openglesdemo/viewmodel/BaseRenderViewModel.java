@@ -1,7 +1,9 @@
 package com.engineer1109.openglesdemo.viewmodel;
 
+import android.app.Activity;
 import android.content.res.AssetManager;
 import android.view.Surface;
+import android.view.View;
 
 import androidx.lifecycle.ViewModel;
 
@@ -39,4 +41,17 @@ public class BaseRenderViewModel extends ViewModel {
     public void resetTouch(){ mRender.resetTouch();}
 
     public int getRenderStatus() {return 1;}
+
+    public void quitRender(View view){
+        mRender.quit();
+        while(mRender.getInstance() != 0){
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        Activity activity = (Activity) view.getContext();
+        activity.finish();
+    }
 }

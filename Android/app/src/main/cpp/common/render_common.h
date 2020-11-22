@@ -40,4 +40,6 @@
 #define LOGD(...) ((void)__android_log_print(ANDROID_LOG_DEBUG, "opengles", __VA_ARGS__))
 #define LOGE(...) ((void)__android_log_print(ANDROID_LOG_ERROR, "opengles", __VA_ARGS__))
 
+#define DELETE_PTR(x) if(x) { delete x; x = nullptr; }
+
 #endif //OPENGLESTEST_RENDER_COMMON_H

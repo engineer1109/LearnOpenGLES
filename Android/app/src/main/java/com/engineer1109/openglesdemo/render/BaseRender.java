@@ -1,6 +1,7 @@
 package com.engineer1109.openglesdemo.render;
 
 import android.content.res.AssetManager;
+import android.util.Log;
 import android.view.Surface;
 
 public class BaseRender {
@@ -14,13 +15,18 @@ public class BaseRender {
 
     private long mInstance = 0;
 
+    private boolean mQuit = false;
+
     class RenderThread extends Thread {
         @Override
         public void run() {
             initGL(mInstance);
-            while (true) {
+            while (mQuit == false) {
                 renderFrame(mInstance);
             }
+            deleteGL(mInstance);
+            mInstance = 0;
+            Log.i(TAG,"Finish Render");
         }
     }
 
@@ -47,20 +53,28 @@ public class BaseRender {
         mThread.start();
     }
 
-    public void setTouchPos(float x, float y){
+    public void setTouchPos(float x, float y) {
         setTouchPos(mInstance, x, y);
     }
 
-    public void setTouchPosSecond(float x, float y){
+    public void setTouchPosSecond(float x, float y) {
         setTouchPosSecond(mInstance, x, y);
     }
 
-    public void setTouchMode(int mode){
+    public void setTouchMode(int mode) {
         setTouchMode(mInstance, mode);
     }
 
-    public void resetTouch(){
+    public void resetTouch() {
         resetTouch(mInstance);
+    }
+
+    public void quit() {
+        mQuit = true;
+    }
+
+    public long getInstance() {
+        return mInstance;
     }
 
     //public native long createInstance();
@@ -82,4 +96,6 @@ public class BaseRender {
     public native void setTouchMode(long instance, int mode);
 
     public native void resetTouch(long instance);
+
+    public native void deleteGL(long instance);
 }

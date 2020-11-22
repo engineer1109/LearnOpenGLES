@@ -40,6 +40,8 @@ public:
 
     virtual void render();
 
+    virtual void defaultTouchOperation();
+
     void setTouchPos(const float &x, const float &y){
         m_mousePos[0] = {x, y};
     }
@@ -77,6 +79,9 @@ protected:
     glm::vec2 m_mousePos[2];
     glm::vec2 m_mousePosOld[2];
     TouchMode m_touchMode = TouchMode::NONE;
+
+    float m_distance = 0.f;
+    float m_oldDistance = 0.f;
 };
 
 END_NAMESPACE(OpenGLESEngine)

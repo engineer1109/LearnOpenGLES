@@ -18,10 +18,21 @@
             android:id="@+id/surfaceView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:surfaceViewCallback="@{baseRenderViewModel}"
-            android:surfaceTouchEvent="@{baseRenderViewModel}"
             android:clickable="true"
+            android:surfaceTouchEvent="@{baseRenderViewModel}"
+            android:surfaceViewCallback="@{baseRenderViewModel}"
             tools:layout_editor_absoluteX="111dp"
             tools:layout_editor_absoluteY="290dp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            android:text="Quit"
+            android:onClick="@{baseRenderViewModel::quitRender}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

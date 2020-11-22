@@ -11,7 +11,9 @@ OpenGLESBase::OpenGLESBase() {
 }
 
 OpenGLESBase::~OpenGLESBase() {
-
+    eglDestroyContext(m_display, m_context);
+    eglDestroySurface(m_display, m_surface);
+    eglTerminate(m_display);
 }
 
 void OpenGLESBase::prepare() {
@@ -68,5 +70,24 @@ void OpenGLESBase::renderFrame() {
 }
 
 void OpenGLESBase::render() {}
+
+void OpenGLESBase::defaultTouchOperation() {
+    if (m_touchMode == TouchMode::SINGLE) {
+        if (m_mousePosOld[0].x == 0 and m_mousePosOld[0].y == 0) {
+            m_mousePosOld[0].x = m_mousePos[0].x;
+            m_mousePosOld[0].y = m_mousePos[0].y;
+        }
+    } else if (m_touchMode == TouchMode::DOUBLE) {
+        float distance =
+                (m_mousePos[1].x - m_mousePos[0].x) * (m_mousePos[1].x - m_mousePos[0].x) +
+                (m_mousePos[1].y - m_mousePos[0].y) * (m_mousePos[1].y - m_mousePos[0].y);
+        if (m_oldDistance == 0.f) { m_oldDistance = distance; }
+        else {
+            if (distance > m_oldDistance) { m_distance -= 0.1f; }
+            else if (distance < m_oldDistance) { m_distance += 0.1f; }
+        }
+        m_oldDistance = distance;
+    }
+}
 
 END_NAMESPACE(OpenGLESEngine)

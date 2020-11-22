@@ -6,11 +6,14 @@
 #include "shader_m.h"
 
 BEGIN_NAMESPACE(OpenGLESEngine)
-Triangle::Triangle() {
-    zoom = -2;
+Triangle::Triangle() : OpenGLESBase() {
 }
 
-Triangle::~Triangle() {}
+Triangle::~Triangle() {
+    DELETE_PTR(m_shader);
+    glDeleteVertexArrays(1, &m_vertexArray);
+    glDeleteBuffers(1, &m_vertexBuffer);
+}
 
 void Triangle::prepare() {
     prepareBase();
@@ -78,13 +81,13 @@ void Triangle::prepareUniforms() {
 void Triangle::updateUniforms(bool update) {
     if (update) {
         m_shader->setMat4("ubo.projection", m_uboVS.projection);
-        glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -0.0f, zoom));
-        m_uboVS.model = viewMatrix * glm::translate(glm::mat4(1.0f), cameraPos);
-        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(rotation.x),
+        glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -0.0f, m_zoom));
+        m_uboVS.model = viewMatrix * glm::translate(glm::mat4(1.0f), m_cameraPos);
+        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(m_rotation.x),
                                     glm::vec3(1.0f, 0.0f, 0.0f));
-        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(rotation.y),
+        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(m_rotation.y),
                                     glm::vec3(0.0f, 1.0f, 0.0f));
-        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(rotation.z),
+        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(m_rotation.z),
                                     glm::vec3(0.0f, 0.0f, 1.0f));
     }
     m_shader->setMat4("ubo.model", m_uboVS.model);
@@ -92,23 +95,21 @@ void Triangle::updateUniforms(bool update) {
 
 void Triangle::render() {
 
-    if (m_touchMode == TouchMode::SINGLE) {
-        if (m_mousePosOld[0].x == 0 and m_mousePosOld[0].y == 0) {
-            m_mousePosOld[0].x = m_mousePos[0].x;
-            m_mousePosOld[0].y = m_mousePos[0].y;
-        }
-    }
+    defaultTouchOperation();
+
     if (m_touchMode == TouchMode::SINGLE) {
         if (m_mousePos[0].x > m_mousePosOld[0].x) {
-            rotation.y += 1.f;
+            m_rotation.y += 1.f;
         } else if (m_mousePos[0].x < m_mousePosOld[0].x) {
-            rotation.y -= 1.f;
+            m_rotation.y -= 1.f;
         }
         if (m_mousePos[0].y > m_mousePosOld[0].y) {
-            rotation.x += 1.f;
+            m_rotation.x += 1.f;
         } else if (m_mousePos[0].y < m_mousePosOld[0].y) {
-            rotation.x -= 1.f;
+            m_rotation.x -= 1.f;
         }
+    } else if (m_touchMode == TouchMode::DOUBLE) {
+        m_zoom = m_distance + m_baseZoom;
     }
     m_mousePosOld[0] = m_mousePos[0];
 

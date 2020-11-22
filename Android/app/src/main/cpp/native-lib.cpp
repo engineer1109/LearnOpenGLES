@@ -111,3 +111,14 @@ Java_com_engineer1109_openglesdemo_render_BaseRender_resetTouch(JNIEnv *env, job
         engine->resetTouch();
     }
 }
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_engineer1109_openglesdemo_render_BaseRender_deleteGL(JNIEnv *env, jobject thiz,
+                                                              jlong instance) {
+    // TODO: implement deleteGL()
+    OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
+    if(engine){
+        delete(engine);
+    }
+}

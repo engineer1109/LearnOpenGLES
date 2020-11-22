@@ -5,9 +5,7 @@
 
 BEGIN_NAMESPACE(OpenGLESEngine)
 
-Texture2DCube::Texture2DCube() {
-    m_zoom = -2;
-}
+Texture2DCube::Texture2DCube(): OpenGLESBase() {}
 
 Texture2DCube::~Texture2DCube() {
     glDeleteVertexArrays(1, &m_vertexArray);
@@ -31,6 +29,25 @@ void Texture2DCube::prepare() {
 }
 
 void Texture2DCube::render() {
+
+    defaultTouchOperation();
+
+    if (m_touchMode == TouchMode::SINGLE) {
+        if (m_mousePos[0].x > m_mousePosOld[0].x) {
+            m_rotation.y += 1.f;
+        } else if (m_mousePos[0].x < m_mousePosOld[0].x) {
+            m_rotation.y -= 1.f;
+        }
+        if (m_mousePos[0].y > m_mousePosOld[0].y) {
+            m_rotation.x += 1.f;
+        } else if (m_mousePos[0].y < m_mousePosOld[0].y) {
+            m_rotation.x -= 1.f;
+        }
+    } else if (m_touchMode == TouchMode::DOUBLE) {
+        m_zoom = m_distance + m_baseZoom;
+    }
+    m_mousePosOld[0] = m_mousePos[0];
+
     glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -206,7 +223,10 @@ void Texture2DCube::prepareTextures() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // load image, create texture and generate mipmaps
-    data = stbi_load("../data/textures/awesomeface.png", &width, &height, &nrChannels, 0);
+
+    AssetReader *assetReader2 = new AssetReader("textures/awesomeface.png", m_asset);
+    assetReader2->run();
+    data = stbi_load_from_memory((uint8_t*)assetReader2->getOutData(),assetReader2->getSize(), &width, &height, &nrChannels, 0);
     if (data) {
         std::cout << nrChannels << std::endl;
         // note that the awesomeface.png has transparency and thus an alpha channel, so make sure to tell OpenGL the data type is of GL_RGBA
@@ -215,6 +235,7 @@ void Texture2DCube::prepareTextures() {
     } else {
         std::cout << "Failed to load texture" << std::endl;
     }
+    delete assetReader2;
     stbi_image_free(data);
 }
 
@@ -237,14 +258,14 @@ void Texture2DCube::updateUniforms(bool update) {
     if (update) {
         m_shader->setMat4("ubo.projection", m_uboVS.projection);
         glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -0.0f, m_zoom));
-//        m_uboVS.model = viewMatrix * glm::translate(glm::mat4(1.0f), cameraPos);
-//        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-//        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-//        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-////        std::cout<<m_uboVS.model[0][0]<<" "<<m_uboVS.model[0][1]<<" "<<m_uboVS.model[0][2]<<" "<<m_uboVS.model[0][3]<<std::endl;
-////        std::cout<<m_uboVS.model[1][0]<<" "<<m_uboVS.model[1][1]<<" "<<m_uboVS.model[1][2]<<" "<<m_uboVS.model[1][3]<<std::endl;
-////        std::cout<<m_uboVS.model[2][0]<<" "<<m_uboVS.model[2][1]<<" "<<m_uboVS.model[2][2]<<" "<<m_uboVS.model[2][3]<<std::endl;
-////        std::cout<<m_uboVS.model[3][0]<<" "<<m_uboVS.model[3][1]<<" "<<m_uboVS.model[3][2]<<" "<<m_uboVS.model[3][3]<<std::endl;
+        m_uboVS.model = viewMatrix * glm::translate(glm::mat4(1.0f), m_cameraPos);
+        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(m_rotation.x),
+                                    glm::vec3(1.0f, 0.0f, 0.0f));
+        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(m_rotation.y),
+                                    glm::vec3(0.0f, 1.0f, 0.0f));
+        m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(m_rotation.z),
+                                    glm::vec3(0.0f, 0.0f, 1.0f));
+        LOGI("%f",m_zoom);
     }
     m_shader->setMat4("ubo.model", m_uboVS.model);
 }

@@ -2,6 +2,7 @@
 #define TEXTURE2D_CUBE_H
 
 #include "OpenGLESBase.h"
+#include "vertex_struct.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -42,13 +43,12 @@ private:
         glm::mat4 projection;
         glm::mat4 model;
     } m_uboVS;
-    struct Vertex {
-        float pos[3];
-        float uv[2];
-        float normal[3];
-    };
+
     bool m_autoRotation = false;
-    float m_zoom = 0.f;
+    glm::vec3 m_rotation = glm::vec3();
+    glm::vec3 m_cameraPos = glm::vec3();
+    const float m_baseZoom = -4.f;
+    float m_zoom = m_baseZoom;
 };
 
 
