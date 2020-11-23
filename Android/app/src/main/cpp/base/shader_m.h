@@ -83,24 +83,29 @@ public:
         assert(assetVertex);
         size_t size = AAsset_getLength(assetVertex);
         assert(size > 0);
-        char *shaderCodeVertex = new char[size];
+        char *shaderCodeVertex = new char[size+1];
         AAsset_read(assetVertex, shaderCodeVertex, size);
         AAsset_close(assetVertex);
+        shaderCodeVertex[size] = '\0';
 
         AAsset *assetFrag = AAssetManager_open(assetManager, fragmentPath, AASSET_MODE_STREAMING);
         assert(assetFrag);
         size = AAsset_getLength(assetFrag);
         assert(size > 0);
-        char *shaderCodeFrag = new char[size];
+        char *shaderCodeFrag = new char[size+1];
         AAsset_read(assetFrag, shaderCodeFrag, size);
         AAsset_close(assetFrag);
-
+        shaderCodeFrag[size] = '\0';
 
         const char *vShaderCode = shaderCodeVertex;
         const char *fShaderCode = shaderCodeFrag;
         // 2. compile shaders
         unsigned int vertex, fragment;
         // vertex shader
+
+        // LOGI("Vertex Shader  %s",vShaderCode);
+        // LOGI("Frag Shader  %s",fShaderCode);
+
         vertex = glCreateShader(GL_VERTEX_SHADER);
         glShaderSource(vertex, 1, &vShaderCode, NULL);
         glCompileShader(vertex);

@@ -30,6 +30,10 @@ public class BaseRenderViewModel extends ViewModel {
         mRender.render();
     }
 
+    public void destroyRender(){
+        mRender.quit();
+    }
+
     public void setTouchPos(float x, float y){ mRender.setTouchPos(x, y);}
 
     public void setTouchPosSecond(float x, float y){ mRender.setTouchPosSecond(x, y);}

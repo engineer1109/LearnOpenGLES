@@ -204,12 +204,11 @@ void Texture2DCube::prepareTextures() {
     assetReader->run();
 
     unsigned char *data = stbi_load_from_memory((uint8_t*)assetReader->getOutData(),assetReader->getSize(), &width, &height, &nrChannels, 0);
-    if (data) {
-        std::cout << nrChannels << std::endl;
+    if (data or assetReader->getSize()==0) {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
     } else {
-        std::cout << "Failed to load texture" << std::endl;
+        LOGI("Failed Load Texture1");
     }
     stbi_image_free(data);
     delete assetReader;
@@ -227,13 +226,12 @@ void Texture2DCube::prepareTextures() {
     AssetReader *assetReader2 = new AssetReader("textures/awesomeface.png", m_asset);
     assetReader2->run();
     data = stbi_load_from_memory((uint8_t*)assetReader2->getOutData(),assetReader2->getSize(), &width, &height, &nrChannels, 0);
-    if (data) {
-        std::cout << nrChannels << std::endl;
+    if (data or assetReader2->getSize() ==0) {
         // note that the awesomeface.png has transparency and thus an alpha channel, so make sure to tell OpenGL the data type is of GL_RGBA
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
     } else {
-        std::cout << "Failed to load texture" << std::endl;
+        LOGI("Failed Load Texture2");
     }
     delete assetReader2;
     stbi_image_free(data);
@@ -265,7 +263,7 @@ void Texture2DCube::updateUniforms(bool update) {
                                     glm::vec3(0.0f, 1.0f, 0.0f));
         m_uboVS.model = glm::rotate(m_uboVS.model, glm::radians(m_rotation.z),
                                     glm::vec3(0.0f, 0.0f, 1.0f));
-        LOGI("%f",m_zoom);
+        // LOGI("%f",m_zoom);
     }
     m_shader->setMat4("ubo.model", m_uboVS.model);
 }

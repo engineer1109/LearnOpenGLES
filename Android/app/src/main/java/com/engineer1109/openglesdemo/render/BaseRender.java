@@ -24,7 +24,7 @@ public class BaseRender {
             while (mQuit == false) {
                 renderFrame(mInstance);
             }
-            deleteGL(mInstance);
+            deleteGL(mInstance, mID);
             mInstance = 0;
             Log.i(TAG,"Finish Render");
         }
@@ -97,5 +97,5 @@ public class BaseRender {
 
     public native void resetTouch(long instance);
 
-    public native void deleteGL(long instance);
+    public native void deleteGL(long instance, int id);
 }

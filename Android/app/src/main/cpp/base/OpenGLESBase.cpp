@@ -14,6 +14,8 @@ OpenGLESBase::~OpenGLESBase() {
     eglDestroyContext(m_display, m_context);
     eglDestroySurface(m_display, m_surface);
     eglTerminate(m_display);
+    ANativeWindow_release(m_window);
+    LOGI("OpenGL Destroy");
 }
 
 void OpenGLESBase::prepare() {

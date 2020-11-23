@@ -73,8 +73,8 @@ Java_com_engineer1109_openglesdemo_render_BaseRender_setTouchPos(JNIEnv *env, jo
                                                                  jfloat y) {
     // TODO: implement setTouchPos()
     OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
-    if(engine){
-        engine->setTouchPos(x,y);
+    if (engine) {
+        engine->setTouchPos(x, y);
     }
 }
 
@@ -85,8 +85,8 @@ Java_com_engineer1109_openglesdemo_render_BaseRender_setTouchPosSecond(JNIEnv *e
                                                                        jfloat y) {
     // TODO: implement setTouchPosSecond()
     OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
-    if(engine){
-        engine->setTouchPosSecond(x,y);
+    if (engine) {
+        engine->setTouchPosSecond(x, y);
     }
 }
 
@@ -96,7 +96,7 @@ Java_com_engineer1109_openglesdemo_render_BaseRender_setTouchMode(JNIEnv *env, j
                                                                   jlong instance, jint mode) {
     // TODO: implement setTouchMode()
     OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
-    if(engine){
+    if (engine) {
         engine->setTouchMode(OpenGLESEngine::OpenGLESBase::TouchMode(mode));
     }
 }
@@ -107,7 +107,7 @@ Java_com_engineer1109_openglesdemo_render_BaseRender_resetTouch(JNIEnv *env, job
                                                                 jlong instance) {
     // TODO: implement resetTouch()
     OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
-    if(engine){
+    if (engine) {
         engine->resetTouch();
     }
 }
@@ -115,10 +115,18 @@ Java_com_engineer1109_openglesdemo_render_BaseRender_resetTouch(JNIEnv *env, job
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_engineer1109_openglesdemo_render_BaseRender_deleteGL(JNIEnv *env, jobject thiz,
-                                                              jlong instance) {
+                                                              jlong instance, jint id) {
     // TODO: implement deleteGL()
-    OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
-    if(engine){
-        delete(engine);
+    if (instance) {
+        if (id == 0) {
+            OpenGLESEngine::Triangle *engine = reinterpret_cast<OpenGLESEngine::Triangle *>(instance);
+            delete (engine);
+        } else if (id == 1) {
+            OpenGLESEngine::Texture2DCube *engine = reinterpret_cast<OpenGLESEngine::Texture2DCube *>(instance);
+            delete (engine);
+        } else {
+            OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
+            delete (engine);
+        }
     }
 }

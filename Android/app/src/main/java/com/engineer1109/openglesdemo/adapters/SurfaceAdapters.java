@@ -35,7 +35,7 @@ public class SurfaceAdapters {
 
             @Override
             public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {
-
+                viewModel.destroyRender();
             }
         });
     }
