@@ -5,6 +5,8 @@
 #ifndef OPENGLESDEMO_SHADER_M_H
 #define OPENGLESDEMO_SHADER_M_H
 
+#include <android/asset_manager.h>
+
 #include <GLES3/gl3.h>
 #include <glm/glm.hpp>
 

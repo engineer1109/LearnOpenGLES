@@ -80,8 +80,13 @@ add_library(
         SHARED
 
         native-lib.cpp
+
+        template/OpenGLESObject.cxx
+        template/OpenGLESTexture.cxx
+
         engines/Triangle/Triangle.cpp
         engines/Texture2DCube/Texture2DCube.cpp
+        engines/PhongLighting/PhongLighting.cpp
 
 )
 
