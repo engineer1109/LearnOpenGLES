@@ -3,8 +3,8 @@ This project is mainly based on the code of [LearnOpenGL](https://github.com/Joe
 All rendering code is front-end and back-end separated. The gui or window is running on the front-end, and the opengles render is running on the backend. The front-end code is only for presentation, and the back-end OpenGLES is only for rendering computation regardless of the GUI. You can choose the display surface you like, such as GLFW3, xcb(X11), WIN32UI, and Qt. You just need to create a native window Handle (such as HWND and xcb_window_t), and give the window handle to the EGL to create a rendering surface. It is easily integrated into any front-end framework, and this project shows the examples of Qt (not using QOpengGLWidget).  
 # Requirements
 ## Supported System:
-   **Now:** Linux(Mainly)  Windows(Partly)
-   **Planned supported:** Mac(I have successfully installed black Apple.) Android IOS
+   **Now:** Linux(Mainly)  Android(Mainly)   Windows(Partly)
+   **Planned supported:** Mac IOS
 ## Libraries and Tools
    **CMake:** 3.14+ is recommended 
    **OpenGLES:** 3.0+
