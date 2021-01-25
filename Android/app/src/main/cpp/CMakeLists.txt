@@ -72,6 +72,7 @@ target_link_libraries( # Specifies the target library.
 include_directories(
         engines/Triangle
         engines/Texture2DCube
+        ./template
 )
 
 add_library(
@@ -83,6 +84,7 @@ add_library(
 
         template/OpenGLESObject.cxx
         template/OpenGLESTexture.cxx
+        template/OpenGLESCube.cxx
 
         engines/Triangle/Triangle.cpp
         engines/Texture2DCube/Texture2DCube.cpp

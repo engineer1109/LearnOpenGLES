@@ -12,6 +12,10 @@
 
 class Shader;
 
+namespace OpenGLESTemplate {
+    class Cube;
+}
+
 BEGIN_NAMESPACE(OpenGLESEngine)
 
 class PhongLighting : public OpenGLESBase {
@@ -19,8 +23,14 @@ public:
     PhongLighting();
     ~PhongLighting();
 
+    void prepare();
 
+    void render();
 
+    void createCube();
+
+private:
+    OpenGLESTemplate::Cube* m_Cube = nullptr;
 
 };
 
