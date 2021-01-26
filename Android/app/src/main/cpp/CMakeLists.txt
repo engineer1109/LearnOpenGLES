@@ -89,6 +89,7 @@ add_library(
         engines/Triangle/Triangle.cpp
         engines/Texture2DCube/Texture2DCube.cpp
         engines/PhongLighting/PhongLighting.cpp
+        engines/PhongLighting/PhongLightingCube.cxx
 
 )
 

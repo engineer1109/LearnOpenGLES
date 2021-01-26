@@ -11,6 +11,7 @@ public:
     virtual void prepare();
     virtual void update();
 
+    void setAssetManager(AAssetManager* asset) {m_asset=asset;}
     void setScreenPtr(uint32_t* pScreenWidth,uint32_t* pScreenHeight);
 public:
 
@@ -25,6 +26,7 @@ protected:
     uint32_t* m_pScreenWidth=nullptr;
     uint32_t* m_pScreenHeight=nullptr;
     Shader* m_shader=nullptr;
+    AAssetManager *m_asset = nullptr;
     struct UBO{
         glm::mat4 projection;
         glm::mat4 model;
