@@ -72,6 +72,7 @@ target_link_libraries( # Specifies the target library.
 include_directories(
         engines/Triangle
         engines/Texture2DCube
+        engines/PhongLighting
         ./template
 )
 

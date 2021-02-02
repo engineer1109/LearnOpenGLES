@@ -30,6 +30,11 @@ public:
 private:
     PhongLightingCube* m_PhongLightingCube = nullptr;
 
+    glm::vec3 m_rotation = glm::vec3();
+    glm::vec3 m_cameraPos = glm::vec3();
+    const float m_baseZoom = -4.f;
+    float m_zoom = m_baseZoom;
+
 };
 
 END_NAMESPACE(OpenGLESEngine)

@@ -4,6 +4,7 @@
 #include <android/asset_manager_jni.h>
 #include "Triangle.h"
 #include "Texture2DCube.h"
+#include "PhongLighting.h"
 
 extern "C"
 JNIEXPORT jlong JNICALL
@@ -16,7 +17,11 @@ Java_com_engineer1109_openglesdemo_render_BaseRender_createInstance(JNIEnv *env,
     } else if (id == 1) {
         OpenGLESEngine::OpenGLESBase *engine = new OpenGLESEngine::Texture2DCube();
         return (long) engine;
-    } else {
+    } else if (id == 2) {
+        OpenGLESEngine::OpenGLESBase *engine = new OpenGLESEngine::PhongLighting();
+        return (long) engine;
+    }
+    else {
         return NULL;
     }
 }
@@ -124,7 +129,12 @@ Java_com_engineer1109_openglesdemo_render_BaseRender_deleteGL(JNIEnv *env, jobje
         } else if (id == 1) {
             OpenGLESEngine::Texture2DCube *engine = reinterpret_cast<OpenGLESEngine::Texture2DCube *>(instance);
             delete (engine);
-        } else {
+        }
+        else if (id == 2) {
+            OpenGLESEngine::PhongLighting *engine = reinterpret_cast<OpenGLESEngine::PhongLighting *>(instance);
+            delete (engine);
+        }
+        else {
             OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
             delete (engine);
         }

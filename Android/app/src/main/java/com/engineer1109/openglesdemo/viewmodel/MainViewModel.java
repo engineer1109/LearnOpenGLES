@@ -73,6 +73,12 @@ public class MainViewModel extends ViewModel {
             data.setMenuText("Texture2DCube");
             datas.add(data);
         }
+        {
+            MenuData data = new MenuData();
+            data.setID(3);
+            data.setMenuText("PhongLighting");
+            datas.add(data);
+        }
         return datas;
     }
 }
