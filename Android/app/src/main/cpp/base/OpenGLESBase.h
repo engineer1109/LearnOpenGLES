@@ -7,6 +7,7 @@
 
 #include "render_common.h"
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 BEGIN_NAMESPACE(OpenGLESEngine)
 

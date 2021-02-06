@@ -73,6 +73,7 @@ include_directories(
         engines/Triangle
         engines/Texture2DCube
         engines/PhongLighting
+        engines/VolumeCloud
         ./template
 )
 
@@ -91,6 +92,7 @@ add_library(
         engines/Texture2DCube/Texture2DCube.cpp
         engines/PhongLighting/PhongLighting.cpp
         engines/PhongLighting/PhongLightingCube.cxx
+        engines/VolumeCloud/VolumeCloud.cxx
 
 )
 
