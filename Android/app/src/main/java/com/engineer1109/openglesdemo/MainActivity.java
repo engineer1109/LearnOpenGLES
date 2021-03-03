@@ -27,9 +27,4 @@ public class MainActivity extends AppCompatActivity {
         mMainViewModel.showMenu(mBinding.rcMenu);
 
     }
-
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
 }

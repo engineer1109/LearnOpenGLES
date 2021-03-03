@@ -17,16 +17,19 @@ public class BaseRender {
 
     private boolean mQuit = false;
 
+    private boolean mStarted = false;
+
     class RenderThread extends Thread {
         @Override
         public void run() {
+            mStarted = true;
             initGL(mInstance);
             while (mQuit == false) {
                 renderFrame(mInstance);
             }
             deleteGL(mInstance, mID);
             mInstance = 0;
-            Log.i(TAG,"Finish Render");
+            Log.i(TAG, "Finish Render");
         }
     }
 
@@ -77,6 +80,26 @@ public class BaseRender {
         return mInstance;
     }
 
+    public boolean isStarted() {
+        return mStarted;
+    }
+
+    public void destroySurface(){
+        destroySurface(mInstance);
+    }
+
+    public void rebuildSurface(){
+        rebuildSurface(mInstance);
+    }
+
+    public void resume() {
+        resume(mInstance);
+    }
+
+    public void pause() {
+        pause(mInstance);
+    }
+
     //public native long createInstance();
 
     public native long createInstance(int id);
@@ -98,4 +121,12 @@ public class BaseRender {
     public native void resetTouch(long instance);
 
     public native void deleteGL(long instance, int id);
+
+    public native void destroySurface(long instance);
+
+    public native void rebuildSurface(long instance);
+
+    public native void pause(long instance);
+
+    public native void resume(long instance);
 }

@@ -41,7 +41,7 @@ void OpenGLESBase::prepareBase() {
     /* get an appropriate EGL frame buffer configuration */
     eglChooseConfig(m_display, attribute_list, &m_config, 1, &m_numConfig);
     /* create an EGL rendering context */
-    m_context = eglCreateContext(m_display, m_config, EGL_NO_CONTEXT, NULL);
+    m_context = eglCreateContext(m_display, m_config, EGL_NO_CONTEXT, contextAttribs);
     /* create an EGL window surface */
     m_surface = eglCreateWindowSurface(m_display, m_config, m_window, NULL);
 
@@ -49,7 +49,7 @@ void OpenGLESBase::prepareBase() {
         LOGI("No Surface Error.");
     }
 
-    m_context = eglCreateContext(m_display, m_config, EGL_NO_CONTEXT, contextAttribs);
+    //m_context = eglCreateContext(m_display, m_config, EGL_NO_CONTEXT, contextAttribs);
     if (m_context == EGL_NO_CONTEXT) {
         LOGI("error eglCreateContext.");
     }
@@ -67,8 +67,13 @@ void OpenGLESBase::renderLoop() {
 }
 
 void OpenGLESBase::renderFrame() {
+    if(m_pause) return;
     render();
-    eglSwapBuffers(m_display, m_surface);
+    auto result = eglSwapBuffers(m_display, m_surface);
+    if(!result){
+        destroySurface();
+        rebuildSurface();
+    }
 }
 
 void OpenGLESBase::render() {}
@@ -90,6 +95,21 @@ void OpenGLESBase::defaultTouchOperation() {
         }
         m_oldDistance = distance;
     }
+}
+
+void OpenGLESBase::destroySurface() {
+    eglDestroySurface(m_display, m_surface);
+}
+
+void OpenGLESBase::rebuildSurface() {
+    if(!m_window) return;
+    m_surface = eglCreateWindowSurface(m_display, m_config, m_window, NULL);
+
+    if (m_surface == EGL_NO_SURFACE) {
+        LOGI("No Surface Error.");
+    }
+    eglMakeCurrent(m_display, m_surface, m_surface, m_context);
+    resume();
 }
 
 END_NAMESPACE(OpenGLESEngine)

@@ -140,3 +140,47 @@ Java_com_engineer1109_openglesdemo_render_BaseRender_deleteGL(JNIEnv *env, jobje
         }
     }
 }
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_engineer1109_openglesdemo_render_BaseRender_destroySurface(JNIEnv *env, jobject thiz,
+                                                                    jlong instance) {
+    // TODO: implement destroySurface()
+    if (instance) {
+        OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
+        engine->destroySurface();
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_engineer1109_openglesdemo_render_BaseRender_rebuildSurface(JNIEnv *env, jobject thiz,
+                                                                    jlong instance) {
+    // TODO: implement rebuildSurface()
+    if (instance) {
+        OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
+        engine->rebuildSurface();
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_engineer1109_openglesdemo_render_BaseRender_pause(JNIEnv *env, jobject thiz,
+                                                           jlong instance) {
+    // TODO: implement pause()
+    if (instance) {
+        OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
+        engine->pause();
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_engineer1109_openglesdemo_render_BaseRender_resume(JNIEnv *env, jobject thiz,
+                                                            jlong instance) {
+    // TODO: implement resume()
+    if (instance) {
+        OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
+        engine->resume();
+    }
+}

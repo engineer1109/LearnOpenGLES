@@ -43,6 +43,10 @@ public:
 
     virtual void defaultTouchOperation();
 
+    void destroySurface();
+
+    void rebuildSurface();
+
     void setTouchPos(const float &x, const float &y){
         m_mousePos[0] = {x, y};
     }
@@ -63,6 +67,14 @@ public:
         m_touchMode = TouchMode::NONE;
     }
 
+    void resume(){
+        m_pause = false;
+    }
+
+    void pause(){
+        m_pause = true;
+    }
+
 protected:
     ANativeWindow *m_window = nullptr;
     AAssetManager *m_asset = nullptr;
@@ -76,6 +88,7 @@ protected:
     EGLint m_numConfig;
 
     bool m_quit = false;
+    bool m_pause = false;
 
     glm::vec2 m_mousePos[2];
     glm::vec2 m_mousePosOld[2];
