@@ -17,6 +17,7 @@ add_definitions(-DSTBI_NO_DDS)
 include_directories(
         ${PROJECT_SOURCE_DIR}/base
         ${PROJECT_SOURCE_DIR}/common
+        ${PROJECT_SOURCE_DIR}/engine
         ${PROJECT_SOURCE_DIR}/utils
         ${PROJECT_SOURCE_DIR}/third_party/glm
         ${PROJECT_SOURCE_DIR}/third_party/stb_image/include
@@ -29,7 +30,9 @@ add_library( # Sets the name of the library.
         # Sets the library as a shared library.
         SHARED
         # Provides a relative path to your source file(s).
-        base/OpenGLESBase.cpp
+        base/OpenGLESBase.cxx
+
+        engine/ThirdPersonEngine.cxx
         )
 
 add_library(
@@ -70,11 +73,15 @@ target_link_libraries( # Specifies the target library.
 # Examples
 
 include_directories(
-        engines/Triangle
-        engines/Texture2DCube
-        engines/PhongLighting
-        engines/VolumeCloud
+        examples/Triangle
+        examples/Texture2DCube
+        examples/PhongLighting
+        examples/VolumeCloud
         ./template
+        ./template/mesh
+        ./template/texture
+        ./template/uniform
+        ./template/camera
 )
 
 add_library(
@@ -84,15 +91,24 @@ add_library(
 
         native-lib.cpp
 
-        template/OpenGLESObject.cxx
-        template/OpenGLESTexture.cxx
-        template/OpenGLESCube.cxx
+        template/uniform/OpenGLESUniform.cxx
+        template/uniform/UniformCamera.cxx
+        template/mesh/OpenGLESMeshObject.cxx
+        template/texture/OpenGLESTexture.cxx
+        template/texture/OpenGLESTexture2D.cxx
+        template/texture/OpenGLESTexture3D.cxx
+        template/mesh/OpenGLESCube.cxx
+        template/material/OpenGLESMaterial.cxx
 
-        engines/Triangle/Triangle.cpp
-        engines/Texture2DCube/Texture2DCube.cpp
-        engines/PhongLighting/PhongLighting.cpp
-        engines/PhongLighting/PhongLightingCube.cxx
-        engines/VolumeCloud/VolumeCloud.cxx
+        examples/Triangle/Triangle.cpp
+        examples/Triangle/myobjects/TriangleObject.cpp
+
+        examples/Texture2DCube/Texture2DCube.cpp
+        examples/Texture2DCube/myobjects/Cube.cpp
+
+        examples/PhongLighting/PhongLighting.cpp
+        examples/PhongLighting/PhongLightingCube.cxx
+        examples/VolumeCloud/VolumeCloud.cxx
 
 )
 

@@ -5,47 +5,44 @@
 #ifndef OPENGLESTEST_OPENGLESRENDER_H
 #define OPENGLESTEST_OPENGLESRENDER_H
 
-#include "OpenGLESBase.h"
-#include "vertex_struct.h"
-#include <glm/glm.hpp>
+#include "ThirdPersonEngine.h"
+#include "UniformCamera.h"
+
 #include <glm/gtc/matrix_transform.hpp>
 
 class Shader;
 
 BEGIN_NAMESPACE(OpenGLESEngine)
 
-class Triangle : public OpenGLESBase {
+class TriangleObject;
+
+class Triangle : public ThirdPersonEngine {
 public:
     Triangle();
 
     ~Triangle();
 
-    void prepare();
+    void prepareMyObjects() override;
 
     void prepareShaders();
 
-    void generateVertexs();
+    void render() override;
 
-    void prepareUniforms();
+protected:
+    void createTriangle();
 
-    void updateUniforms(bool update);
-
-    void render();
+    void createUniformCamera();
 
 private:
-    uint32_t m_vertexArray = 0;
-    uint32_t m_vertexBuffer = 0;
+    TriangleObject* m_triangleObject = nullptr;
+    OpenGLESTemplate::UniformCamera* m_uniformCamera = nullptr;
+
     Shader *m_shader = nullptr;
 
     struct UBO {
         glm::mat4 projection;
         glm::mat4 model;
     } m_uboVS;
-
-    glm::vec3 m_rotation = glm::vec3();
-    glm::vec3 m_cameraPos = glm::vec3();
-    const float m_baseZoom = -2.f;
-    float m_zoom = m_baseZoom;
 };
 
 END_NAMESPACE(OpenGLESEngine)

@@ -20,6 +20,7 @@ OpenGLESBase::~OpenGLESBase() {
 
 void OpenGLESBase::prepare() {
     prepareBase();
+    prepareMyObjects();
 }
 
 void OpenGLESBase::prepareBase() {
@@ -90,8 +91,8 @@ void OpenGLESBase::defaultTouchOperation() {
                 (m_mousePos[1].y - m_mousePos[0].y) * (m_mousePos[1].y - m_mousePos[0].y);
         if (m_oldDistance == 0.f) { m_oldDistance = distance; }
         else {
-            if (distance > m_oldDistance) { m_distance -= 0.1f; }
-            else if (distance < m_oldDistance) { m_distance += 0.1f; }
+            if (distance > m_oldDistance) { m_distance += 0.1f; }
+            else if (distance < m_oldDistance) { m_distance -= 0.1f; }
         }
         m_oldDistance = distance;
     }

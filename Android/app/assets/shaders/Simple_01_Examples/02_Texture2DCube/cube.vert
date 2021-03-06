@@ -6,9 +6,12 @@ layout (location = 2) in vec3 aNormal;
 
 out vec2 TexCoord;
 
-uniform struct UBO{
+layout (std140) uniform UBO{
     mat4 projection;
     mat4 model;
+    mat4 view;
+    mat4 normal;
+    vec4 lightPos;
 }ubo;
 
 void main()

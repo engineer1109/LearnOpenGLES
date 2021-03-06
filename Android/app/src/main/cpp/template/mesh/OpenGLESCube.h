@@ -5,20 +5,18 @@
 #ifndef OPENGLESDEMO_OPENGLESCUBE_H
 #define OPENGLESDEMO_OPENGLESCUBE_H
 
-#include "OpenGLESObject.h"
+#include "OpenGLESMeshObject.h"
 
 BEGIN_NAMESPACE(OpenGLESTemplate)
 
-class Cube : public Object {
+class OpenGLESCube : public OpenGLESMeshObject {
 public:
-    Cube();
-    ~Cube();
+    OpenGLESCube();
+    virtual ~OpenGLESCube();
 
     void setSize(float a, float b, float c);
 
-    void update();
-
-    virtual void generateVertexs();
+    virtual void generateVertexs() override;
 
 protected:
     float m_a = 1.f;

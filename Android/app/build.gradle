@@ -2,7 +2,8 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
+    ndkVersion "21.1.6352462"
 
     defaultConfig {
         applicationId "com.engineer1109.opengldemo"

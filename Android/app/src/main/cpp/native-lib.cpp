@@ -123,21 +123,8 @@ Java_com_engineer1109_openglesdemo_render_BaseRender_deleteGL(JNIEnv *env, jobje
                                                               jlong instance, jint id) {
     // TODO: implement deleteGL()
     if (instance) {
-        if (id == 0) {
-            OpenGLESEngine::Triangle *engine = reinterpret_cast<OpenGLESEngine::Triangle *>(instance);
-            delete (engine);
-        } else if (id == 1) {
-            OpenGLESEngine::Texture2DCube *engine = reinterpret_cast<OpenGLESEngine::Texture2DCube *>(instance);
-            delete (engine);
-        }
-        else if (id == 2) {
-            OpenGLESEngine::PhongLighting *engine = reinterpret_cast<OpenGLESEngine::PhongLighting *>(instance);
-            delete (engine);
-        }
-        else {
-            OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
-            delete (engine);
-        }
+        OpenGLESEngine::OpenGLESBase *engine = reinterpret_cast<OpenGLESEngine::OpenGLESBase *>(instance);
+        delete (engine);
     }
 }
 

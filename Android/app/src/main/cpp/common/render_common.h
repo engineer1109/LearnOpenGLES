@@ -31,6 +31,8 @@
 
 //Define
 
+#define interface class
+
 #define BEGIN_NAMESPACE(n) namespace n {
 
 #define END_NAMESPACE(n) }

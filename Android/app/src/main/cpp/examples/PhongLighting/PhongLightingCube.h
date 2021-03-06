@@ -7,7 +7,7 @@
 
 #include "OpenGLESCube.h"
 
-class PhongLightingCube : public OpenGLESTemplate::Cube {
+class PhongLightingCube : public OpenGLESTemplate::OpenGLESCube {
 public:
     PhongLightingCube();
 

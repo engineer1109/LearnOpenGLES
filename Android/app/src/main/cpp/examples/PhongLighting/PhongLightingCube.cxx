@@ -8,7 +8,7 @@
 #include <AssetReader.h>
 #include <stb_image_aug.h>
 
-PhongLightingCube::PhongLightingCube() : OpenGLESTemplate::Cube() {
+PhongLightingCube::PhongLightingCube() : OpenGLESTemplate::OpenGLESCube() {
 
 }
 

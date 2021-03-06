@@ -5,7 +5,7 @@
 #ifndef OPENGLESTEST_OPENGLESBASE_H
 #define OPENGLESTEST_OPENGLESBASE_H
 
-#include "render_common.h"
+#include "base_template.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -21,7 +21,7 @@ public:
 public:
     OpenGLESBase();
 
-    ~OpenGLESBase();
+    virtual ~OpenGLESBase();
 
     void setWindow(ANativeWindow *window) { m_window = window; }
 
@@ -34,6 +34,8 @@ public:
     virtual void prepare();
 
     virtual void prepareBase();
+
+    virtual void prepareMyObjects() {}
 
     virtual void renderLoop();
 
