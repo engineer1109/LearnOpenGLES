@@ -82,6 +82,7 @@ include_directories(
         ./template/texture
         ./template/uniform
         ./template/camera
+        ./template/material
 )
 
 add_library(
@@ -104,10 +105,8 @@ add_library(
         examples/Triangle/myobjects/TriangleObject.cpp
 
         examples/Texture2DCube/Texture2DCube.cpp
-        examples/Texture2DCube/myobjects/Cube.cpp
 
         examples/PhongLighting/PhongLighting.cpp
-        examples/PhongLighting/PhongLightingCube.cxx
         examples/VolumeCloud/VolumeCloud.cxx
 
 )

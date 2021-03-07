@@ -6,9 +6,10 @@
 #define OPENGLESDEMO_PHONGLIGHTING_H
 
 #include "ThirdPersonEngine.h"
-#include "vertex_struct.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include "UniformCamera.h"
+#include "OpenGLESCube.h"
+#include "OpenGLESTexture2D.h"
+#include "OpenGLESMaterial.h"
 
 class Shader;
 
@@ -25,10 +26,26 @@ public:
 
     void render();
 
-    void createPhongLightingCube();
+    //void createPhongLightingCube();
+
+    void prepareTextures();
+
+    void prepareShaders();
+
+    void createCube();
+
+    void createUniformCamera();
+
+    void createCubeMaterial();
 
 private:
-    PhongLightingCube* m_PhongLightingCube = nullptr;
+    //PhongLightingCube* m_PhongLightingCube = nullptr;
+    Shader *m_shader = nullptr;
+    OpenGLESTemplate::OpenGLESCube* m_cube = nullptr;
+    OpenGLESTemplate::UniformCamera* m_uniformCamera = nullptr;
+    OpenGLESTemplate::OpenGLESTexture2D* m_textureA = nullptr;
+    OpenGLESTemplate::OpenGLESTexture2D* m_textureB = nullptr;
+    OpenGLESTemplate::OpenGLESMaterial* m_cubeMaterial = nullptr;
 };
 
 END_NAMESPACE(OpenGLESEngine)

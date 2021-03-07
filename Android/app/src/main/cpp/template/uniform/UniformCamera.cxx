@@ -34,7 +34,8 @@ void UniformCamera::prepareUniforms() {
 
 void UniformCamera::updateUniforms() {
     glm::mat4 viewMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -0.0f, *m_pZoom));
-    m_cameraMat.model = viewMatrix * glm::translate(glm::mat4(1.0f), *m_pCameraPos);
+    m_cameraMat.view = viewMatrix * glm::translate(glm::mat4(1.0f), *m_pCameraPos);
+    m_cameraMat.model = glm::mat4(1.f);
     m_cameraMat.model = glm::rotate(m_cameraMat.model, glm::radians(m_pRotation->x),
                                 glm::vec3(1.0f, 0.0f, 0.0f));
     m_cameraMat.model = glm::rotate(m_cameraMat.model, glm::radians(m_pRotation->y),

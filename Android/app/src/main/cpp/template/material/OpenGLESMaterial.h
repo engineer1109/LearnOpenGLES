@@ -14,6 +14,12 @@ BEGIN_NAMESPACE(OpenGLESTemplate)
 
 class OpenGLESMaterial : public OpenGLESObject {
 public:
+    struct TextureLayout {
+        int textureShaderID;
+        std::string textureShaderName;
+        OpenGLESTexture *texture;
+    };
+public:
     OpenGLESMaterial() = default;
 
     virtual ~OpenGLESMaterial() = default;
@@ -22,16 +28,14 @@ public:
 
     virtual void update() override;
 
-    void setTextureIndex(const std::vector<uint32_t> &index) {m_textureIndex = index;}
-
     void setShader(Shader *shader) { m_shader = shader; }
 
-    void setTextures(const std::vector<OpenGLESTexture *> &textures) { m_textures = textures; }
+    void setTextures(
+            const std::vector<TextureLayout> &textureLayout) { m_textureLayout = textureLayout; }
 
 protected:
     Shader *m_shader = nullptr;
-    std::vector<OpenGLESTexture *> m_textures;
-    std::vector<uint32_t> m_textureIndex;
+    std::vector<TextureLayout> m_textureLayout;
 };
 
 END_NAMESPACE(OpenGLESTemplate)

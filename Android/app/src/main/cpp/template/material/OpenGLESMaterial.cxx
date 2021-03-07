@@ -8,18 +8,17 @@ BEGIN_NAMESPACE(OpenGLESTemplate)
 
 // AVOID CRASH
 void OpenGLESMaterial::prepare() {
-    if (m_textureIndex.size() != m_textures.size()) {
-        LOGW("m_textureIndex.size()!=m_textures.size()");
-        if (m_textureIndex.size() < m_textures.size()) {
-            m_textureIndex.resize(m_textures.size());
-        }
+    m_shader->use();
+    for (int i = 0; i< m_textureLayout.size(); i++){
+        m_shader->setInt(m_textureLayout[i].textureShaderName, m_textureLayout[i].textureShaderID);
     }
 }
 
 void OpenGLESMaterial::update() {
-    for (int i = 0; i < m_textures.size(); i++) {
-        glActiveTexture(GL_TEXTURE0 + m_textureIndex[i]);
-        glBindTexture(GL_TEXTURE_2D, m_textures[i]->getTextureID());
+    m_shader->use();
+    for (int i = 0; i < m_textureLayout.size(); i++) {
+        glActiveTexture(GL_TEXTURE0 + m_textureLayout[i].textureShaderID);
+        glBindTexture(GL_TEXTURE_2D, m_textureLayout[i].texture->getTextureID());
     }
 }
 

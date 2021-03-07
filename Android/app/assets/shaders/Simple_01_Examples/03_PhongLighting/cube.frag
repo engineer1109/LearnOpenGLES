@@ -16,9 +16,6 @@ void main()
 {
 	// linearly interpolate between both textures (80% container, 20% awesomeface)
     vec4 color = mix(texture(texture1, TexCoord), texture(texture2, TexCoord), 0.2);
-        //FragColor = vec4(vec3(pow(gl_FragCoord.z,150.f)), 1.0f);
-        //gl_FragDepth=gl_FragCoord.z;
-        //gl_FragDepth=gl_FragCoord.z/255.f;
 
     vec3 N = normalize(normal);
     vec3 L = normalize(lightVec);

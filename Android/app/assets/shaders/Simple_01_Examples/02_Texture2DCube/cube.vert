@@ -16,6 +16,6 @@ layout (std140) uniform UBO{
 
 void main()
 {
-	gl_Position = ubo.projection*ubo.model* vec4(aPos, 1.0f);
+	gl_Position = ubo.projection * ubo.view * ubo.model * vec4(aPos, 1.0f);
 	TexCoord = vec2(aTexCoord.x, aTexCoord.y);
 }
