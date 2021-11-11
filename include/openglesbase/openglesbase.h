@@ -1,5 +1,5 @@
 /*
-* LearnVulkan Examples
+* LearnOpenGLES Examples
 *
 * Copyright (C) by engineer1109 - https://github.com/engineer1109/LearnOpenGLES
 *
