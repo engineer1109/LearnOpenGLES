@@ -1,5 +1,7 @@
 #version 300 es
 precision highp float;
+precision highp sampler3D;
+precision highp sampler2D;
 
 uniform sampler3D volumeData;
 uniform sampler2D pseudoColor;
