@@ -1,3 +1,4 @@
+if(NOT USE_GLFW)
 if(UNIX)
     if(USE_XCB)
         include(cmake/FindXCB.cmake)
@@ -14,6 +15,7 @@ elseif(WIN32)
     if(USE_WIN32)
 	    add_definitions(-DOPENGLES_USE_WIN32)
 	endif()
+endif()
 endif()
 
 if(UNIX)

@@ -1,7 +1,11 @@
 #ifndef SHADER_H
 #define SHADER_H
 
+#ifndef USE_OPENGL
 #include <GLES3/gl3.h>
+#else
+#include <GL/glew.h>
+#endif
 #include <glm/glm.hpp>
 
 #include <string>
@@ -45,6 +49,25 @@ public:
         {
             std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
         }
+
+#ifdef USE_OPENGL
+        auto begV = vertexCode.find('\n');
+        auto vertexCodeSub = vertexCode.substr(begV, vertexCode.size() - begV);
+        vertexCode = "#version 330\n" + vertexCodeSub;
+
+        auto begF = fragmentCode.find('\n');
+        auto fragmentCodeSub = fragmentCode.substr(begF, fragmentCode.size() - begF);
+        fragmentCode = "#version 330\n" + fragmentCodeSub;
+#else
+        auto begV = vertexCode.find('\n');
+        auto vertexCodeSub = vertexCode.substr(begV, vertexCode.size() - begV);
+        vertexCode = "#version 300 es\n" + vertexCodeSub;
+
+        auto begF = fragmentCode.find('\n');
+        auto fragmentCodeSub = fragmentCode.substr(begF, fragmentCode.size() - begF);
+        fragmentCode = "#version 300 es\n" + fragmentCodeSub;
+#endif
+
         const char* vShaderCode = vertexCode.c_str();
         const char * fShaderCode = fragmentCode.c_str();
         // 2. compile shaders

@@ -1,5 +1,8 @@
 #include <imgui.h>
 #include <imgui_impl_opengl3.h>
+#ifdef USE_OPENGL
+#include <imgui_impl_glfw.h>
+#endif
 #include "opengles_imgui.h"
 ImguiOverlay::~ImguiOverlay(){
     ImGui_ImplOpenGL3_Shutdown();
@@ -10,7 +13,12 @@ void ImguiOverlay::init(){
     ImGui::CreateContext();
     ImGuiIO &io = ImGui::GetIO();
     (void)io;
-    ImGui_ImplOpenGL3_Init();
+#ifdef USE_OPENGL
+    ImGui_ImplGlfw_InitForOpenGL(this->window, true);
+    ImGui_ImplOpenGL3_Init("#version 130");
+#else
+    ImGui_ImplOpenGL3_Init("#version 300 es");
+#endif
     ImGui::StyleColorsDark();
 
     unsigned char* fontData;
@@ -52,8 +60,8 @@ void ImguiOverlay::render(){
     ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0);
     ImGui::SetNextWindowPos(ImVec2(10, 10));
     ImGui::SetNextWindowSize(ImVec2(30, 30), ImGuiCond_FirstUseEver);
-    ImGui::Begin("LearnOpenGLES", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
-    ImGui::Text("LearnOpenGLES      ");
+    ImGui::Begin("PaddleLite", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
+    // ImGui::Text("LearnOpenGLES      ");
 
     //ImGui::Text("%.2f ms/frame (%.1d fps)", (1000.0f / lastFPS), lastFPS);
     if (ImGui::Button("Button")){
@@ -96,7 +104,7 @@ bool ImguiOverlay::checkBox(const char *caption, int32_t *value)
 
 bool ImguiOverlay::inputFloat(const char *caption, float *value, float step, uint32_t precision)
 {
-    bool res = ImGui::InputFloat(caption, value, step, step * 10.0f, precision);
+    bool res = ImGui::InputFloat(caption, value, step, step * 10.0f);
     if (res) { updated = true; };
     return res;
 }

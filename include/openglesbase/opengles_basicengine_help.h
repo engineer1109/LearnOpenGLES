@@ -30,7 +30,11 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 //OpenGLES
+#ifdef USE_OPENGL
+#include <GL/glew.h>
+#else
 #include <GLES3/gl3.h>
+#endif
 
 #define BEGIN_NAMESPACE(n) namespace n {
 
