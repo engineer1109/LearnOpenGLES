@@ -3,10 +3,10 @@ project(LearnOpenGLES)
 
 option(USE_GLFW "Use OpenGL" OFF)
 
-if (USE_GLFW)
+if (USE_GLFW MATCHES ON)
     add_definitions(-DUSE_OPENGL)
 endif()
-if (NOT USE_GLFW)
+if (USE_GLFW MATCHES OFF)
     add_definitions(-DUSE_OPENGLES)
 endif()
 

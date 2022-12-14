@@ -1,4 +1,4 @@
-if(NOT USE_GLFW)
+if(USE_GLFW MATCHES OFF)
 if(UNIX)
     if(USE_XCB)
         include(cmake/FindXCB.cmake)

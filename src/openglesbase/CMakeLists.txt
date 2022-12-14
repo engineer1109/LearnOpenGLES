@@ -14,22 +14,24 @@ FILE(GLOB HEAD_FILES ${PROJECT_SOURCE_DIR}/include/openglesbase/*)
 FILE(GLOB STB_IMAGE ${PROJECT_SOURCE_DIR}/third_party/stb_image/src/*
                      ${PROJECT_SOURCE_DIR}/third_party/stb_image/include/*)
 
-if (USE_GLFW)                     
+if (USE_GLFW MATCHES ON)                     
 FILE(GLOB IMGUI ${CMAKE_SOURCE_DIR}/third_party/imgui/* 
 ${CMAKE_SOURCE_DIR}/third_party/imgui/imgui_widgets.cpp
 ${CMAKE_SOURCE_DIR}/third_party/imgui/imgui_impl_opengl3.cpp
 ${CMAKE_SOURCE_DIR}/third_party/imgui/imgui_impl_glfw.cpp)
 else()
+message("OFF")
 FILE(GLOB IMGUI ${CMAKE_SOURCE_DIR}/third_party/imgui/* 
 ${CMAKE_SOURCE_DIR}/third_party/imgui/imgui_widgets.cpp
-${CMAKE_SOURCE_DIR}/third_party/imgui/backends/imgui_impl_opengl3.cpp)
+${CMAKE_SOURCE_DIR}/third_party/imgui/imgui_impl_opengl3.cpp)
 add_definitions(-DIMGUI_IMPL_OPENGL_ES3)
 add_definitions(-DIMGUI_IMPL_OPENGL_LOADER_CUSTOM)
+list(REMOVE_ITEM IMGUI "${CMAKE_SOURCE_DIR}/third_party/imgui/imgui_impl_glfw.cpp") 
 endif()
 
 add_library(${LIB_NAME} SHARED ${SRC_FILES} ${HEAD_FILES} ${STB_IMAGE} ${IMGUI})
 #target_link_libraries(${LIB_NAME} ${OPENGLES3_LIBRARY} ${EGL_LIBRARY} ${NativeWindow} ${SYS_LIB})
-if (USE_GLFW)
+if (USE_GLFW MATCHES ON)
     target_link_libraries(${LIB_NAME} glfw GLEW ${SYS_LIB})
 else()
     target_link_libraries(${LIB_NAME} ${OPENGLES3_LIBRARY} ${EGL_LIBRARY} ${NativeWindow} ${SYS_LIB})
