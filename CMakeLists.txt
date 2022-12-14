@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 project(LearnOpenGLES)
 
-set(USE_GLFW ON)
+option(USE_GLFW "Use OpenGL" OFF)
+
 if (USE_GLFW)
     add_definitions(-DUSE_OPENGL)
 endif()
