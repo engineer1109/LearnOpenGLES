@@ -1,36 +1,46 @@
 /*
-* LearnOpenGLES Examples
-*
-* Copyright (C) by engineer1109 - https://github.com/engineer1109/LearnOpenGLES
-*
-* This code is licensed under GNU General Public License v3.0  (GPL-3.0) (https://opensource.org/licenses/GPL-3.0)
-*/
+ * LearnOpenGLES Examples
+ *
+ * Copyright (C) by engineer1109 - https://github.com/engineer1109/LearnOpenGLES
+ *
+ * This code is licensed under GNU General Public License v3.0  (GPL-3.0) (https://opensource.org/licenses/GPL-3.0)
+ */
 #ifndef OPENGLESBASE_H
 #define OPENGLESBASE_H
 
-#include <string.h>
-#include <iostream>
-#include <thread>
 #include <chrono>
-#include <GLES3/gl3.h>
+#include <iostream>
+#include <map>
+#include <string.h>
+#include <thread>
+#ifndef USE_OPENGL
 #include <EGL/egl.h>
+#include <GLES3/gl3.h>
+#else
+#include <GL/glew.h>
+#endif
 
 #ifdef OPENGLES_USE_XCB
 #include <xcb/xcb.h>
 #endif
+
+#ifdef USE_OPENGL
+#include <GLFW/glfw3.h>
+#endif
+
 #ifdef OPENGLES_USE_WIN32
 #pragma comment(linker, "/subsystem:console")
-#include <windows.h>
+#include <ShellScalingAPI.h>
 #include <fcntl.h>
 #include <io.h>
-#include <ShellScalingAPI.h>
+#include <windows.h>
 #endif
 
 #include "camera.h"
 #include "opengles_imgui.h"
 #include "openglesbase_export.h"
 
-class OPENGLESBASE_EXPORT OpenGLESBase{
+class OPENGLESBASE_EXPORT OpenGLESBase {
 public:
     OpenGLESBase();
     virtual ~OpenGLESBase();
@@ -41,29 +51,31 @@ public:
     virtual void renderLoop();
     virtual void render();
     virtual void updateOverlay();
-    virtual void OnUpdateUIOverlay(ImguiOverlay* overlay);
+    virtual void OnUpdateUIOverlay(ImguiOverlay *overlay);
 
     virtual void renderAsyncThread();
     virtual void renderJoin();
-    virtual void renderPlugin(){}
+    virtual void renderPlugin() {}
 
-    //Custom Event Function
+    // Custom Event Function
     virtual void windowResize();
-    virtual void windowResized(){}
+    virtual void windowResized() {}
     virtual void viewChanged() {}
     virtual void keyPressed(uint32_t) {}
-    virtual void mouseMoved(double x, double y, bool & handled) {}
+    virtual void mouseMoved(double x, double y, bool &handled) {}
 
     void handleMouseMove(int32_t x, int32_t y);
 
-    std::string getWindowTitle(){return title;}
+    std::string getWindowTitle() { return title; }
+
+    static std::map<void *, OpenGLESBase *> &getInstances() { return s_instances; }
 
 #ifdef OPENGLES_USE_XCB
-    xcb_window_t getWindowHandle(){return window;}
-    void setWindowHandle(xcb_window_t winID){window=winID;}
+    xcb_window_t getWindowHandle() { return window; }
+    void setWindowHandle(xcb_window_t winID) { window = winID; }
 #endif
 #ifdef OPENGLES_USE_WIN32
-	void handleMessages(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+    void handleMessages(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 #endif
 
 private:
@@ -73,23 +85,32 @@ private:
     void initxcbConnection();
     void handleEvent(const xcb_generic_event_t *event);
 #endif
+
+#ifdef USE_OPENGL
+    static void framebuffer_size_callback(GLFWwindow *window, int width, int height);
+
+    static void mouse_callback(GLFWwindow *window, double xposIn, double yposIn);
+
+    static void mousebutton_callback(GLFWwindow *window, int button, int action, int c);
+#endif
+
 public:
     struct Settings {
-            /** @brief Set to true if fullscreen mode has been requested via command line */
-            bool fullscreen = false;
-            /** @brief Set to true if v-sync will be forced for the swapchain */
-            bool vsync = false;
-            /** @brief Enable UI overlay */
-            bool overlay = true;
-        } settings;
+        /** @brief Set to true if fullscreen mode has been requested via command line */
+        bool fullscreen = false;
+        /** @brief Set to true if v-sync will be forced for the swapchain */
+        bool vsync = false;
+        /** @brief Enable UI overlay */
+        bool overlay = true;
+    } settings;
     struct {
         bool left = false;
         bool right = false;
         bool middle = false;
     } mouseButtons;
     struct {
-        bool up=false;
-        bool down=false;
+        bool up = false;
+        bool down = false;
     } mouseWheel;
 
     Camera camera;
@@ -101,11 +122,11 @@ public:
     std::string name = "OpenGLES Example";
     uint32_t width = 1280;
     uint32_t height = 720;
-    uint32_t destWidth=0;
-    uint32_t destHeight=0;
-    bool prepared=false;
+    uint32_t destWidth = 0;
+    uint32_t destHeight = 0;
+    bool prepared = false;
     bool paused = false;
-    bool viewUpdated=false;
+    bool viewUpdated = false;
 
     // Use to adjust mouse rotation speed
     float rotationSpeed = 1.0f;
@@ -113,35 +134,43 @@ public:
     float zoomSpeed = 1.0f;
     float zoom = 0;
 
-    uint32_t frameCounter=0;
+    uint32_t frameCounter = 0;
     float frameTimer = 1.0f;
-	bool enableWindow = true;
-	bool resizing = false;
+    bool enableWindow = true;
+    bool resizing = false;
 
-	std::chrono::time_point<std::chrono::high_resolution_clock> lastTimestamp;
-	uint32_t lastFPS = 0;
-	float timer = 0.0f;
-	float timerSpeed = 0.25f;
+    std::chrono::time_point<std::chrono::high_resolution_clock> lastTimestamp;
+    uint32_t lastFPS = 0;
+    float timer = 0.0f;
+    float timerSpeed = 0.25f;
+
 protected:
-    bool m_quit=false;
-    EGLDisplay display;
-    EGLConfig config;
-    EGLContext context;
-    EGLSurface surface;
-    NativeWindowType native_window;
-    EGLint num_config;
+    bool m_quit = false;
+#ifndef USE_OPENGL
+    EGLDisplay display{};
+    EGLConfig config{};
+    EGLContext context{};
+    EGLSurface surface{};
+    NativeWindowType native_window{};
+    EGLint num_config{};
+#endif
 #ifdef OPENGLES_USE_XCB
-    xcb_connection_t *connection;
-    xcb_screen_t *screen;
-    xcb_window_t window;
-    xcb_intern_atom_reply_t *atom_wm_delete_window;
+    xcb_connection_t *connection{};
+    xcb_screen_t *screen{};
+    xcb_window_t window{};
+    xcb_intern_atom_reply_t *atom_wm_delete_window{};
 #endif
 #ifdef OPENGLES_USE_WIN32
-    HWND window;
-	HINSTANCE windowInstance;
+    HWND window{};
+    HINSTANCE windowInstance{};
+#endif
+#ifdef USE_OPENGL
+    GLFWwindow *window{};
 #endif
 
-    ImguiOverlay* imgui;
-    std::thread* m_thread=nullptr;
+    ImguiOverlay *imgui{};
+    std::thread *m_thread = nullptr;
+
+    static std::map<void *, OpenGLESBase *> s_instances;
 };
 #endif

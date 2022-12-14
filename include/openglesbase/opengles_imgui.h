@@ -3,6 +3,9 @@
 #include <vector>
 #include <string>
 #include <stdint.h>
+#ifdef USE_OPENGL
+#include <GLFW/glfw3.h>
+#endif
 #include "openglesbase_export.h"
 class OPENGLESBASE_EXPORT ImguiOverlay{
 public:
@@ -22,9 +25,15 @@ public:
     bool comboBox(const char *caption, int32_t *itemindex, std::vector<std::string> items);
     bool button(const char *caption);
     void text(const char *formatstr, ...);
+#ifdef USE_OPENGL
+    void setWindow(GLFWwindow* window) { this->window = window; }
+#endif
 private:
     float scale=1.f;
     bool visible = true;
     bool updated = false;
+#ifdef USE_OPENGL
+    GLFWwindow* window{};
+#endif
 };
 #endif // OPENGLES_IMGUI_H

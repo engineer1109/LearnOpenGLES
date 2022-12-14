@@ -1,6 +1,19 @@
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 project(LearnOpenGLES)
 
+option(USE_GLFW "Use OpenGL" OFF)
+
+if (USE_GLFW)
+    add_definitions(-DUSE_OPENGL)
+endif()
+if (NOT USE_GLFW)
+    add_definitions(-DUSE_OPENGLES)
+endif()
+
+if (UNIX)
+set(GL_LIBRARIES GL)
+endif()
+
 include(${PROJECT_SOURCE_DIR}/cmake/Config.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/GCC.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/FindOpenGLES.cmake)
