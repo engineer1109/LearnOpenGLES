@@ -74,13 +74,14 @@ void OpenGLESBase::prepareBase() {
   /* connect the context to the surface */
   eglMakeCurrent(display, surface, surface, context);
 
+#else
+  glewInit();
+#endif
+
   printf("GL_RENDERER: %s\n", glGetString(GL_RENDERER));
   printf("GL_VERSION: %s\n", glGetString(GL_VERSION));
   printf("GL_SHADING_LANGUAGE_VERSION: %s\n",
          glGetString(GL_SHADING_LANGUAGE_VERSION));
-#else
-  glewInit();
-#endif
 
   if (settings.overlay) {
     imgui = new ImguiOverlay();
